@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 24, 2019 at 12:05 PM
--- Server version: 5.7.21-log
--- PHP Version: 7.2.0
+-- Generation Time: Jan 29, 2019 at 12:26 PM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -216,12 +216,22 @@ CREATE TABLE `person` (
   `mname` varchar(30) NOT NULL,
   `lname` varchar(30) NOT NULL,
   `dob` date NOT NULL,
-  `gender` char(2) NOT NULL,
+  `gender` char(11) NOT NULL,
+  `aadhar` int(12) NOT NULL,
   `occupation` varchar(30) NOT NULL,
   `no_of_family_members` int(11) NOT NULL,
   `person_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `person_updated` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `person`
+--
+
+INSERT INTO `person` (`pid`, `fname`, `mname`, `lname`, `dob`, `gender`, `aadhar`, `occupation`, `no_of_family_members`, `person_created`, `person_updated`) VALUES
+(3, 'keval', '', '', '1998-06-25', 'female', 0, '', 0, '2019-01-29 10:04:21', '0000-00-00 00:00:00'),
+(4, 'huzefa', '', '', '1997-10-05', 'male', 2147483647, '', 0, '2019-01-29 10:48:20', '0000-00-00 00:00:00'),
+(5, 'milind', '', '', '1998-02-12', 'male', 2147483647, '', 0, '2019-01-29 11:05:11', '2019-01-29 06:35:11');
 
 -- --------------------------------------------------------
 
@@ -432,7 +442,7 @@ ALTER TABLE `treatment_record`
 -- AUTO_INCREMENT for table `person`
 --
 ALTER TABLE `person`
-  MODIFY `pid` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `pid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -534,3 +544,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
