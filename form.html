@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Form</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="../assets/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="../assets/css/form_style.css">
+</head>
+
+<body>
+
+    <div class="main">
+
+        <div class="container">
+
+            <h2>Bombay Leprosy Project </h2>
+            <form method="POST" id="signup-form" class="signup-form" action="../assets/php/form.php">
+                <!-- action="../assets/php/connection.php" -->
+                <h3>
+                    <span class="title_text">Patient History</span>
+                </h3>
+
+                <fieldset>
+                    <div class="fieldset-content">
+                        <div class="form-group">
+                            <label for="ID" class="form-label">Id Number</label>
+                            <input type="text" name="ID" value="1" style="text-align: center;" placeholder="" readonly="true" />
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Name</label>
+                            <input type="text" name="Name" id="Name" placeholder="Name" />
+                        </div>
+                  
+                         <div class="form-row">
+                            <div class="form-group">
+                                <label for="DOB" class="form-label">Date of Birth</label>
+                                <input type="text" name="DOB" id="DOB" />
+                            </div>
+                            <div class="form-group">
+                                <label for="age" class="form-label">Age</label>
+                                <input type="text" name="age" id="age" />
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+
+
+                        <div class="form-group">
+                            <label for="aadhar" class="form-label">Aadhar Card Number</label>
+                            <input type="text" name="aadhar" id="aadhar" placeholder="Aadhar Card Number" />
+                        </div>
+
+                       <div class="clear"></div>
+                            <div class="rows">
+                            <div class="form-radio">
+                              <label for="Sex" class="form-label">Sex</label>
+                              <div class="form-radio-item">
+                                    <input type="radio" name="Sex" value="male" id="male" checked="checked" />
+                                    <label for="male">Male</label>
+    
+                                    <input type="radio" name="Sex" value="female" id="female" />
+                                    <label for="female">Female</label>
+                                </div>
+                            </div>
+                            <div class="form-radio">
+                                <label for="Caste" class="form-label">Caste</label>
+                                <div class="form-radio-item">
+                                    <input type="radio" name="Caste" value="SC" id="SC" checked="checked" />
+                                    <label for="SC">SC</label>
+    
+                                    <input type="radio" name="Caste" value="ST" id="ST" />
+                                    <label for="ST">ST</label>
+
+                                    <input type="radio" name="Caste" value="Others" id="Others" />
+                                    <label for="Others">Others</label>
+                                </div>
+                            </div>
+                            <div class="form-radio">
+                                <label for="ecostat" class="form-label">Economical Status</label>
+                                <div class="form-radio-item">
+                                    <input type="radio" name="ecostat" value="BPL" id="BPL" checked="checked" />
+                                    <label for="BPL">BPL</label>
+    
+                                    <input type="radio" name="ecostat" value="Non-BPL" id="Non-BPL" />
+                                    <label for="Non-BPL">Non-BPL</label>
+                                </div>
+                            </div>
+                            </div>
+                        <div class="clear"></div>
+                        <div class="form-textarea">
+                            <label for="Add1" class="form-label">Address 1</label>
+                            <textarea name="Add1" id="Add1" placeholder="Address 1"></textarea>
+                        </div>
+
+                        <div class="form-textarea">
+                            <label for="Add2" class="form-label">Address 2</label>
+                            <textarea name="Add0" id="Add2" placeholder="Address 2"></textarea>
+                        </div>
+
+                          <div class="clear"></div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="Contact1" class="form-label">Contact No.1</label>
+                                <input type="text" name="Contact1" id="Contact1" />
+                            </div>
+                            <div class="form-group"  >
+                                <label for="Contact2" class="form-label">Contact No.2</label>
+                                <input type="text" name="Contact2" id="Contact2" />
+                            </div>
+                        </div>
+
+                        <div class="clear"></div>
+                        <div class="form-group">
+                            <label for="Occupation" class="form-label">Occupation</label>
+                            <input type="text" name="Occupation" id="Occupation" placeholder="Occupation" />
+                        </div>
+                           <div class="clear"></div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="Examiner" class="form-label">Examiner</label>
+                                <input type="text" name="Examiner" id="Examiner" />
+                            </div>
+                            <div class="form-group"  >
+                                <label for="Reffered" class="form-label">Referred By</label>
+                                <input type="text" name="Reffered" id="Reffered" />
+                            </div>
+                        </div>
+
+                        <div class="clear"></div>
+
+                        <div class="form-group">
+                            <label for="NOML" class="form-label">Number of members living in same household</label>
+                            <input type="text" name="NOML" id="NOML" placeholder="NOML" />
+                        </div>
+
+                        <div class="form-textarea">
+                            <label for="family_history" class="form-label">Family History</label>
+                            <textarea name="family_history" id="family_history" placeholder="DM,Hypertension,Cardiopathy,Respiratory,Infectious..."></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="Allergies" class="form-label">Allergies</label>
+                                <textarea name="Allergies" rows="8" placeholder="Allergies"  ></textarea>  
+                            </div>
+                             <div class="form-group">
+                                <label for="Allergies" class="form-label">Drugs</label>
+                                <br\>
+                                <label>Tobacco</label>   
+                                    <select class="form-control">
+                                        <option>No</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                        <option>13</option>
+                                        <option>14</option>
+                                        <option>15</option>
+                                        <option>16</option>
+                                        <option>17</option>
+                                        <option>18</option>
+                                        <option>19</option>
+                                        <option>20</option>
+                                        <option>21</option>
+                                        <option>22</option>
+                                        <option>23</option>
+                                        <option>24</option>
+                                        <option>25</option>
+                                        <option>26</option>
+                                        <option>27</option>
+                                        <option>28</option>
+                                        <option>29</option>
+                                        <option>30</option>
+                                        <option>31</option>
+                                        <option>32</option>
+                                        <option>33</option>
+                                        <option>34</option>
+                                        <option>35</option>
+                                        <option>36</option>
+                                        <option>37</option>
+                                        <option>38</option>
+                                        <option>39</option>
+                                        <option>40</option>
+                                        <option>41</option>
+                                        <option>42</option>
+                                        <option>43</option>
+                                        <option>44</option>
+                                        <option>45</option>
+                                        <option>46</option>
+                                        <option>47</option>
+                                        <option>48</option>
+                                        <option>49</option>
+                                        <option>50</option>
+                                        <option>51</option>
+                                        <option>52</option>
+                                        <option>53</option>
+                                        <option>54</option>
+                                        <option>55</option>
+                                        <option>56</option>
+                                        <option>57</option>
+                                        <option>58</option>
+                                        <option>59</option>
+                                        <option>60</option>
+                                    </select>
+                                   <label>Cigratte (CIG/DAY)</label>
+                                    <select class="form-control" style="display: inline-block;">
+                                        <option>No</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                        <option>13</option>
+                                        <option>14</option>
+                                        <option>15</option>
+                                        <option>16</option>
+                                        <option>17</option>
+                                        <option>18</option>
+                                        <option>19</option>
+                                        <option>20</option>
+                                        <option>21</option>
+                                        <option>22</option>
+                                        <option>23</option>
+                                        <option>24</option>
+                                        <option>25</option>
+                                        <option>26</option>
+                                        <option>27</option>
+                                        <option>28</option>
+                                        <option>29</option>
+                                        <option>30</option>
+                                        <option>31</option>
+                                        <option>32</option>
+                                        <option>33</option>
+                                        <option>34</option>
+                                        <option>35</option>
+                                        <option>36</option>
+                                        <option>37</option>
+                                        <option>38</option>
+                                        <option>39</option>
+                                        <option>40</option>
+                                        <option>41</option>
+                                        <option>42</option>
+                                        <option>43</option>
+                                        <option>44</option>
+                                        <option>45</option>
+                                        <option>46</option>
+                                        <option>47</option>
+                                        <option>48</option>
+                                        <option>49</option>
+                                        <option>50</option>
+                                        <option>51</option>
+                                        <option>52</option>
+                                        <option>53</option>
+                                        <option>54</option>
+                                        <option>55</option>
+                                        <option>56</option>
+                                        <option>57</option>
+                                        <option>58</option>
+                                        <option>59</option>
+                                        <option>60</option>
+                                    </select>
+                                <label>Alcohol in gr/day </label>   
+                                    <select class="form-control">
+                                        <option>No</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                        <option>13</option>
+                                        <option>14</option>
+                                        <option>15</option>
+                                        <option>16</option>
+                                        <option>17</option>
+                                        <option>18</option>
+                                        <option>19</option>
+                                        <option>20</option>
+                                        <option>21</option>
+                                        <option>22</option>
+                                        <option>23</option>
+                                        <option>24</option>
+                                        <option>25</option>
+                                        <option>26</option>
+                                        <option>27</option>
+                                        <option>28</option>
+                                        <option>29</option>
+                                        <option>30</option>
+                                        <option>31</option>
+                                        <option>32</option>
+                                        <option>33</option>
+                                        <option>34</option>
+                                        <option>35</option>
+                                        <option>36</option>
+                                        <option>37</option>
+                                        <option>38</option>
+                                        <option>39</option>
+                                        <option>40</option>
+                                        <option>41</option>
+                                        <option>42</option>
+                                        <option>43</option>
+                                        <option>44</option>
+                                        <option>45</option>
+                                        <option>46</option>
+                                        <option>47</option>
+                                        <option>48</option>
+                                        <option>49</option>
+                                        <option>50</option>
+                                        <option>51</option>
+                                        <option>52</option>
+                                        <option>53</option>
+                                        <option>54</option>
+                                        <option>55</option>
+                                        <option>56</option>
+                                        <option>57</option>
+                                        <option>58</option>
+                                        <option>59</option>
+                                        <option>60</option>
+                                   </select>                                                               
+                            </div>                            
+                        </div>
+                    </div>
+                    <div class="fieldset-footer">
+                        <span>Form 1 of 4</span>
+                    </div>
+                </fieldset>
+
+                <h3>
+                    <span class="title_text">Leprosy History</span>
+                </h3>
+                <fieldset>
+
+                    <div class="fieldset-content">
+                         <div class="form-textarea">
+                            <label for="PMH" class="form-label">Past Medical History</label>
+                            <textarea name="PMH" id="PMH" placeholder="Past Medical History"  ></textarea>
+                        </div>
+
+                         <div class="form-textarea">
+                            <label for="ObestricH" class="form-label">Obestric History</label>
+                            <textarea name="ObestricH" id="ObestricH" placeholder="Obestric History"></textarea>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="KNC" class="form-label">Known Leprosy Contacts</label>
+                            <input type="text" name="KNC" id="KNC" placeholder="Any Known Contacts" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fcfs" class="form-label">First Signs and Symtoms(with date of onset)</label>
+                            <input type="text" name="fcfs" id="fcfs" placeholder="All the known Symtoms" />
+                        </div>
+                        <div class="form-group">
+                            <label for="dod" class="form-label">Date of diagonsis(MM/YY)
+</label>
+                            <input name="dod" id="dod" type="month" />
+                        </div>
+
+                        <div class="form-radio">
+                                <label for="tld" class="form-label">Type of Leprosy diagonised</label>
+                                <div class="form-radio-item">
+                                    <input type="radio" name="tld" value="PB/MB" id="PB/MB" />
+                                    <label for="PB/MB" >PB/MB</label>
+
+
+                                    <input type="radio" name="tld" value="TT" id="TT" checked="checked" />
+                                    <label for="TT">TT</label>
+                                    
+                                    <input type="radio" name="tld" value="Others" id="BT" />
+                                    <label for="BT">BT</label>
+
+                                    <input type="radio" name="tld" value="Others" id="BB" />
+                                    <label for="BB">BB</label>
+
+                                    <input type="radio" name="tld" value="Others" id="BL" />
+                                    <label for="BL">BL</label>
+                                    
+
+                                    <input type="radio" name="tld" value="Others" id="LL" />
+                                    <label for="LL">LL</label>
+
+                                </div>
+                            </div>
+                             <div class="form-group">
+                            <label  class="form-label">Skin Smears</label>
+                            </div>
+                            <div class="form-row">
+                          <!--  -->
+                            <div class="form-group">
+                                <label for="Date1" class="form-label">Date</label>
+                                <input type="date" name="Date1" id="Date1" />
+                            </div>
+                            <div class="form-group"  >
+                                <label for="Date2" class="form-label">Date</label>
+                                <input type="date" name="Date2" id="Date2" />
+                            </div>
+                        </div>
+                       
+
+
+                    </div>
+
+                    <div class="fieldset-footer">
+                        <span>Form 2 of 4</span>
+                    </div>
+
+                </fieldset>
+
+                <h3>
+                    <span class="title_text">Leprosy Treatment</span>
+                </h3>
+                <fieldset>
+                    <div class="fieldset-content">
+
+                    <div class="form-group">
+                            <label  class="form-label">First Treatment</label>
+                            </div>
+                        <div class="form-textarea">
+                            <label for="drugused" class="form-label">Drug Used</label>
+                            <textarea name="drugused" id="drugused" placeholder="Drug Used" rows="2" ></textarea>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="form-row">
+                        
+                            <div class="form-group">
+                                <label for="Start1" class="form-label">Start</label>
+                                <input type="date" name="Start1" id="Start1" />
+                            </div>
+                            <div class="form-group" >
+                                <label for="End1" class="form-label">End</label>
+                                <input type="date" name="End1" id="End1" />
+                            </div>
+                        </div>
+
+
+                        <div class="clear"></div>
+                         <div class="form-group">
+                            <label for="omc" class="form-label">Other MDT courses</label>
+                            <input type="text" name="omc" id="omc" placeholder="Other MDT courses" />
+                        </div>
+
+                         <div class="form-textarea">
+                            <label for="Result" class="form-label">Result after completion of first treatment</label>
+                            <textarea name="Result" id="Result" placeholder="" rows="2" ></textarea>
+                        </div>
+
+                         <div class="form-textarea">
+                            <label for="Further" class="form-label">Further treatment</label>
+                            <textarea name="further" id="further" placeholder=""  ></textarea>
+                        </div>
+
+                         <div class="form-textarea">
+                            <label for="Reaction" class="form-label">Reaction and treatment</label>
+                            <textarea name="Reaction" id="Reaction" placeholder="" ></textarea>
+                        </div>
+
+
+                         <div class="form-textarea">
+                            <label for="Current" class="form-label">Current treatment</label>
+                            <textarea name="Current" id="Current" placeholder=""  ></textarea>
+                        </div>
+
+
+                         <div class="form-textarea">
+                            <label for="Disability" class="form-label">Disability</label>
+                            <textarea name="Disability" id="Disability" placeholder="" rows="2" ></textarea>
+                        </div>
+
+
+                       <div class="form-group">
+                            <label for="Ophtalmic_involvement" class="form-label">Ophtalmic involvement</label>
+                            <input type="text" name="Ophtalmic_involvement" id="Ophtalmic_involvement" />
+                        </div>
+                    </div>
+
+                    <div class="fieldset-footer">
+                        <span>Form 3 of 4</span>
+                    </div>
+                </fieldset>
+
+
+
+                 <h3>
+                    <span class="title_text">Clinical Examination</span>
+                </h3>
+                <fieldset>
+                    <div class="fieldset-content">
+
+                        <div class="form-group">
+                            <label for="Assessment" class="form-label">Assessment Of Skin Lesions</label>
+                            <input type="text" name="Assessment" id="Assessment" />
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="Sensory" class="form-label">Sensory Testing(On Diagram)
+
+</label>
+                            <input type="text" name="Sensory" id="Sensory" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Motor" class="form-label">Motor Testing(Dysfuncton)
+
+</label>
+                            <input type="text" name="Motor" id="Motor" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Peripheral" class="form-label">Peripheral Nerves(Thickened And/Or Tender)
+
+</label>
+                            <input type="text" name="Peripheral" id="Peripheral" />
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="Eyes" class="form-label">Eyes</label>
+                            <input type="text" name="Eyes" id="Eyes" />
+                        </div>
+
+
+
+                         <div class="form-textarea">
+                            <label for="furtherobservations" class="form-label">Further Observations</label>
+                            <textarea name="furtherobservations" id="furtherobservations" placeholder="" rows="2" ></textarea>
+                        </div>
+
+                         <div class="form-textarea">
+                            <label for="Complaint" class="form-label">Present Complaint</label>
+                            <textarea name="Complaint" id="Complaint" placeholder=""  ></textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="fieldset-footer">
+                        <span>Form 4 of 4</span>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="copy w3ls">
+               <p>&copy; 2018  Bombay Leprosy Project  </p>
+            </div>
+     </div>
+
+
+    <!-- JS -->
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="../assets/vendor/jquery-validation/dist/additional-methods.min.js"></script>
+    <script src="../assets/vendor/jquery-steps/jquery.steps.min.js"></script>
+    <script src="../assets/vendor/minimalist-picker/dobpicker.js"></script>
+    <script src="../assets/vendor/jquery.pwstrength/jquery.pwstrength.js"></script>
+    <script src="../assets/js/mainn.js"></script>
+</body>
+
+</html>
