@@ -1,0 +1,59 @@
+html, body {
+      position: relative;
+      height: 100%;
+    }
+    body {
+      background: #eee;
+      font-family: Helvetica Neue,Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color:#000;
+      margin: 0;
+      padding: 0em;
+    }
+    .swiper-container {
+      width: 100%;
+      height: 140%;
+      background: #fff;
+    }
+    .swiper-slide {
+      font-size: 18px;
+      color:#000;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      padding: 70px 60px;
+    height: 500px;
+        width: auto;
+    }
+    .parallax-bg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 130%;
+      height: 150%;
+      -webkit-background-size: cover;
+      background-size: cover;
+      background-position: center;
+    }
+    .swiper-slide .title {
+      font-size: 2.2em;
+      font-weight: 300;
+    }
+    .swiper-slide .subtitle {
+      font-size: 21px;
+    }
+    .swiper-slide .text {
+        
+      font-size: 14px;
+      max-width: 500px;
+      line-height: 1.3;
+      text-align: justify; 
+      font-weight: 300;
+
+    }
+      	.starter{
+		position:relative;
+		top:150px;
+	}
+  .vjs-fluid {
+        padding-top: 56.25%;
+      }

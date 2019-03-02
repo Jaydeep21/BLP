@@ -1,8 +1,7 @@
 /* @extend display-flex; */
 display-flex, .form-group, .form-select, .form-radio, .form-textarea, .form-date, .form-radio-item, .form-flex, .form-date-item .select-icon, .form-date-item .select-icon i, #val, #button, .steps ul, .actions ul, .actions ul li a, .title, .number {
   display: flex;
-  display: -webkit-flex;
-}
+  display: -webkit-flex; }
 
 /* @extend list-type-ulli; */
 list-type-ulli, ul, .actions ul {
@@ -117,8 +116,7 @@ body {
   font-weight: 400;
   font-family: 'Roboto Slab';
   margin: 0px;
-  background-image: url("../images/body-bg.jpg");
-  background-repeat: no-repeat;
+  background: linear-gradient(to right,#2050d4f5,#e3f4ef);
   background-size: cover;
   -moz-background-size: cover;
   -webkit-background-size: cover;
@@ -183,13 +181,13 @@ input.error {
 
 input, select, textarea {
   
-background: transparent;
+background: #8eddef1a;
   
 font-size: 14px;
   
 padding: 15px 20px;
   
-border: 1px solid #ebebeb;
+border: 1px solid #b9b9b969;
   
 font-family: 'Roboto Slab';
   
@@ -205,7 +203,7 @@ border-radius: 5px;
   
 display: block;
   
-width: 77%;
+width: 70%;
   
 margin-right: 20px;
   
@@ -231,8 +229,11 @@ select {
   font-weight: 400; }
 
 .form-textarea textarea {
+  background: #8eddef1a;
   height: 150px;
-  width: 534px; }
+  width: 534px; 
+  border: 1px solid #b9b9b969;
+  /*padding-left: 30px;*/}
 
 .form-radio {
   margin-bottom: 40px;
@@ -246,7 +247,7 @@ select {
 .form-radio-item input + label {
   margin: 0px;
   padding: 12px 10px;
-  width: 85px;
+  width: 80px;
   height: 50px;
   box-sizing: border-box;
   position: relative;
@@ -255,7 +256,6 @@ select {
   background-color: #f8f8f8;
   font-size: 14px;
   font-weight: 400;
-  cursor:pointer;
   /* color: #f8f8f8; */
   text-align: center;
   text-transform: none;
@@ -268,11 +268,13 @@ select {
   }
 .form-radio-item input:checked + label {
   background-color: #1abc9c;
-  /* color: #FFF; */
+   color: #FFF; 
   /* z-index: 1; */
   }
 .form-radio-item input:focus + label {
-  outline: none; }
+  outline: none;
+
+   }
 .form-radio-item input:hover {
   background-color: #1abc9c;
   color: #FFF; }
@@ -328,7 +330,7 @@ select {
   border: 1px solid #1abc9c; }
 
 #signup-form-p-2 .form-radio-flex, #signup-form-p-2 .form-flex, #signup-form-p-2 .form-group input {
-  width: 250px; }
+   }
 #signup-form-p-2 #credit_card {
   width: 275px; }
 #signup-form-p-2 #cvc #age #sex #caste #ecostat {
@@ -546,7 +548,7 @@ fieldset {
     -o-justify-content: space-around;
     -ms-justify-content: space-around; }
     .steps ul li {
-      padding-right: 80px;
+      padding-right: 40px;
       padding-left: 0px;
       position: relative; }
       .steps ul li:after {
@@ -719,6 +721,10 @@ fieldset {
   #signup-form-p-2 .form-radio-flex, #signup-form-p-2 .form-flex, #signup-form-p-2 .form-group input, .form-row .form-group label {
     width: 100%; }
 
+  /*.table {
+  border: 14px solid black;
+}
+*/
   .form-row .form-group:first-child, .form-row .form-group:last-child {
     float: none; }
 
@@ -801,7 +807,9 @@ fieldset {
     background: rgba(0, 0, 0, 0.08);
 }
 textarea {
+  background: #8eddef1a;
     resize: none;
+     border: 1px solid #b9b9b969;
  /*   height: 170px;*/
 }
 .book-appointment select.form-control {
