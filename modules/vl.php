@@ -328,9 +328,9 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
       <div id="m_nav_container" class="m_nav wthree_bg">
         <nav class="menu menu--sebastian">
           <ul id="m_nav_list" class="m_nav menu__list">
-            <li class="m_nav_item menu__item menu__item--current" id="m_nav_item_1"> <a href="http://localhost/BLP-master/index.php" class="menu__link"><i class="menu-icon fa fa-home" aria-hidden="true"></i> Home </a></li>
-            <li class="m_nav_item menu__item" id="moble_nav_item_2"> <a href="http://localhost/BLP-master/index.php#about" class="menu__link"><i class="menu-icon fa fa-info-circle" aria-hidden="true"></i>About Us </a> </li>
-            <li class="m_nav_item menu__item" id="moble_nav_item_3"> <a href="http://localhost/BLP-master/index.php#services" class="menu__link"><i class="menu-icon fa fa-cog" aria-hidden="true"></i>Services</a> </li>
+            <li class="m_nav_item menu__item menu__item--current" id="m_nav_item_1"> <a href="http://localhost/BLP/index.php" class="menu__link"><i class="menu-icon fa fa-home" aria-hidden="true"></i> Home </a></li>
+            <li class="m_nav_item menu__item" id="moble_nav_item_2"> <a href="http://localhost/BLP/index.php#about" class="menu__link"><i class="menu-icon fa fa-info-circle" aria-hidden="true"></i>About Us </a> </li>
+            <li class="m_nav_item menu__item" id="moble_nav_item_3"> <a href="http://localhost/BLP/index.php#services" class="menu__link"><i class="menu-icon fa fa-cog" aria-hidden="true"></i>Services</a> </li>
                        
                 <li class="m_nav_item menu__item" id="moble_nav_item_4"> 
                                 <div class="dropdown">
@@ -340,27 +340,27 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
                                  
                               </button>
                               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="padding: 10px;">
-                                <a class="dropdown-item"  href="http://localhost/BLP-master/index.php#team">Trustees</a>
+                                <a class="dropdown-item"  href="http://localhost/BLP/index.php#team">Trustees</a>
                                   <br>
-                                <a class="dropdown-item"   href="http://localhost/BLP-master/modules/vl.php">Volunteer</a>
+                                <a class="dropdown-item"   href="http://localhost/BLP/modules/vl.php">Volunteer</a>
                            
                               </div>
                             </div>
                             
                         </li>
-                         <li class="m_nav_item menu__item" id="moble_nav_item_3"> <a href="http://localhost/BLP-master/modules/form.php" class="menu__link"><i class="menu-icon fa fa-check-square-o" aria-hidden="true"></i>Form</a> </li>    
-            <li class="m_nav_item menu__item" id="moble_nav_item_5"> <a href="http://localhost/BLP-master/index.php#grid-gallery" class="menu__link"><i class="menu-icon fas fa-image" aria-hidden="true"></i>Gallery</a> </li>
-            <li class="m_nav_item menu__item" id="moble_nav_item_6"> <a href="http://localhost/BLP-master/index.php#contact" class="menu__link"><i class="menu-icon fa fa-map-marker" aria-hidden="true"></i> Contact </a> </li>
+                         <li class="m_nav_item menu__item" id="moble_nav_item_3"> <a href="http://localhost/BLP/modules/form.php" class="menu__link"><i class="menu-icon fa fa-check-square-o" aria-hidden="true"></i>Form</a> </li>    
+            <li class="m_nav_item menu__item" id="moble_nav_item_5"> <a href="http://localhost/BLP/index.php#grid-gallery" class="menu__link"><i class="menu-icon fas fa-image" aria-hidden="true"></i>Gallery</a> </li>
+            <li class="m_nav_item menu__item" id="moble_nav_item_6"> <a href="http://localhost/BLP/index.php#contact" class="menu__link"><i class="menu-icon fa fa-map-marker" aria-hidden="true"></i> Contact </a> </li>
             <?php
               if(isset($_SESSION['name'])){
             ?>
             <li class="m_nav_item menu__item" id="moble_nav_item_6"> <a href="#" class="menu__link"><i class="menu-icon fa f-md sicona-user" aria-hidden="true"></i> <?php echo $_SESSION['name']; ?> </a> </li>
-            <li class="m_nav_item menu__item" id="moble_nav_item_6"> <a href="http://localhost/BLP-master/assets/php/logout.php" class="menu__link"><i class="menu-icon fa f-md sicona-user" aria-hidden="true"></i> Logout </a> </li>
+            <li class="m_nav_item menu__item" id="moble_nav_item_6"> <a href="http://localhost/BLP/assets/php/logout.php" class="menu__link"><i class="menu-icon fa f-md sicona-user" aria-hidden="true"></i> Logout </a> </li>
             <?php
 
             }else{
 ?>
-            <li class="m_nav_item menu__item" id="moble_nav_item_6"> <a href="http://localhost/BLP-master/modules/login.php" class="menu__link"><i class="menu-icon fa f-md sicona-user" aria-hidden="true"></i> Login </a> </li>
+            <li class="m_nav_item menu__item" id="moble_nav_item_6"> <a href="http://localhost/BLP/modules/login.php" class="menu__link"><i class="menu-icon fa f-md sicona-user" aria-hidden="true"></i> Login </a> </li>
             <?php } ?>
         </nav>
           </ul>
