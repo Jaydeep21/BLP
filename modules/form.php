@@ -42,9 +42,7 @@ include('navbar.php');
     <link rel="stylesheet" href="../assets/css/form_style.css">
     <style type="text/css">
         
-        input[type='checkbox']:checked{
-            color: black;
-        }
+        
 
     </style>
 
@@ -953,7 +951,7 @@ include('navbar.php');
     <script src="../assets/js/multiselect.js"></script>
     <script src="../assets/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="../assets/vendor/jquery-steps/jquery.steps.min.js"></script>
-    <script src="../assets/js/mainn.js"></script>
+    <script src="../assets/js/main.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript">
