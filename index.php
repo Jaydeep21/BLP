@@ -88,7 +88,9 @@ jQuery(document).ready(function($) {
 });
 </script>
 <!-- //for smooth scrolling -->
-
+<style type="text/css">
+	
+</style>
 <body style="">
 <script src="assets/blp/jquery.min.js.download"></script><script src="https://m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
 <script>

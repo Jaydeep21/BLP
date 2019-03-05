@@ -12,11 +12,24 @@ session_start();
   <link rel="stylesheet" href="http://localhost/BLP/assets/css/navbar.css">
   <script type="text/javascript" src="http://localhost/BLP/assets/blp/jquery-1.11.1.min.js.download"></script>
 <!-- stylesheet -->
-    <link rel="stylesheet" href="http://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <link href="http://localhost/BLP/assets/css/style.css" rel="stylesheet" type="text/css" media="all">
+
   <!-- header -->   
+  <!-- Latest compiled and minified CSS -->
+
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <div class="agileits_w3layouts_nav">
       <div id="toggle_m_nav">
         <div id="m_nav_menu" class="m_nav">
@@ -36,8 +49,8 @@ session_start();
                                 <div class="dropdown">
                               <button style="background: transparent; bottom: 21px; " class="btn btn-secondary menu__link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                       <i class="menu-icon fa fa-users" aria-hidden="true"></i> 
-                                      Team
-                                 
+                                      
+                                Team
                               </button>
                               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="padding: 10px;">
                                 <a class="dropdown-item"  href="http://localhost/BLP/index.php#team">Trustees</a>
@@ -55,12 +68,12 @@ session_start();
               if(isset($_SESSION['name'])){
             ?>
             <li class="m_nav_item menu__item" id="moble_nav_item_6"> <a href="#" class="menu__link"><i class="menu-icon fa f-md sicona-user" aria-hidden="true"></i> <?php echo $_SESSION['name']; ?> </a> </li>
-            <li class="m_nav_item menu__item" id="moble_nav_item_6"> <a href="http://localhost/BLP/assets/php/logout.php" class="menu__link"><i class="menu-icon fa f-md sicona-user" aria-hidden="true"></i> Logout </a> </li>
+            <li class="m_nav_item menu__item" id="moble_nav_item_6"> <a href="http://localhost/BLP/assets/php/logout.php" class="menu__link"><i class="menu-icon fa fa-sign-in" aria-hidden="true"></i> Logout </a> </li>
             <?php
 
             }else{
 ?>
-            <li class="m_nav_item menu__item" id="moble_nav_item_6"> <a href="http://localhost/BLP/modules/login.php" class="menu__link"><i class="menu-icon fa fa-sign-in" aria-hidden="true"></i> Login </a> </li>
+            <li class="m_nav_item menu__item" id="moble_nav_item_6"> <a href="http://localhost/BLP/modules/login.php" class="menu__link"><i class="menu-icon fa fa-user-o" aria-hidden="true"></i> Login </a> </li>
             <?php } ?>
         </nav>
           </ul>

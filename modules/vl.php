@@ -355,12 +355,12 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
               if(isset($_SESSION['name'])){
             ?>
             <li class="m_nav_item menu__item" id="moble_nav_item_6"> <a href="#" class="menu__link"><i class="menu-icon fa f-md sicona-user" aria-hidden="true"></i> <?php echo $_SESSION['name']; ?> </a> </li>
-            <li class="m_nav_item menu__item" id="moble_nav_item_6"> <a href="http://localhost/BLP/assets/php/logout.php" class="menu__link"><i class="menu-icon fa f-md sicona-user" aria-hidden="true"></i> Logout </a> </li>
+            <li class="m_nav_item menu__item" id="moble_nav_item_6"> <a href="http://localhost/BLP/assets/php/logout.php" class="menu__link"><i class="menu-icon fa fa-sign-in" aria-hidden="true"></i> Logout </a> </li>
             <?php
 
             }else{
 ?>
-            <li class="m_nav_item menu__item" id="moble_nav_item_6"> <a href="http://localhost/BLP/modules/login.php" class="menu__link"><i class="menu-icon fa f-md sicona-user" aria-hidden="true"></i> Login </a> </li>
+            <li class="m_nav_item menu__item" id="moble_nav_item_6"> <a href="http://localhost/BLP/modules/login.php" class="menu__link"><i class="menu-icon fa fa-user-o" aria-hidden="true"></i> Login </a> </li>
             <?php } ?>
         </nav>
           </ul>
