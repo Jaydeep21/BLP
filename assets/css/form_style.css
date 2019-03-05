@@ -268,13 +268,11 @@ select {
   }
 .form-radio-item input:checked + label {
   background-color: #1abc9c;
-   color: #FFF; 
+  /* color: #FFF; */
   /* z-index: 1; */
   }
 .form-radio-item input:focus + label {
-  outline: none;
-
-   }
+  outline: none; }
 .form-radio-item input:hover {
   background-color: #1abc9c;
   color: #FFF; }
@@ -548,7 +546,7 @@ fieldset {
     -o-justify-content: space-around;
     -ms-justify-content: space-around; }
     .steps ul li {
-      padding-right: 40px;
+      padding-right: 50px;
       padding-left: 0px;
       position: relative; }
       .steps ul li:after {
@@ -721,10 +719,6 @@ fieldset {
   #signup-form-p-2 .form-radio-flex, #signup-form-p-2 .form-flex, #signup-form-p-2 .form-group input, .form-row .form-group label {
     width: 100%; }
 
-  /*.table {
-  border: 14px solid black;
-}
-*/
   .form-row .form-group:first-child, .form-row .form-group:last-child {
     float: none; }
 
