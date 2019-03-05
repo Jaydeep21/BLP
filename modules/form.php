@@ -715,8 +715,7 @@ include('navbar.php');
 
                                   <tr>
                                       <th rowspan="2">Grade 1</th>
-                                      <th >Anesthesia of hand</th>
-                                      <td><input type="checkbox" name="Grade1"></td>
+                                      <th >Anesthesia of hand<input type="checkbox" name="Grade1"></th>
                                       
                                   </tr> 
                                   
