@@ -49,7 +49,7 @@ a:active {
 input,
 select,
 textarea {
-  outline: none;
+  outline:none;
   appearance: unset !important;
   -moz-appearance: unset !important;
   -webkit-appearance: unset !important;
@@ -695,11 +695,20 @@ fieldset {
 @media screen and (max-width: 992px) {
   .container {
     width: calc(100% - 40px);
-    max-width: 100%; }
+    max-width: 100%; 
+    height: 100%;
+    }
 
   .bar-strength {
     display: none; } }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px)  {
+      .container {
+    
+    max-width: 100%; 
+         
+  
+    }
+
   .steps ul, .form-row {
     flex-direction: column;
     -moz-flex-direction: column;
@@ -715,9 +724,6 @@ fieldset {
     margin-left: auto;
     margin-right: auto; }
 
-  .form-row .form-date, .form-row .form-select, .form-file, input, select, textarea, .form-textarea textarea, #signup-form-p-2 #credit_card, #signup-form-p-2 #cvc #age #sex #caste #ecostat,
-  #signup-form-p-2 .form-radio-flex, #signup-form-p-2 .form-flex, #signup-form-p-2 .form-group input, .form-row .form-group label {
-    width: 100%; }
 
   .form-row .form-group:first-child, .form-row .form-group:last-child {
     float: none; }
@@ -727,7 +733,7 @@ fieldset {
 
   .fieldset-content {
     padding-right: 0px;
-    height: 600px; }
+    height: 60%; }
 
   .form-group, .form-select, .form-radio, .form-textarea, .form-date {
     flex-direction: column;
@@ -802,7 +808,7 @@ fieldset {
 }
 textarea {
   background: #8eddef1a;
-    resize: none;
+    resize:horizontal;
      border: 1px solid #b9b9b969;
  /*   height: 170px;*/
 }
@@ -926,9 +932,27 @@ p.wickedpicker__title {
     color: #fff;
 }
 /*--//copyright--*/
+
+
+
+
+
 /*--responsive--*/
 @media(max-width:1680px){
+    
+    
+    .container {
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
+ 
+}
+    .form-group, .form-select, .form-radio, .form-textarea, .form-date {
+  align-items: center;
   
+  position: relative; }
+
+
 }
 @media(max-width:1440px){
   
@@ -1017,7 +1041,14 @@ p.wickedpicker__title {
     width: 20.5%;
   }
 }
-@media(max-width:900px){
+@media(max-width:900px) and (max-height:565px){
+    
+      .form-row .form-date, .form-row .form-select, .form-file, input, select, textarea, .form-textarea textarea, #signup-form-p-2 #credit_card, #signup-form-p-2 #cvc #age #sex #caste #ecostat,
+  #signup-form-p-2 .form-radio-flex, #signup-form-p-2 .form-flex, #signup-form-p-2 .form-group input, .form-row .form-group label {
+    width: 100%; }
+
+    
+    
   .book-appointment h2 {
     font-size: 18px;
     letter-spacing: 3px;
@@ -1062,18 +1093,15 @@ p.wickedpicker__title {
     font-size: 0.9em;
     padding: 6px 18px;
   }
+    .number {
+  width: 3%;
+  height: 3%;
+  
+  border: 2px solid #999;
+  margin-right: 1.5%; }
 }
-@media(max-width:768px){
-  body {
-    min-height: 894.5px;
-  }
-  h1 {
-    margin: 4em 0 2em;
-  }
-  .copy.w3ls {
-    margin: 4em 0em 0;
-  }
 }
+
 @media(max-width:767px){
   h1 {
     margin: 1.2em 0;
@@ -1087,6 +1115,13 @@ p.wickedpicker__title {
   body {
     min-height: 565.7px;
   }
+    .number {
+  width: 3%;
+  height: 3%;
+  
+  border: 2px solid #999;
+  margin-right: 1.5%; }
+}
 }
 @media(max-width:736px){
   .book-appointment select.form-control {
@@ -1119,6 +1154,8 @@ p.wickedpicker__title {
   }
 }
 @media(max-width:640px){
+    
+    
   .book-appointment h2 {
     font-size: 16px;
   }
@@ -1144,11 +1181,25 @@ p.wickedpicker__title {
   .bg-agile {
     width: 88%;
   }
+    label {
+  padding-right: 0px;
+  display:flex;
+  width: 15.5%;
+  text-align: right;
+  margin-right: 2%;
+  }
+
   .book-appointment select.form-control {
+      
     width: 20%;
   }
 }
 @media(max-width:568px){
+    
+      .form-row .form-date, .form-row .form-select, .form-file, input, select, textarea, .form-textarea textarea, #signup-form-p-2 #credit_card, #signup-form-p-2 #cvc #age #sex #caste #ecostat,
+  #signup-form-p-2 .form-radio-flex, #signup-form-p-2 .form-flex, #signup-form-p-2 .form-group input, .form-row .form-group label {
+    width: 100%; }
+
   .copy p {
     word-spacing: 0px;
   }
@@ -1160,10 +1211,16 @@ p.wickedpicker__title {
   }
 }
 @media(max-width:480px){
+    
+    .form-textarea{
+        width: 100%;
+        
+    }
   .left-agileits-w3layouts {
     width: 100%;
     float: none;
   }
+    
   .right-agileinfo {
     width: 100%;
     float: none;
@@ -1195,7 +1252,7 @@ p.wickedpicker__title {
     font-size: 13px;
   }
   body {
-    min-height: 809.5px;
+    min-height: 80%;
   }
 }
 @media(max-width:414px){
@@ -1213,8 +1270,60 @@ p.wickedpicker__title {
   .book-appointment input[type="text"], .book-appointment input[type="date"], .book-appointment input[type="month"], .book-appointment input[type="email"], textarea {
     width: 91.5%;
   }
+     .container {
+    
+    max-width: 100%; 
+         
+  
+    }
+
+  .steps ul, .form-row {
+    flex-direction: column;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+    -o-flex-direction: column;
+    -ms-flex-direction: column; }
+
+  .steps ul li:after {
+    width: 0px; }
+
+  .title {
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto; }
+
+
+  .form-row .form-group:first-child, .form-row .form-group:last-child {
+    float: none; }
+
+  input, select, textarea {
+    margin-right: 0px; }
+
+  .fieldset-content {
+    padding-right: 0px;
+    height: 60%; }
+
+  .form-group, .form-select, .form-radio, .form-textarea, .form-date {
+    flex-direction: column;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+    -o-flex-direction: column;
+    -ms-flex-direction: column; }
+
+  label {
+    width: 100%;
+    text-align: left;
+    margin-right: 0px;
+    margin-bottom: 15px; }
+
+  .form-row {
+    padding-left: 0px; }
 }
 @media(max-width:384px){
+     .form-textarea{
+        width: 100%;
+        
+    }
   h1 {
     margin: 1.5em 1em 1em;
     line-height: 33px;
@@ -1233,6 +1342,11 @@ p.wickedpicker__title {
   input[type=submit] {
     padding: 5px 14px;
   }
+    .fieldset-content {
+  
+  border-bottom: 1px solid #ebebeb;
+  padding-right: 60px;
+  }
   body {
     min-height: 850px;
   }
@@ -1244,7 +1358,25 @@ p.wickedpicker__title {
   .book-appointment input[type="text"], .book-appointment input[type="date"], .book-appointment input[type="month"], .book-appointment input[type="email"], textarea {
     width: 91.8%;
   }
-}
+    .fieldset-content {
+  
+  border-bottom: 1px solid #ebebeb;
+  padding-right: 60px;
+  }
+
+.fieldset-footer {
+  padding: 28px 0; }
+  .fieldset-footer span {
+    color: #999; }
+
+.title {
+  align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+  -o-align-items: center;
+  -ms-align-items: center; }
+
+
 @media(max-width:320px){
   .bg-agile {
     width: 91%;
@@ -1271,4 +1403,5 @@ p.wickedpicker__title {
     margin: 1.1em 1.5em 0;
   }
 }
-/*--responsive--
+}
+/*--responsive--*/
