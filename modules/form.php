@@ -920,7 +920,7 @@ include('navbar.php');
                             <label for="Complaint" class="form-label">Present Complaint</label>
                             <textarea name="Complaint" id="Complaint" placeholder=""  ></textarea>
                         </div>
-
+                        
                     </div>
 
                     <div class="fieldset-footer">
@@ -952,6 +952,24 @@ include('navbar.php');
 
                                     </tbody>
 
+                            </table>
+                        </div><br><br>
+                        <div class="form-group">
+                            <table style="padding-left: 34px ;margin-top: 9px;" id="tb4" class="form-label">
+                                
+                                    <tbody>
+                                        <tr class="tr-header">
+                                            <th>Next Appointment For:</th>
+                                            <th>Next Appoinment Date:</th>
+                                            <th><a href="javascript:void(0);" style="font-size:18px;" id="addMore4" title="Add More Appoinment"><span class="fa fa-plus"></span></a></th>
+                                        <tr>
+                                            <td><input type="text" name="appoinment_for[]" placeholder="Appoinment for..."></td>
+                                            <td><input type="date" name="date_of_next_appoinment[]"></td>
+                                            
+                                            <td><a href='javascript:void(0);' style="font-size:18px;" class='remove2' title="Remove"><span class='fa fa-minus'></span></a></td>
+                                        </tr>
+
+                                    </tbody>
                             </table>
                         </div>
                     </div>
@@ -1034,6 +1052,23 @@ $(function(){
 $(function(){
     $('#addMore3').on('click', function() {
               var data = $("#tb3 tr:eq(1)").clone(true).appendTo("#tb3");
+              data.find("input").val('');
+     });
+     $(document).on('click', '.remove3', function() {
+         var trIndex1 = $(this).closest("tr").index();
+            if(trIndex1>1) {
+             $(this).closest("tr").remove();
+           } else {
+             alert("Sorry!! Can't remove first row!");
+           }
+      });
+});      
+</script>
+<script type="text/javascript">
+    
+$(function(){
+    $('#addMore4').on('click', function() {
+              var data = $("#tb4 tr:eq(1)").clone(true).appendTo("#tb4");
               data.find("input").val('');
      });
      $(document).on('click', '.remove3', function() {
