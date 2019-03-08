@@ -4,11 +4,8 @@ include('../assets/php/connection.php');
 $id = $_GET['pid'];
 $Result1 =	mysqli_query($conn,"SELECT * from person where pid = $id");
 $Result2 =	mysqli_query($conn,"SELECT * from address where pid = $id");
-
 $Result4 =	mysqli_query($conn,"SELECT * from contact where pid = $id");
-
 $Result6 =	mysqli_query($conn,"SELECT * from family_history where pid = $id");
-
 $Result9 =	mysqli_query($conn,"SELECT * from addiction where pid = $id");
 $Result10 =	mysqli_query($conn,"SELECT * from medical_history where pid = $id");
 $Result11 =	mysqli_query($conn,"SELECT * from past_drugs where pid = $id");
@@ -18,17 +15,17 @@ $Result14 =	mysqli_query($conn,"SELECT * from known_leprosy_contacts where pid =
 $Result15 =	mysqli_query($conn,"SELECT * from leprosy_relations where pid = $id");
 $Result16 =	mysqli_query($conn,"SELECT * from patient where pid = $id");
 $Result17 =	mysqli_query($conn,"SELECT * from treatment_record where pid = $id");
-$Result18 =	mysqli_query($conn,"SELECT * from peripheral_nerves where pid = $id");
+$Result18 =	mysqli_query($conn,"SELECT * from peripheral_nerves ");               //changes needed
 $Result19 =	mysqli_query($conn,"SELECT * from sensory_testing where pid = $id");
 $Result20 =	mysqli_query($conn,"SELECT * from smear_test where pid = $id");
 $Result21 =	mysqli_query($conn,"SELECT * from reactions where pid = $id");
-$Result22 =	mysqli_query($conn,"SELECT * from drugs_prescribed where pid = $id");
-$Result23 =	mysqli_query($conn,"SELECT * from drugs where pid = $id");
+$Result22 =	mysqli_query($conn,"SELECT * from drugs_prescribed where pid = $id"); //changes needed
+$Result23 =	mysqli_query($conn,"SELECT * from drugs where pid = $id");            //changes needed
 $Result24 = mysqli_query($conn,"SELECT * from referred where pid = $id");
-$Result25 = mysqli_query($conn,"SELECT * from follow_up_record where pid = $id");
+$Result25 = mysqli_query($conn,"SELECT * from follow_up_record where pid = $id"); //changes needed
 
-while ($row = mysqli_fetch_assoc($result1)) {
-	while( $row2 = mysqli_fetch_assoc($result2)){
+while ($row1 = mysqli_fetch_assoc($result1)) {
+while( $row2 = mysqli_fetch_assoc($result2)){
 
 while( $row4 = mysqli_fetch_assoc($result4)){
 
@@ -50,7 +47,7 @@ while( $row21 = mysqli_fetch_assoc($result21)){
 while( $row22 = mysqli_fetch_assoc($result22)){
 while( $row23 = mysqli_fetch_assoc($result23)){
 while( $row24 = mysqli_fetch_assoc($result24)){
-while ($row25 = mysqli_fetch_assoc($result25)) {
+while ($row25 = mysqli_fetch_assoc($result25)){
   # code...
 
 	# code...
