@@ -715,13 +715,13 @@ include('navbar.php');
 
                                   <tr>
                                       <th rowspan="2">Grade 1</th>
-                                      <th >Anesthesia of hand<input type="checkbox" name="Grade1"></th>
-                                      
+                                      <th >Anesthesia of hand</th>
+                                      <td><input  type="checkbox" name="Grade1"></td>
                                   </tr> 
                                   
                                    <tr>
-                                         <th >Anesthesia of leg<input type="checkbox" name="Grade1"></th>
-                                         
+                                         <th >Anesthesia of leg</th>
+                                         <td><input type="checkbox" name="Grade1" style="width: 20px"></td>
                                       </tr> 
                                   
                               </table>
@@ -921,7 +921,11 @@ include('navbar.php');
                             <textarea name="Complaint" id="Complaint" placeholder=""  ></textarea>
                         </div>
                         
+                            File
+                            <input type="file" name="file">
+                                              
                     </div>
+
 
                     <div class="fieldset-footer">
                         <span>Form 4 of 5</span>
