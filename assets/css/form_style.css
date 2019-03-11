@@ -398,8 +398,9 @@ select {
   visibility: hidden; }
 
 input[type='file'] {
-  height: 50px;
-  opacity: 0; }
+  height: 96px;
+  
+background-color:transparent !important ; }
 
 #val {
   width: 345px;
