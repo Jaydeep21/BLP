@@ -796,13 +796,7 @@ include('navbar.php');
                 <fieldset>
                     <div class="fieldset-content">
 
-                        <div class="form-group">
-                            <label for="Assessment" class="form-label">Assessment Of Skin Lesions</label>
-                            <input type="text" name="Assessment" id="Assessment" />
-                        </div>
-
-
-                        <div class="form-group">
+                            <div class="form-group">
                             <label for="Sensory" class="form-label">Sensory Testing(On Diagram)</label>
                             <select>
                                 <option value="" disabled selected>Touch</option>
@@ -813,17 +807,7 @@ include('navbar.php');
                                     <option>None</option>
                                 </optgroup>
                             </select>
-                            <select>
-                                <option value="" disabled selected>Temperature</option>
-                                <optgroup>
-                                    <option>Hot Present</option>
-                                    <option>Hot Absent</option>
-                                    <option>Cold Present</option>
-                                    <option>Cold Absent</option>
-                                    <option>Both</option>
-                                    <option>None</option>
-                                </optgroup>
-                            </select>
+                            
                             <select>
                                 <option value="" disabled selected>Pain</option>
                                 <optgroup>
@@ -834,11 +818,25 @@ include('navbar.php');
                                 </optgroup>
                             </select>
                         </div>
+                        
+                        <div class="form-radio">
+                                <label for="stst" class="form-label">Temperature</label>
+                                <div class="form-radio-item ">
+                                    <input type="checkbox" name="stst" value="Hot Present" id="Hot Present" />
+                                    <label style="height: 15%;" for="Hot Present">Hot Present</label>
+                                    <input type="checkbox" name="stst" value="Hot Absent" id="Hot Absent" />
+                                    <label style="height: 15%;" for="Hot Absent">Hot Absent</label>
+                                    <input type="checkbox" name="stst" value="Cold Present" id="Cold Present"/>
+                                    <label style="height: 15%;" for="Cold Present">Cold Present</label>
+                                    <input type="checkbox" name="stst" value="Cold Absent" id="Cold Absent"/>
+                                    <label style="height: 15%;" for="Cold Absent">Cold Absent</label>
+                                    <input type="checkbox" name="stst" value="Both" id="Both"/>
+                                    <label style="height: 15%; padding-bottom:35px;" for="Both">Both</label>
+                                    <input type="checkbox" name="stst" value="None" id="None"/>
+                                    <label style="height: 15%;padding-bottom:35px; " for="None">None</label>
+                                </div>
+                            </div>
 
-                        <div class="form-group">
-                            <label for="Motor" class="form-label">Motor Testing(Dysfunction)</label>
-                            <input type="text" name="Motor" id="Motor" />
-                        </div>
 
                         <div class="form-group">
                             <label for="Peripheral" class="form-label">Peripheral Nerves(Thickened And/Or Tender)</label>
@@ -921,7 +919,7 @@ include('navbar.php');
                             <textarea name="Complaint" id="Complaint" placeholder=""  ></textarea>
                         </div>
                         
-                            File
+                            Upload Images:
                             <input type="file" name="file">
                                               
                     </div>
