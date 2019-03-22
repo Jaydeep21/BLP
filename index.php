@@ -92,7 +92,7 @@ jQuery(document).ready(function($) {
 	
 </style>
 <body style="">
-<script src="assets/blp/jquery.min.js.download"></script><script src="https://m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
+
 <script>
 (function(){
 	if(typeof _bsa !== 'undefined' && _bsa) {
@@ -173,11 +173,11 @@ ga('create', 'UA-30027142-1', 'w3layouts.com');
     <div class="swiper-wrapper">
       <div class="swiper-slide">
         <div class="title" data-swiper-parallax="-300">About Bombay Leprosy Project</div>
-            <img src="assets/images/blpmain.JPG" style="width: 45% ;float: right"  >   
+            <img src="assets/images/blpmain.JPG" class="img-responsive" style="width: 45% ;float: right"  >   
 
         <div class="subtitle" data-swiper-parallax="-200"></div><br>
         <div class="text" data-swiper-parallax="-100 " >
-          <p>Bombay Leprosy Project (BLP) is an internationally recognized Non Governmental charitable organization established in the year 1976 with the objective of working for the cause of leprosy and to improve the quality of life of leprosy patients entirely through public donations. Since 1976 the organization has been working relentlessly in implementing the policies of National Leprosy Eradication Programme and assisting the Government in its endeavor. Our approach has been to work directly in the community rather than hospital based for diagnosis, treatment and disability of people affected with leprosy. The advantage of community approach being leprosy patients continue to live with their family members and it also helps to eliminate the stigma in the society.</p>
+          <p style="font-size: 1vw;">Bombay Leprosy Project (BLP) is an internationally recognized Non Governmental charitable organization established in the year 1976 with the objective of working for the cause of leprosy and to improve the quality of life of leprosy patients entirely through public donations. Since 1976 the organization has been working relentlessly in implementing the policies of National Leprosy Eradication Programme and assisting the Government in its endeavor. Our approach has been to work directly in the community rather than hospital based for diagnosis, treatment and disability of people affected with leprosy. The advantage of community approach being leprosy patients continue to live with their family members and it also helps to eliminate the stigma in the society.</p>
         </div>
       </div>
       <div class="swiper-slide">
