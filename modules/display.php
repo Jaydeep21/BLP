@@ -48,10 +48,7 @@ while( $row22 = mysqli_fetch_assoc($result22)){
 while( $row23 = mysqli_fetch_assoc($result23)){
 while( $row24 = mysqli_fetch_assoc($result24)){
 while ($row25 = mysqli_fetch_assoc($result25)){
-  # code...
-
-	# code...
-
+ 
 
 
 ?>
@@ -233,7 +230,7 @@ while ($row25 = mysqli_fetch_assoc($result25)){
       <tr>
       	<th colspan="3" id="">Reaction and treatment</th>
       	<td>Type of Reaction: <?php echo $row21['type_reaction']; ?></td>
- 		<td>Description:<?php echo $row21['description']; ?></td>
+ 		    <td>Description:<?php echo $row21['description']; ?></td>
  		</tr>
       <tr>
       	<th colspan="5" id="">Current treatment</th>
