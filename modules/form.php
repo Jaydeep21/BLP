@@ -243,8 +243,8 @@ include('navbar.php');
                                 <label>Tobacco</label>
                                     <table>
                                      <tr >
-                                            <td><input style="margin-left: 13px;" type="date" name="Tobacco_start" class="valid"></td> 
-                                            <td><input style="margin-left: 13px;" type="date" name="Tobacco_end" class="valid"></td> 
+                                            <td><input style="margin-left: 16px;" type="date" name="Tobacco_start" class="valid"></td> 
+                                            <td><input style="margin-left: 16px;" type="date" name="Tobacco_end" class="valid"></td> 
                                         <select style="margin-left: 13px;" class="valid" name="Tobacco">
                                         <option>No</option>
                                         <option>1</option>
@@ -313,8 +313,8 @@ include('navbar.php');
                                    <label>Cigarette (CIG/DAY)</label>
                                     <table>
                                        <tr>
-                                            <td><input style="margin-left: 13px;" type="date" name="Cigarette_start" class="valid"></td> 
-                                            <td><input style="margin-left: 13px;" type="date" name="Cigarette_end" class="valid"></td> 
+                                            <td><input style="margin-left: 16px;" type="date" name="Cigarette_start" class="valid"></td> 
+                                            <td><input style="margin-left: 16px;" type="date" name="Cigarette_end" class="valid"></td> 
                                         <select style="margin-left: 13px;" class="valid" style="display: inline-block;" name="Cigarette">
                                         <option>No</option>
                                         <option>1</option>
@@ -385,8 +385,8 @@ include('navbar.php');
                                    <label>Alcohol in gr/day </label> 
                                     <table>
                                         <tr>
-                                            <td><input style="margin-left: 13px;" type="date" name="Alcohol_start" class=""></td> 
-                                            <td><input style="margin-left: 13px;" type="date" name="Alcohol_end" class=""></td> 
+                                            <td><input style="margin-left: 16px;" type="date" name="Alcohol_start" class=""></td> 
+                                            <td><input style="margin-left: 16px;" type="date" name="Alcohol_end" class=""></td> 
                                         <select style="margin-left: 13px;" class="" name="Alcohol">
                                         <option>No</option>
                                         <option>1</option>
@@ -491,8 +491,8 @@ include('navbar.php');
                                             <td><input type="text" name="hospital" class="valid"></td>
                                             <td><input type="text" name="drug" class="valid"></td>
                                             <td><input type="text" name="dosage" class="valid"></td>
-                                            <td><input type="date" name="Start_past_date" class="valid"></td> 
-                                            <td><input type="date" name="End_past_date" class="valid"></td> 
+                                            <td><input style="margin-left: 16px;" type="date" name="Start_past_date" class="valid"></td> 
+                                            <td><input style="margin-left: 16px;" type="date" name="End_past_date" class="valid"></td> 
                                             <td><a href='javascript:void(0);' style="font-size:18px;" class='remove1'><span class='fa fa-minus'></span></a></td>
                                             </tr>
 
@@ -518,9 +518,8 @@ include('navbar.php');
     
                                    <!-- Modal content-->
                                    <div class="modal-content ">
-                                        <div class="modal-header ">
-                                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                          <label  class="form-label" style="font-size: 12px">Known Leprosy Contact</label>
+                                        <div class="modal-header; form-label" style="font-size: 18px">
+                                                <center>Known Leprosy Contact</center>
                                         </div>
                                         <div>
                                               <table class="table table-borderless" >
@@ -594,7 +593,7 @@ include('navbar.php');
                                         <th >Date</th>
                                     </tr>
                                     <tr >
-                                        <td><input style="margin-left: 13px;" type="date" name="Smear_date" id="Smear_date" class="valid" ></td>
+                                        <td><input style="margin-left: 16px;" type="date" name="Smear_date" id="Smear_date" class="valid" ></td>
                                     </tr>
                                 </table>
                             <table style="padding-left: 34px ;margin-top: 9px;" id="tb3" class="form-label">
@@ -630,27 +629,38 @@ include('navbar.php');
                 </h3>
                 <fieldset>
                     <div class="fieldset-content">
-
-                    <div class="form-group">
-                            <label  class="form-label">First Treatment</label>
+                        <div class="form-group" style="font-size:20px;">
+                            <label  class="form-label" ><center>First Treatment</center></label>
                             </div>
+
+
                         <div class="form-textarea">
-                            <label for="drugused" class="form-label">Drug Used</label>
-                            <textarea name="drugused" id="drugused" placeholder="Drug Used" rows="2"></textarea>
-                        </div>
-                        <div class="clear"></div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="Start_first_treatment" class="form-label">Start</label>
-                                <input type="date" name="Start_first_treatment" id="Start_first_treatment" />
-                            </div>
-                            <div class="form-group" >
-                                <label for="End_first_treatment" class="form-label">End</label>
-                                <input style="margin-left: 51px;" type="date" name="End_first_treatment" id="End_first_treatment" />
-                            </div>
-                        </div>
+                             <div class="form-group">
+                             <label for="dp" class="form-label">Drug Prescription</label>
+                             <table style="padding-left: 34px ;margin-top: 9px;" id="tb5" class="tab orlist">
+                                
+                                    <tbody>
+                                        <tr class="tr-header">
+                                            <th>Drug Used</th>
+                                            <th>Drug Dosage</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>   
+                                            <th><a href="javascript:void(0);" style="font-size:18px;" id="addMore5" title="Add More Person"><span class="fa fa-plus"></span></a></th>
+                                            <tr style="padding: 2px;">
+                                            <td><input type="text" name="drug used" class="valid"></td>
+                                            <td><input type="text" name="drug dosage" class="valid"></td>
+                                            <td><input style="margin-left: 16px;" type="date" name="Start_drug_date" class="valid"></td> 
+                                            <td><input style="margin-left: 16px;" type="date" name="End_drug_date" class="valid"></td> 
+                                            <td><a href='javascript:void(0);' style="font-size:18px;" class='remove5'><span class='fa fa-minus'></span></a></td>
+                                            </tr>
 
+                                    </tbody>
 
+                            </table>
+                        
+                        </div>
+                        </div>
+                        
                         <div class="clear"></div>
                          <div class="form-group">
                             <label for="omc" class="form-label">Other MDT courses</label>
@@ -666,26 +676,22 @@ include('navbar.php');
                                 <label  class="form-label">Reaction and Treatment</label>
                                 <table style="padding-left: 34px ;margin-top: 9px;" class="form-label">
                                     <tbody>
+                                    <tr class="tr-header" >
+
+                                    <select>
+                                        <option value="" disabled selected>Reaction Type</option>
+                                            <optgroup>
+                                                <option>Type 1</option>
+                                                <option>Type 2</option>
+                                                <option>None</option>
+                                            </optgroup>
+                                    </select>
+                                    </tr>
                                     <tr class="tr-header">
-                                       
-                                    <div class="dropdown p-3">
-                                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reaction Type</button>
-                                           <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                        <a class="dropdown-item" href="#!">Type 1</a>
-                                        <a class="dropdown-item" href="#!">Type 2</a>
-                                         <a class="dropdown-item" href="#!">None</a>
-                                      </div>
-                                    </div>
-                                    
                                         <th>Description</th>
                                     </tr>
-                            
-                                    <tr>
-                                    
-                                       
-                                       
+                                    <tr class="tr-header">
                                         <td><textarea name="Description" rows="8" placeholder="Description"></textarea> </td>
-                                       
                                     </tr>
                                     </tbody>
                                 </table>
@@ -963,7 +969,7 @@ include('navbar.php');
                                             <th><a href="javascript:void(0);" style="font-size:18px;" id="addMore4" title="Add More Appoinment"><span class="fa fa-plus"></span></a></th>
                                         <tr>
                                             <td><input type="text" name="appoinment_for[]" placeholder="Appoinment for..."></td>
-                                            <td><input type="date" name="date_of_next_appoinment[]"></td>
+                                            <td><input style="margin-left: 16px;" type="date" name="date_of_next_appoinment[]"></td>
                                             
                                             <td><a href='javascript:void(0);' style="font-size:18px;" class='remove2' title="Remove"><span class='fa fa-minus'></span></a></td>
                                         </tr>
@@ -1070,7 +1076,25 @@ $(function(){
               var data = $("#tb4 tr:eq(1)").clone(true).appendTo("#tb4");
               data.find("input").val('');
      });
-     $(document).on('click', '.remove3', function() {
+     $(document).on('click', '.remove4', function() {
+         var trIndex1 = $(this).closest("tr").index();
+            if(trIndex1>1) {
+             $(this).closest("tr").remove();
+           } else {
+             alert("Sorry!! Can't remove first row!");
+           }
+      });
+});      
+</script>
+    
+<script type="text/javascript">
+    
+$(function(){
+    $('#addMore5').on('click', function() {
+              var data = $("#tb5 tr:eq(1)").clone(true).appendTo("#tb5");
+              data.find("input").val('');
+     });
+     $(document).on('click', '.remove5', function() {
          var trIndex1 = $(this).closest("tr").index();
             if(trIndex1>1) {
              $(this).closest("tr").remove();
