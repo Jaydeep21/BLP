@@ -14,6 +14,7 @@ html, body {
       width: 100%;
       height: 140%;
       background: #fff;
+        
     }
     .swiper-slide {
       font-size: 18px;
@@ -50,6 +51,14 @@ html, body {
       font-weight: 300;
 
     }
+        
+}
+
+.container_open {
+    position: fixed !important;
+    display: block;
+    height: bottom;
+}
       	.starter{
 		position:relative;
 		top:150px;
@@ -57,3 +66,154 @@ html, body {
   .vjs-fluid {
         padding-top: 56.25%;
       }
+@media screen and (max-width: 1280px){
+	 .swiper-container {
+      width: 100%;
+      height: 140%;
+      
+    }
+    .swiper-slide {
+      font-size:medium;
+     
+      padding: 70px 60px;
+      height: 50%;
+        width: auto;
+    }
+    .parallax-bg {
+     
+      width: 130%;
+      height: 150%;
+   
+    }
+    .swiper-slide .title {
+      font-size: x-large;
+      font-weight: 300;
+     
+    }
+    .swiper-slide .subtitle {
+      font-size:medium;
+    }
+    .swiper-slide .text {
+        
+      font-size:small;
+      max-width: 50%;
+      line-height: 1.3;
+      text-align: justify; 
+      font-weight: 300;
+
+    }
+      	.starter{
+		position:relative;
+		top:15%;
+	}
+  .vjs-fluid {
+        padding-top: 56.25%;
+      } 
+      
+        .menu {
+   text-align: center;
+   margin-top: 10px;
+}
+#m_nav_list {
+    list-style: none;
+    margin: 1.8em 0 0;
+}
+
+.menu a {
+   display: inline;
+}
+
+. li {
+   float: none;
+   display: inline;
+}
+
+      
+}
+@media screen and (max-width: 768px){
+	 .swiper-container {
+      width: 50%;
+      height: 140%;
+        display: block; 
+      
+    }
+    #m_nav_list {
+    list-style: none;
+    margin: 1.8em 0 0;
+}
+        img {
+      max-width: 100%;
+      height: auto;
+    align-items: center;        
+    }
+    .swiper-slide {
+      font-size: 2%;
+     
+      padding: 70px 60px;
+      height: 50%;
+        width: auto;
+    }
+    .parallax-bg {
+     
+      width: 130%;
+      height: 150%;
+   
+    }
+    .swiper-slide .title {
+      font-size: 20%;
+     
+    }
+    .swiper-slide .subtitle {
+      font-size: 2%;
+    }
+    .swiper-slide .text {
+        
+      font-size: 1.5%;
+      max-width: 50%;
+      line-height: 1.3;
+      text-align: justify; 
+      font-weight: 300;
+
+    }
+      	.starter{
+		position:relative;
+		top:150px;
+	}
+  .vjs-fluid {
+        padding-top: 56.25%;
+      } 
+}
+-- //to-top --*
+
+@media screen and (max-width: 1050px){
+  #m_nav_menu {
+    right: 3.5%;
+    top:4.6%;
+  }
+}
+@media screen and (max-width: 1024px){
+  #m_nav_menu {
+    right:2.8%;
+  }
+  .banner_text_w3layouts {
+    padding: 14em 0 20em;
+  }
+  .contact-left {
+    padding: 3em;
+  }
+  #m_nav_menu {
+    right: 12%;
+    top: 4.6%;
+  }
+  .m_nav_item {
+    margin: 0 1em;
+  }
+}
+@media screen and (max-width: 991px){
+  #m_nav_menu {
+    right: 12%;
+    top: 4.6%;
+  }
+  .m_nav_item {
+    margin: 0 1em;
+  }
