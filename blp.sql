@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2019 at 08:46 AM
--- Server version: 5.7.21-log
+-- Generation Time: Jun 19, 2019 at 09:21 AM
+-- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -41,9 +41,8 @@ CREATE TABLE `addiction` (
 --
 
 INSERT INTO `addiction` (`pid`, `addiction_type`, `addiction_start`, `addiction_end`, `addiction_frequency`) VALUES
-(6, 'alcohol', '05-02-1992', '02-01-1967', '30'),
-(6, 'cigarettes', '05-02-1999', '09-07-1233', '50'),
-(6, 'tobacco', '05-03-1992', '10-02-2012', '20');
+(9, 'cigarette', '1996-04-19', '2013-03-05', '20'),
+(6, 'tobacco', '1996-04-19', '2000-05-12', '30');
 
 -- --------------------------------------------------------
 
@@ -64,9 +63,8 @@ CREATE TABLE `address` (
 --
 
 INSERT INTO `address` (`pid`, `address`, `address_type`, `paddress`, `laddress`) VALUES
-(6, 'antilla', 'permanent', 'sandust', 'hajiali'),
-(6, 'sakes', 'local', '', ''),
-(6, 'white house', 'local', '', '');
+(6, 'mas', 'permanent', 'london', 'dome'),
+(6, 'paris', 'local', 'anitlla', 'warangal');
 
 -- --------------------------------------------------------
 
@@ -76,9 +74,7 @@ INSERT INTO `address` (`pid`, `address`, `address_type`, `paddress`, `laddress`)
 
 CREATE TABLE `clinic` (
   `cid` bigint(20) NOT NULL,
-  `cname` varchar(50) NOT NULL,
-  `address` varchar(100) NOT NULL,
-  `area_code` varchar(10) NOT NULL
+  `cname` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -97,8 +93,28 @@ CREATE TABLE `contact` (
 --
 
 INSERT INTO `contact` (`pid`, `mobile`) VALUES
-(6, 1234567891),
-(6, 9874561230);
+(6, 1234556789),
+(6, 1234567890),
+(9, 1234567789);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `disability`
+--
+
+CREATE TABLE `disability` (
+  `rid` bigint(20) NOT NULL,
+  `grade` int(1) NOT NULL DEFAULT '0',
+  `disability_area` varchar(30) NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `disability`
+--
+
+INSERT INTO `disability` (`rid`, `grade`, `disability_area`) VALUES
+(1, 0, 'hand');
 
 -- --------------------------------------------------------
 
@@ -126,7 +142,7 @@ INSERT INTO `drugs` (`did`, `dname`) VALUES
 
 CREATE TABLE `drugs_prescribed` (
   `rid` bigint(20) NOT NULL,
-  `did` int(11) NOT NULL,
+  `did` int(11) DEFAULT NULL,
   `type` varchar(20) NOT NULL,
   `start_date` date NOT NULL,
   `end_date` date NOT NULL,
@@ -138,27 +154,7 @@ CREATE TABLE `drugs_prescribed` (
 --
 
 INSERT INTO `drugs_prescribed` (`rid`, `did`, `type`, `start_date`, `end_date`, `dosage`) VALUES
-(1, 100, 'something', '2019-03-20', '2019-03-21', '2gm');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `family_history`
---
-
-CREATE TABLE `family_history` (
-  `pid` bigint(11) NOT NULL,
-  `relation` varchar(20) NOT NULL,
-  `disease` varchar(20) NOT NULL,
-  `mmyy_diagnosis` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `family_history`
---
-
-INSERT INTO `family_history` (`pid`, `relation`, `disease`, `mmyy_diagnosis`) VALUES
-(6, 'sis', 'leprosy', '031998');
+(1, 100, 'something', '2019-06-12', '2019-06-26', '2gm');
 
 -- --------------------------------------------------------
 
@@ -168,17 +164,19 @@ INSERT INTO `family_history` (`pid`, `relation`, `disease`, `mmyy_diagnosis`) VA
 
 CREATE TABLE `family_members` (
   `pid` bigint(20) NOT NULL,
-  `name` varchar(20) NOT NULL,
-  `age` int(11) NOT NULL,
-  `relation` varchar(50) NOT NULL
+  `relation` varchar(50) NOT NULL DEFAULT 'unknown',
+  `fm_name` varchar(30) NOT NULL DEFAULT 'unknown',
+  `age` int(3) NOT NULL DEFAULT '0',
+  `fm_disease` varchar(30) DEFAULT NULL,
+  `fm_diagnosis` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `family_members`
 --
 
-INSERT INTO `family_members` (`pid`, `name`, `age`, `relation`) VALUES
-(6, 'priyanka', 25, 'sis');
+INSERT INTO `family_members` (`pid`, `relation`, `fm_name`, `age`, `fm_disease`, `fm_diagnosis`) VALUES
+(6, 'sis', 'priya', 20, 'leprosy', 'start stage');
 
 -- --------------------------------------------------------
 
@@ -192,15 +190,18 @@ CREATE TABLE `follow_up_record` (
   `clinical_notes` varchar(120) DEFAULT NULL,
   `prescription` varchar(120) DEFAULT NULL,
   `complaints` varchar(100) NOT NULL,
-  `due_date` date DEFAULT NULL
+  `due_date` date DEFAULT NULL,
+  `appointment_for` varchar(30) DEFAULT NULL,
+  `date_for_next_appointment` date DEFAULT NULL,
+  `further_observations` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `follow_up_record`
 --
 
-INSERT INTO `follow_up_record` (`fid`, `pid`, `clinical_notes`, `prescription`, `complaints`, `due_date`) VALUES
-(1, 6, 'kuch nahi', 'nothing', 'nothing', '2019-03-08');
+INSERT INTO `follow_up_record` (`fid`, `pid`, `clinical_notes`, `prescription`, `complaints`, `due_date`, `appointment_for`, `date_for_next_appointment`, `further_observations`) VALUES
+(1, 6, 'kuch nahi', 'nothing', 'nothing', '2019-03-08', 'furtherdiagnosis', '2019-06-20', '');
 
 -- --------------------------------------------------------
 
@@ -210,17 +211,18 @@ INSERT INTO `follow_up_record` (`fid`, `pid`, `clinical_notes`, `prescription`, 
 
 CREATE TABLE `known_leprosy_contacts` (
   `pid` bigint(20) NOT NULL,
-  `type_leprosy` varchar(20) NOT NULL,
-  `treatment` varchar(100) NOT NULL,
-  `duration_treatment` varchar(20) NOT NULL
+  `treatment` varchar(100) DEFAULT NULL,
+  `contact` bigint(20) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `kname` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `known_leprosy_contacts`
 --
 
-INSERT INTO `known_leprosy_contacts` (`pid`, `type_leprosy`, `treatment`, `duration_treatment`) VALUES
-(6, 'type1', 'xyz', 'march 2015');
+INSERT INTO `known_leprosy_contacts` (`pid`, `treatment`, `contact`, `address`, `kname`) VALUES
+(6, 'xyz', 1234556677, 'efehtt', 'jaya');
 
 -- --------------------------------------------------------
 
@@ -231,7 +233,7 @@ INSERT INTO `known_leprosy_contacts` (`pid`, `type_leprosy`, `treatment`, `durat
 CREATE TABLE `leprosy_relations` (
   `pid` bigint(20) NOT NULL,
   `klpid` bigint(20) NOT NULL,
-  `relation` varchar(20) NOT NULL
+  `relation` varchar(20) NOT NULL DEFAULT 'unknown'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -242,9 +244,9 @@ CREATE TABLE `leprosy_relations` (
 
 CREATE TABLE `medical_history` (
   `pid` bigint(20) NOT NULL,
-  `disease` varchar(100) NOT NULL,
-  `mmyy_diagnosis` varchar(20) NOT NULL,
-  `mmyy_curation` varchar(20) NOT NULL
+  `disease` varchar(100) DEFAULT NULL,
+  `mmyy_diagnosis` varchar(20) DEFAULT NULL,
+  `mmyy_curation` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -252,7 +254,19 @@ CREATE TABLE `medical_history` (
 --
 
 INSERT INTO `medical_history` (`pid`, `disease`, `mmyy_diagnosis`, `mmyy_curation`) VALUES
-(6, 'cold', 'March 1998', 'March 2019');
+(6, 'cold', 'march 1998', 'march 2018');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `next_appointment`
+--
+
+CREATE TABLE `next_appointment` (
+  `pid` bigint(11) NOT NULL,
+  `appointment_reason` varchar(50) NOT NULL,
+  `appointment_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -262,17 +276,8 @@ INSERT INTO `medical_history` (`pid`, `disease`, `mmyy_diagnosis`, `mmyy_curatio
 
 CREATE TABLE `obstetric_history` (
   `pid` bigint(20) NOT NULL,
-  `number_child` int(11) NOT NULL,
-  `gender_child` varchar(10) NOT NULL,
-  `mmmyy_birth` varchar(20) NOT NULL
+  `mmyy_pregnant` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `obstetric_history`
---
-
-INSERT INTO `obstetric_history` (`pid`, `number_child`, `gender_child`, `mmmyy_birth`) VALUES
-(6, 12, 'female', 'March 1998');
 
 -- --------------------------------------------------------
 
@@ -294,7 +299,7 @@ CREATE TABLE `past_drugs` (
 --
 
 INSERT INTO `past_drugs` (`pid`, `hospital`, `drugs`, `mmyy_start`, `mmyy_end`, `dosage`) VALUES
-(6, 'sion hospital', 'cocaine', 'march 1998', 'march 2019', '2gm');
+(6, 'global', 'cocaine', 'march 1998', 'march 2018', '2gm');
 
 -- --------------------------------------------------------
 
@@ -324,7 +329,7 @@ INSERT INTO `patient` (`pid`, `referred`, `patient_code`, `diagnosed`, `allergy`
 --
 
 CREATE TABLE `peripheral_nerves` (
-  `tid` bigint(20) NOT NULL,
+  `rid` bigint(20) NOT NULL,
   `nerves` varchar(20) NOT NULL,
   `thickness` varchar(20) NOT NULL,
   `tenderness` varchar(20) NOT NULL
@@ -345,8 +350,8 @@ CREATE TABLE `person` (
   `sex` char(11) DEFAULT NULL,
   `aadhar` bigint(12) DEFAULT NULL,
   `occupation` varchar(30) DEFAULT NULL,
-  `person_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `person_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `person_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `person_updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `economical_status` char(10) DEFAULT NULL,
   `caste` char(10) DEFAULT NULL,
   `age` int(3) DEFAULT NULL
@@ -357,7 +362,7 @@ CREATE TABLE `person` (
 --
 
 INSERT INTO `person` (`pid`, `fname`, `mname`, `lname`, `dob`, `sex`, `aadhar`, `occupation`, `person_created`, `person_updated`, `economical_status`, `caste`, `age`) VALUES
-(6, 'parval', NULL, NULL, '1998-03-05', 'female', 123456789098, 'teaacher', '2019-03-15 05:45:06', '2019-01-30 05:59:04', 'bade log', 'anni', 60),
+(6, 'parval', NULL, NULL, '1998-03-05', 'female', 123456789098, 'asdfg', '2019-01-30 05:59:04', '2019-06-17 05:53:28', 'BLP', 'Others', 16),
 (7, 'dhruv', NULL, NULL, '2018-04-06', 'male', 123454321098, NULL, '2019-01-30 06:24:44', '2019-01-30 06:24:44', '', '', NULL),
 (8, 'milind', NULL, NULL, '2019-01-01', 'male', 890765432123, NULL, '2019-01-30 06:34:01', '2019-01-30 06:34:01', '', '', NULL),
 (9, 'keval', NULL, NULL, '2019-06-25', 'male', 678905432123, NULL, '2019-01-30 06:38:14', '2019-01-30 06:38:14', '', '', NULL),
@@ -366,19 +371,8 @@ INSERT INTO `person` (`pid`, `fname`, `mname`, `lname`, `dob`, `sex`, `aadhar`, 
 (12, 'huzefa', NULL, NULL, '2019-01-09', 'male', 987631235765, NULL, '2019-01-30 08:03:44', '2019-01-30 08:03:44', '', '', NULL),
 (13, 'pooja', NULL, NULL, '2019-07-28', 'male', 129384756473, NULL, '2019-01-30 08:05:03', '2019-01-30 08:05:03', '', '', NULL),
 (14, 'Reema', NULL, NULL, '2019-01-02', 'female', 123456789098, NULL, '2019-01-30 08:50:17', '2019-01-30 08:50:17', '', '', NULL),
-(15, 'jaydeep', NULL, NULL, '2019-09-17', 'male', 890765432134, NULL, '2019-02-01 09:35:37', '2019-02-01 09:35:37', '', '', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pregnant_since`
---
-
-CREATE TABLE `pregnant_since` (
-  `pid` bigint(20) NOT NULL,
-  `mmyy_pregnant_since` varchar(20) NOT NULL,
-  `sys_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+(15, 'jaydeep', NULL, NULL, '2019-09-17', 'male', 890765432134, NULL, '2019-02-01 09:35:37', '2019-02-01 09:35:37', '', '', NULL),
+(34, 'poojab', NULL, NULL, '2019-06-26', 'male', 231221, 'adsdas', '2019-06-10 06:32:15', '2019-06-17 07:22:26', 'BLP', 'ST', 0);
 
 -- --------------------------------------------------------
 
@@ -397,7 +391,7 @@ CREATE TABLE `reactions` (
 --
 
 INSERT INTO `reactions` (`rid`, `type_reaction`, `description`) VALUES
-(1, 'itching', 'machar bahaut hai');
+(1, 'itching', 'no sensation');
 
 -- --------------------------------------------------------
 
@@ -408,17 +402,16 @@ INSERT INTO `reactions` (`rid`, `type_reaction`, `description`) VALUES
 CREATE TABLE `record` (
   `rid` bigint(20) NOT NULL,
   `pid` bigint(20) NOT NULL,
-  `date_attend` datetime DEFAULT CURRENT_TIMESTAMP
+  `date_attend` datetime DEFAULT CURRENT_TIMESTAMP,
+  `examiner` varchar(50) DEFAULT 'unknown'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `record`
 --
 
-INSERT INTO `record` (`rid`, `pid`, `date_attend`) VALUES
-(1, 6, '2019-03-01 00:00:00'),
-(2, 14, '2019-03-02 00:00:00'),
-(3, 15, '2019-03-03 00:00:00');
+INSERT INTO `record` (`rid`, `pid`, `date_attend`, `examiner`) VALUES
+(1, 6, '2019-06-17 11:52:30', 'pai');
 
 -- --------------------------------------------------------
 
@@ -437,7 +430,7 @@ CREATE TABLE `referred` (
 --
 
 INSERT INTO `referred` (`pid`, `doctor_name`, `hospital`) VALUES
-(6, 'prasad', 'sion hospital');
+(6, 'har', 'global');
 
 -- --------------------------------------------------------
 
@@ -452,13 +445,6 @@ CREATE TABLE `sensory_test` (
   `temperature` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `sensory_test`
---
-
-INSERT INTO `sensory_test` (`tid`, `pinprick`, `touch`, `temperature`) VALUES
-(1, 'yes', 'no', 'yes');
-
 -- --------------------------------------------------------
 
 --
@@ -468,9 +454,9 @@ INSERT INTO `sensory_test` (`tid`, `pinprick`, `touch`, `temperature`) VALUES
 CREATE TABLE `smear_test` (
   `rid` bigint(20) NOT NULL,
   `site` varchar(50) NOT NULL,
+  `pid` bigint(20) NOT NULL,
   `mi` float NOT NULL,
   `bi` float NOT NULL,
-  `pid` bigint(20) NOT NULL,
   `due_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -478,8 +464,8 @@ CREATE TABLE `smear_test` (
 -- Dumping data for table `smear_test`
 --
 
-INSERT INTO `smear_test` (`rid`, `site`, `mi`, `bi`, `pid`, `due_date`) VALUES
-(1, 'hand', 10, 10, 6, '2019-03-08');
+INSERT INTO `smear_test` (`rid`, `site`, `pid`, `mi`, `bi`, `due_date`) VALUES
+(1, 'hand', 6, 10, 10, '2019-03-08');
 
 -- --------------------------------------------------------
 
@@ -489,26 +475,25 @@ INSERT INTO `smear_test` (`rid`, `site`, `mi`, `bi`, `pid`, `due_date`) VALUES
 
 CREATE TABLE `treatment_record` (
   `pid` bigint(20) NOT NULL,
-  `tid` bigint(20) NOT NULL,
-  `opthalmic_involvement` varchar(50) NOT NULL,
-  `eyes` varchar(50) NOT NULL,
-  `disability` varchar(50) NOT NULL,
-  `motor_testing` varchar(50) NOT NULL,
-  `skin_lesions` varchar(50) NOT NULL,
-  `complaints` varchar(50) NOT NULL,
-  `result` varchar(50) NOT NULL,
-  `type_diagnosed` varchar(50) NOT NULL,
-  `examiner` varchar(50) NOT NULL,
-  `symptoms` varchar(100) DEFAULT NULL
+  `rid` bigint(20) NOT NULL DEFAULT '0',
+  `opthalmic_involvement` varchar(50) DEFAULT NULL,
+  `eyes` varchar(50) DEFAULT NULL,
+  `disability` varchar(50) DEFAULT NULL,
+  `motor_testing` varchar(50) DEFAULT NULL,
+  `skin_lesions` varchar(50) DEFAULT NULL,
+  `complaints` varchar(50) DEFAULT NULL,
+  `result` varchar(50) DEFAULT NULL,
+  `type_diagnosed` varchar(50) DEFAULT NULL,
+  `symptoms` varchar(100) DEFAULT NULL,
+  `other_mdt_courses` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `treatment_record`
 --
 
-INSERT INTO `treatment_record` (`pid`, `tid`, `opthalmic_involvement`, `eyes`, `disability`, `motor_testing`, `skin_lesions`, `complaints`, `result`, `type_diagnosed`, `examiner`, `symptoms`) VALUES
-(6, 1, 'no', 'hai', 'no', 'no', 'no', 'yes', 'good', 'type1', 'xyz', 'cold'),
-(14, 2, 'no', 'no', 'no', 'no', 'no', 'no', 'false', 'no', 'pooja', 'headache');
+INSERT INTO `treatment_record` (`pid`, `rid`, `opthalmic_involvement`, `eyes`, `disability`, `motor_testing`, `skin_lesions`, `complaints`, `result`, `type_diagnosed`, `symptoms`, `other_mdt_courses`) VALUES
+(6, 1, 'no', 'yes', 'no', 'no', 'no', 'yes', 'good', 'type 1', 'cold', 'no');
 
 -- --------------------------------------------------------
 
@@ -571,6 +556,12 @@ ALTER TABLE `contact`
   ADD PRIMARY KEY (`pid`,`mobile`);
 
 --
+-- Indexes for table `disability`
+--
+ALTER TABLE `disability`
+  ADD PRIMARY KEY (`rid`,`grade`,`disability_area`);
+
+--
 -- Indexes for table `drugs`
 --
 ALTER TABLE `drugs`
@@ -584,16 +575,10 @@ ALTER TABLE `drugs_prescribed`
   ADD KEY `did` (`did`);
 
 --
--- Indexes for table `family_history`
---
-ALTER TABLE `family_history`
-  ADD PRIMARY KEY (`pid`);
-
---
 -- Indexes for table `family_members`
 --
 ALTER TABLE `family_members`
-  ADD PRIMARY KEY (`pid`,`name`,`age`,`relation`);
+  ADD PRIMARY KEY (`pid`,`relation`,`fm_name`,`age`);
 
 --
 -- Indexes for table `follow_up_record`
@@ -621,6 +606,12 @@ ALTER TABLE `medical_history`
   ADD PRIMARY KEY (`pid`);
 
 --
+-- Indexes for table `next_appointment`
+--
+ALTER TABLE `next_appointment`
+  ADD PRIMARY KEY (`pid`);
+
+--
 -- Indexes for table `obstetric_history`
 --
 ALTER TABLE `obstetric_history`
@@ -643,18 +634,12 @@ ALTER TABLE `patient`
 -- Indexes for table `peripheral_nerves`
 --
 ALTER TABLE `peripheral_nerves`
-  ADD PRIMARY KEY (`tid`,`nerves`);
+  ADD PRIMARY KEY (`rid`,`nerves`);
 
 --
 -- Indexes for table `person`
 --
 ALTER TABLE `person`
-  ADD PRIMARY KEY (`pid`);
-
---
--- Indexes for table `pregnant_since`
---
-ALTER TABLE `pregnant_since`
   ADD PRIMARY KEY (`pid`);
 
 --
@@ -685,14 +670,13 @@ ALTER TABLE `sensory_test`
 -- Indexes for table `smear_test`
 --
 ALTER TABLE `smear_test`
-  ADD PRIMARY KEY (`rid`,`site`),
-  ADD KEY `smear_test_ibfk_1` (`pid`);
+  ADD PRIMARY KEY (`rid`,`site`);
 
 --
 -- Indexes for table `treatment_record`
 --
 ALTER TABLE `treatment_record`
-  ADD PRIMARY KEY (`tid`),
+  ADD PRIMARY KEY (`rid`),
   ADD KEY `treatment_record_ibfk_1` (`pid`);
 
 --
@@ -706,6 +690,12 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `drugs`
+--
+ALTER TABLE `drugs`
+  MODIFY `did` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+
+--
 -- AUTO_INCREMENT for table `follow_up_record`
 --
 ALTER TABLE `follow_up_record`
@@ -715,7 +705,13 @@ ALTER TABLE `follow_up_record`
 -- AUTO_INCREMENT for table `person`
 --
 ALTER TABLE `person`
-  MODIFY `pid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `pid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
+-- AUTO_INCREMENT for table `record`
+--
+ALTER TABLE `record`
+  MODIFY `rid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -746,17 +742,17 @@ ALTER TABLE `contact`
   ADD CONSTRAINT `contact_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `person` (`pid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `disability`
+--
+ALTER TABLE `disability`
+  ADD CONSTRAINT `disability_ibfk_1` FOREIGN KEY (`rid`) REFERENCES `record` (`rid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `drugs_prescribed`
 --
 ALTER TABLE `drugs_prescribed`
-  ADD CONSTRAINT `drugs_prescribed_ibfk_1` FOREIGN KEY (`rid`) REFERENCES `record` (`rid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `drugs_prescribed_ibfk_2` FOREIGN KEY (`did`) REFERENCES `drugs` (`did`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `family_history`
---
-ALTER TABLE `family_history`
-  ADD CONSTRAINT `family_history_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `person` (`pid`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `drugs_prescribed_ibfk_3` FOREIGN KEY (`rid`) REFERENCES `record` (`rid`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `drugs_prescribed_ibfk_4` FOREIGN KEY (`did`) REFERENCES `drugs` (`did`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `family_members`
@@ -768,7 +764,7 @@ ALTER TABLE `family_members`
 -- Constraints for table `follow_up_record`
 --
 ALTER TABLE `follow_up_record`
-  ADD CONSTRAINT `asd` FOREIGN KEY (`fid`) REFERENCES `record` (`rid`);
+  ADD CONSTRAINT `follow_up_record_ibfk_1` FOREIGN KEY (`fid`) REFERENCES `record` (`rid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `known_leprosy_contacts`
@@ -790,16 +786,16 @@ ALTER TABLE `medical_history`
   ADD CONSTRAINT `medical_history_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `person` (`pid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `next_appointment`
+--
+ALTER TABLE `next_appointment`
+  ADD CONSTRAINT `next_appointment_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `person` (`pid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `obstetric_history`
 --
 ALTER TABLE `obstetric_history`
   ADD CONSTRAINT `obstetric_history_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `person` (`pid`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `past_drugs`
---
-ALTER TABLE `past_drugs`
-  ADD CONSTRAINT `past_drugs_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `person` (`pid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `patient`
@@ -811,19 +807,13 @@ ALTER TABLE `patient`
 -- Constraints for table `peripheral_nerves`
 --
 ALTER TABLE `peripheral_nerves`
-  ADD CONSTRAINT `peripheral_nerves_ibfk_1` FOREIGN KEY (`tid`) REFERENCES `treatment_record` (`tid`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `pregnant_since`
---
-ALTER TABLE `pregnant_since`
-  ADD CONSTRAINT `pregnant_since_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `person` (`pid`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `peripheral_nerves_ibfk_1` FOREIGN KEY (`rid`) REFERENCES `treatment_record` (`rid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `reactions`
 --
 ALTER TABLE `reactions`
-  ADD CONSTRAINT `reactions_ibfk_1` FOREIGN KEY (`rid`) REFERENCES `record` (`rid`);
+  ADD CONSTRAINT `reactions_ibfk_1` FOREIGN KEY (`rid`) REFERENCES `record` (`rid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `referred`
@@ -835,20 +825,20 @@ ALTER TABLE `referred`
 -- Constraints for table `sensory_test`
 --
 ALTER TABLE `sensory_test`
-  ADD CONSTRAINT `sensory_test_ibfk_1` FOREIGN KEY (`tid`) REFERENCES `treatment_record` (`tid`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `sensory_test_ibfk_1` FOREIGN KEY (`tid`) REFERENCES `treatment_record` (`rid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `smear_test`
 --
 ALTER TABLE `smear_test`
-  ADD CONSTRAINT `smear_test_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `person` (`pid`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `smear_test_ibfk_1` FOREIGN KEY (`rid`) REFERENCES `record` (`rid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `treatment_record`
 --
 ALTER TABLE `treatment_record`
   ADD CONSTRAINT `treatment_record_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `person` (`pid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `treatment_record_ibfk_2` FOREIGN KEY (`tid`) REFERENCES `record` (`rid`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `treatment_record_ibfk_2` FOREIGN KEY (`rid`) REFERENCES `record` (`rid`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
