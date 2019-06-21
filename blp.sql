@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2019 at 09:21 AM
+-- Generation Time: Jun 21, 2019 at 11:40 AM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -211,18 +211,11 @@ INSERT INTO `follow_up_record` (`fid`, `pid`, `clinical_notes`, `prescription`, 
 
 CREATE TABLE `known_leprosy_contacts` (
   `pid` bigint(20) NOT NULL,
-  `treatment` varchar(100) DEFAULT NULL,
+  `kname` varchar(50) NOT NULL,
+  `relation` varchar(50) NOT NULL,
   `contact` bigint(20) NOT NULL,
-  `address` varchar(100) NOT NULL,
-  `kname` varchar(50) NOT NULL
+  `address` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `known_leprosy_contacts`
---
-
-INSERT INTO `known_leprosy_contacts` (`pid`, `treatment`, `contact`, `address`, `kname`) VALUES
-(6, 'xyz', 1234556677, 'efehtt', 'jaya');
 
 -- --------------------------------------------------------
 
@@ -590,7 +583,7 @@ ALTER TABLE `follow_up_record`
 -- Indexes for table `known_leprosy_contacts`
 --
 ALTER TABLE `known_leprosy_contacts`
-  ADD PRIMARY KEY (`pid`);
+  ADD KEY `pid` (`pid`);
 
 --
 -- Indexes for table `leprosy_relations`
