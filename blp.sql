@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2019 at 09:06 AM
+-- Generation Time: Jun 26, 2019 at 10:53 AM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -207,6 +207,24 @@ INSERT INTO `follow_up_record` (`fid`, `pid`, `clinical_notes`, `prescription`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `image`
+--
+
+CREATE TABLE `image` (
+  `pid` bigint(20) NOT NULL,
+  `image_url` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `image`
+--
+
+INSERT INTO `image` (`pid`, `image_url`) VALUES
+(6, 'http://localhost/blp/assets/images/user.png');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `known_leprosy_contacts`
 --
 
@@ -226,6 +244,31 @@ CREATE TABLE `known_leprosy_contacts` (
 INSERT INTO `known_leprosy_contacts` (`pid`, `kname`, `relation`, `contact`, `address`, `description`) VALUES
 (6, 'keval', 'sis', 1234556677, 'uganda', 'nothing'),
 (6, 'jaya', 'ghhh', 1234556644, 'nowhere', 'kuchnahi');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `leprosy_diagnosed`
+--
+
+CREATE TABLE `leprosy_diagnosed` (
+  `rid` bigint(20) NOT NULL,
+  `pb` tinyint(1) NOT NULL,
+  `mb` tinyint(1) NOT NULL,
+  `tt` tinyint(1) NOT NULL,
+  `bt` tinyint(1) NOT NULL,
+  `bb` tinyint(1) NOT NULL,
+  `bl` tinyint(1) NOT NULL,
+  `ll` tinyint(1) NOT NULL,
+  `pnl` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `leprosy_diagnosed`
+--
+
+INSERT INTO `leprosy_diagnosed` (`rid`, `pb`, `mb`, `tt`, `bt`, `bb`, `bl`, `ll`, `pnl`) VALUES
+(1, 1, 0, 1, 0, 1, 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -505,7 +548,8 @@ CREATE TABLE `smear_test` (
 --
 
 INSERT INTO `smear_test` (`rid`, `site`, `pid`, `mi`, `bi`, `due_date`) VALUES
-(1, 'hand', 6, 10, 10, '2019-03-08');
+(1, 'hand', 6, 10, 10, '2019-03-08'),
+(1, 'leg', 6, 7, 3, '2019-03-05');
 
 -- --------------------------------------------------------
 
@@ -625,10 +669,22 @@ ALTER TABLE `follow_up_record`
   ADD PRIMARY KEY (`fid`);
 
 --
+-- Indexes for table `image`
+--
+ALTER TABLE `image`
+  ADD KEY `pid` (`pid`);
+
+--
 -- Indexes for table `known_leprosy_contacts`
 --
 ALTER TABLE `known_leprosy_contacts`
   ADD KEY `pid` (`pid`);
+
+--
+-- Indexes for table `leprosy_diagnosed`
+--
+ALTER TABLE `leprosy_diagnosed`
+  ADD PRIMARY KEY (`rid`);
 
 --
 -- Indexes for table `leprosy_relations`
@@ -805,10 +861,22 @@ ALTER TABLE `follow_up_record`
   ADD CONSTRAINT `follow_up_record_ibfk_1` FOREIGN KEY (`fid`) REFERENCES `record` (`rid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `image`
+--
+ALTER TABLE `image`
+  ADD CONSTRAINT `image_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `person` (`pid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `known_leprosy_contacts`
 --
 ALTER TABLE `known_leprosy_contacts`
   ADD CONSTRAINT `known_leprosy_contacts_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `person` (`pid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `leprosy_diagnosed`
+--
+ALTER TABLE `leprosy_diagnosed`
+  ADD CONSTRAINT `leprosy_diagnosed_ibfk_1` FOREIGN KEY (`rid`) REFERENCES `record` (`rid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `leprosy_relations`
