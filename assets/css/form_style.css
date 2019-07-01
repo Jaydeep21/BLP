@@ -1,8 +1,7 @@
 /* @extend display-flex; */
 display-flex, .form-group, .form-select, .form-radio, .form-textarea, .form-date, .form-radio-item, .form-flex, .form-date-item .select-icon, .form-date-item .select-icon i, #val, #button, .steps ul, .actions ul, .actions ul li a, .title, .number {
   display: flex;
-  display: -webkit-flex;
-}
+  display: -webkit-flex; }
 
 /* @extend list-type-ulli; */
 list-type-ulli, ul, .actions ul {
@@ -50,7 +49,7 @@ a:active {
 input,
 select,
 textarea {
-  outline: none;
+  outline:none;
   appearance: unset !important;
   -moz-appearance: unset !important;
   -webkit-appearance: unset !important;
@@ -117,8 +116,7 @@ body {
   font-weight: 400;
   font-family: 'Roboto Slab';
   margin: 0px;
-  background-image: url("../images/body-bg.jpg");
-  background-repeat: no-repeat;
+  background: linear-gradient(to right,#2050d4f5,#e3f4ef);
   background-size: cover;
   -moz-background-size: cover;
   -webkit-background-size: cover;
@@ -165,7 +163,7 @@ label {
   padding-right: 0px;
   display: inline-block;
   width: 155px;
-  text-align: right;
+  text-align: center;
   margin-right: 27px;
   }
 
@@ -183,13 +181,13 @@ input.error {
 
 input, select, textarea {
   
-background: transparent;
+background: #8eddef1a;
   
 font-size: 14px;
   
 padding: 15px 20px;
   
-border: 1px solid #ebebeb;
+border: 1px solid #b9b9b969;
   
 font-family: 'Roboto Slab';
   
@@ -205,7 +203,7 @@ border-radius: 5px;
   
 display: block;
   
-width: 77%;
+width: 70%;
   
 margin-right: 20px;
   
@@ -231,8 +229,11 @@ select {
   font-weight: 400; }
 
 .form-textarea textarea {
+  background: #8eddef1a;
   height: 150px;
-  width: 534px; }
+  width: 534px; 
+  border: 1px solid #b9b9b969;
+  /*padding-left: 30px;*/}
 
 .form-radio {
   margin-bottom: 40px;
@@ -246,7 +247,7 @@ select {
 .form-radio-item input + label {
   margin: 0px;
   padding: 12px 10px;
-  width: 85px;
+  width: 50px;
   height: 50px;
   box-sizing: border-box;
   position: relative;
@@ -255,7 +256,6 @@ select {
   background-color: #f8f8f8;
   font-size: 14px;
   font-weight: 400;
-  cursor:pointer;
   /* color: #f8f8f8; */
   text-align: center;
   text-transform: none;
@@ -328,7 +328,7 @@ select {
   border: 1px solid #1abc9c; }
 
 #signup-form-p-2 .form-radio-flex, #signup-form-p-2 .form-flex, #signup-form-p-2 .form-group input {
-  width: 250px; }
+   }
 #signup-form-p-2 #credit_card {
   width: 275px; }
 #signup-form-p-2 #cvc #age #sex #caste #ecostat {
@@ -399,7 +399,8 @@ select {
 
 input[type='file'] {
   height: 50px;
-  opacity: 0; }
+  opacity: .5; }
+        
 
 #val {
   width: 345px;
@@ -546,7 +547,7 @@ fieldset {
     -o-justify-content: space-around;
     -ms-justify-content: space-around; }
     .steps ul li {
-      padding-right: 80px;
+      padding-right: 26px;
       padding-left: 0px;
       position: relative; }
       .steps ul li:after {
@@ -576,7 +577,7 @@ fieldset {
       color: #1abc9c; }
       .steps ul .done a .number {
         position: relative;
-        font-size: 0px;
+        font-size: 12px;
         border: 2px solid #1abc9c; }
         .steps ul .done a .number:after {
           position: absolute;
@@ -590,7 +591,7 @@ fieldset {
           font-size: 14px;
           color: #1abc9c;
           font-family: 'Material-Design-Iconic-Font';
-          content: '\f26b';
+          content: '';
           font-weight: bold; }
 
 .actions {
@@ -657,6 +658,8 @@ fieldset {
   
   border-bottom: 1px solid #ebebeb;
   padding-right: 60px;
+  height: 100%;
+  
   }
 
 .fieldset-footer {
@@ -693,13 +696,18 @@ fieldset {
   margin-right: 15px; }
 
 @media screen and (max-width: 992px) {
-  .container {
-    width: calc(100% - 40px);
-    max-width: 100%; }
+
 
   .bar-strength {
     display: none; } }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px)  {
+      .container {
+    
+    max-width: 100%; 
+         
+  
+    }
+
   .steps ul, .form-row {
     flex-direction: column;
     -moz-flex-direction: column;
@@ -715,9 +723,6 @@ fieldset {
     margin-left: auto;
     margin-right: auto; }
 
-  .form-row .form-date, .form-row .form-select, .form-file, input, select, textarea, .form-textarea textarea, #signup-form-p-2 #credit_card, #signup-form-p-2 #cvc #age #sex #caste #ecostat,
-  #signup-form-p-2 .form-radio-flex, #signup-form-p-2 .form-flex, #signup-form-p-2 .form-group input, .form-row .form-group label {
-    width: 100%; }
 
   .form-row .form-group:first-child, .form-row .form-group:last-child {
     float: none; }
@@ -727,7 +732,7 @@ fieldset {
 
   .fieldset-content {
     padding-right: 0px;
-    height: 600px; }
+    height: 100%; }
 
   .form-group, .form-select, .form-radio, .form-textarea, .form-date {
     flex-direction: column;
@@ -738,13 +743,16 @@ fieldset {
 
   label {
     width: 100%;
-    text-align: left;
+    text-align: center;
     margin-right: 0px;
     margin-bottom: 15px; }
 
   .form-row {
     padding-left: 0px; } }
 @media screen and (max-width: 600px) {
+      [class*="col-"] {
+  width: 100%;
+}
   #val {
     width: 99%; }
 
@@ -761,6 +769,9 @@ fieldset {
   .steps ul li {
     padding-right: 0px; } }
 @media screen and (max-width: 480px) {
+    [class*="col-"] {
+  width: 100%;
+}
   .signup-form {
     padding-left: 30px;
     padding-right: 30px; }
@@ -781,7 +792,7 @@ fieldset {
     margin-bottom: 10px; }
 
   .fieldset-content {
-    height: 750px; } }
+    height: 100%; } }
 
 /*# sourceMappingURL=style.css.map */
 
@@ -801,8 +812,10 @@ fieldset {
     background: rgba(0, 0, 0, 0.08);
 }
 textarea {
-    resize: none;
- /*   height: 170px;*/
+  background: #8eddef1a;
+    resize:horizontal;
+     border: 1px solid #b9b9b969;
+    height: 170px;
 }
 .book-appointment select.form-control {
     outline: none;
@@ -924,9 +937,22 @@ p.wickedpicker__title {
     color: #fff;
 }
 /*--//copyright--*/
+
+
+
+
+
 /*--responsive--*/
 @media(max-width:1680px){
+    
+
+
+    .form-group, .form-select, .form-radio, .form-textarea, .form-date {
+  align-items: center;
   
+  position: relative; }
+
+
 }
 @media(max-width:1440px){
   
@@ -1000,7 +1026,7 @@ p.wickedpicker__title {
     margin: 1.2em 0;
   }
   body {
-    min-height: 638px;
+    min-height: 768px;
   }
   .copy.w3ls {
     margin: 2em 0em 0;
@@ -1015,7 +1041,14 @@ p.wickedpicker__title {
     width: 20.5%;
   }
 }
-@media(max-width:900px){
+@media(max-width:900px) and (max-height:565px){
+    
+      .form-row .form-date, .form-row .form-select, .form-file, input, select, textarea, .form-textarea textarea, #signup-form-p-2 #credit_card, #signup-form-p-2 #cvc #age #sex #caste #ecostat,
+  #signup-form-p-2 .form-radio-flex, #signup-form-p-2 .form-flex, #signup-form-p-2 .form-group input, .form-row .form-group label {
+    width: 100%; }
+
+    
+    
   .book-appointment h2 {
     font-size: 18px;
     letter-spacing: 3px;
@@ -1060,18 +1093,15 @@ p.wickedpicker__title {
     font-size: 0.9em;
     padding: 6px 18px;
   }
+    .number {
+  
+  height: 3%;
+  
+  border: 2px solid #999;
+  margin-right: 1.5%; }
 }
-@media(max-width:768px){
-  body {
-    min-height: 894.5px;
-  }
-  h1 {
-    margin: 4em 0 2em;
-  }
-  .copy.w3ls {
-    margin: 4em 0em 0;
-  }
 }
+
 @media(max-width:767px){
   h1 {
     margin: 1.2em 0;
@@ -1082,10 +1112,15 @@ p.wickedpicker__title {
   .book-appointment select.form-control {
     padding: 5.4px 10px;
   }
-  body {
-    min-height: 565.7px;
-  }
+
+    .number {
+  
+  height: 3%;
+  
+  border: 2px solid #999;
+  margin-right: 1.5%; }
 }
+
 @media(max-width:736px){
   .book-appointment select.form-control {
     width: 20%;
@@ -1117,6 +1152,8 @@ p.wickedpicker__title {
   }
 }
 @media(max-width:640px){
+    
+    
   .book-appointment h2 {
     font-size: 16px;
   }
@@ -1142,11 +1179,25 @@ p.wickedpicker__title {
   .bg-agile {
     width: 88%;
   }
+    label {
+  padding-left: 0px;
+  display:inline-block;
+  
+  text-align: center;
+  margin-left: 31px;
+  }
+
   .book-appointment select.form-control {
+      
     width: 20%;
   }
 }
 @media(max-width:568px){
+    
+      .form-row .form-date, .form-row .form-select, .form-file, input, select, textarea, .form-textarea textarea, #signup-form-p-2 #credit_card, #signup-form-p-2 #cvc #age #sex #caste #ecostat,
+  #signup-form-p-2 .form-radio-flex, #signup-form-p-2 .form-flex, #signup-form-p-2 .form-group input, .form-row .form-group label {
+    width: 100%; }
+
   .copy p {
     word-spacing: 0px;
   }
@@ -1157,11 +1208,21 @@ p.wickedpicker__title {
    `   margin: 1.7em 0 1.1em;
   }
 }
-@media(max-width:480px){
+@media(max-width:457px){
+    
+     .form-row .form-date, .form-row .form-select, .form-file, input, select, textarea, .form-textarea textarea, #signup-form-p-2 #credit_card, #signup-form-p-2 #cvc #age #sex #caste #ecostat,
+  #signup-form-p-2 .form-radio-flex, #signup-form-p-2 .form-flex, #signup-form-p-2 .form-group input, .form-row .form-group label {
+    width: 100%; }
+    .form-textarea{
+        width: 100%;
+  }   
+    
+
   .left-agileits-w3layouts {
     width: 100%;
     float: none;
   }
+    
   .right-agileinfo {
     width: 100%;
     float: none;
@@ -1193,10 +1254,20 @@ p.wickedpicker__title {
     font-size: 13px;
   }
   body {
-    min-height: 809.5px;
+    min-height: 80%;
   }
 }
+
 @media(max-width:414px){
+   .form-row .form-date, .form-row .form-select, .form-file, input, select, textarea, .form-textarea textarea, #signup-form-p-2 #credit_card, #signup-form-p-2 #cvc #age #sex #caste #ecostat,
+  #signup-form-p-2 .form-radio-flex, #signup-form-p-2 .form-flex, #signup-form-p-2 .form-group input, .form-row .form-group label {
+    width: 100%; }
+
+   .container {
+    width: calc(100% - 40px);
+    max-width: 100%; 
+    height: 100%;
+    }
   h1 {
     margin: 2em 0 1.1em;
     font-size: 19px;
@@ -1211,8 +1282,66 @@ p.wickedpicker__title {
   .book-appointment input[type="text"], .book-appointment input[type="date"], .book-appointment input[type="month"], .book-appointment input[type="email"], textarea {
     width: 91.5%;
   }
+     .container {
+    
+    max-width: 100%; 
+         
+  
+    }
+
+  .steps ul, .form-row {
+    flex-direction: column;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+    -o-flex-direction: column;
+    -ms-flex-direction: column; }
+
+  .steps ul li:after {
+    width: 0px; }
+
+  .title {
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto; }
+
+
+  .form-row .form-group:first-child, .form-row .form-group:last-child {
+    float: none; }
+
+  input, select, textarea {
+    margin-right: 0px; }
+
+  .fieldset-content {
+    padding-right: 0px;
+    height: 100%; }
+
+  .form-group, .form-select, .form-radio, .form-textarea, .form-date {
+    flex-direction: column;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
+    -o-flex-direction: column;
+    -ms-flex-direction: column; }
+
+  label {
+    width: 100%;
+    text-align: center;
+    margin-right: 0px;
+    margin-bottom: 15px; }
+
+  .form-row {
+    padding-left: 0px; }
 }
 @media(max-width:384px){
+  .form-row .form-date, .form-row .form-select, .form-file, input, select, textarea, .form-textarea textarea, #signup-form-p-2 #credit_card, #signup-form-p-2 #cvc #age #sex #caste #ecostat,
+  #signup-form-p-2 .form-radio-flex, #signup-form-p-2 .form-flex, #signup-form-p-2 .form-group input, .form-row .form-group label {
+    width: 100%; }
+  
+     .form-textarea{
+        width: 100%;
+        
+    }
+    table tr {
+    }
   h1 {
     margin: 1.5em 1em 1em;
     line-height: 33px;
@@ -1231,19 +1360,50 @@ p.wickedpicker__title {
   input[type=submit] {
     padding: 5px 14px;
   }
+    .fieldset-content {
+  
+  border-bottom: 1px solid #ebebeb;
+  padding-right: 60%;
+  }
   body {
     min-height: 850px;
   }
 }
 @media(max-width:375px){
+
+
+  .form-row .form-date, .form-row .form-select, .form-file, input, select, textarea, .form-textarea textarea, #signup-form-p-2 #credit_card, #signup-form-p-2 #cvc #age #sex #caste #ecostat,
+  #signup-form-p-2 .form-radio-flex, #signup-form-p-2 .form-flex, #signup-form-p-2 .form-group input, .form-row .form-group label {
+    width: 100%; }
   .bg-agile {
     width: 86%;
   }
   .book-appointment input[type="text"], .book-appointment input[type="date"], .book-appointment input[type="month"], .book-appointment input[type="email"], textarea {
     width: 91.8%;
   }
-}
+    .fieldset-content {
+  
+  border-bottom: 1px solid #ebebeb;
+  padding-right: 60%;
+  }
+
+.fieldset-footer {
+  padding: 28px 0; }
+  .fieldset-footer span {
+    color: #999; }
+
+.title {
+  align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+  -o-align-items: center;
+  -ms-align-items: center; }
+
 @media(max-width:320px){
+
+  .form-row .form-date, .form-row .form-select, .form-file, input, select, textarea, .form-textarea textarea, #signup-form-p-2 #credit_card, #signup-form-p-2 #cvc #age #sex #caste #ecostat,
+  #signup-form-p-2 .form-radio-flex, #signup-form-p-2 .form-flex, #signup-form-p-2 .form-group input, .form-row .form-group label {
+    width: 100%; }
   .bg-agile {
     width: 91%;
   }
@@ -1269,4 +1429,5 @@ p.wickedpicker__title {
     margin: 1.1em 1.5em 0;
   }
 }
-/*--responsive--
+}
+/*--responsive--*/

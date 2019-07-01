@@ -2,7 +2,7 @@
 
 $dbname='blp';
 $dbhost='localhost';
-$dbpass='jaydeep';
+$dbpass='';
 $dbuser='root';
 
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
