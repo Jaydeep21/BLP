@@ -116,27 +116,24 @@ if(!isset($_SESSION['id'])){
                             <textarea name="Complaint" id="Complaint" placeholder=""  ></textarea>
                         </div>
 
-                       <div class="form-group">
-                            <label  class="form-label">Notes and Prescription</label>
-                            
-                             <table style="padding-left: 34px ;margin-top: 9px;" id="tb2" class="form-label">
+                        <div class="form-group">
+                            <label  class="form-label" style="align-self: flex-start;padding-top: 40px;">Notes and Prescription</label>
+                            <table style="padding-left: 34px ;margin-top: 9px" id="tb2" class="form-label">
+                            <tbody>
+                                <tr class="tr-header"><th>Date</th></tr>
+                                <tr class="form-textarea"><th><input style="width: 165px" type="date" name="name[]" class="valid"></th></tr>
                                 
-                                    <tbody>
-                                        <tr class="tr-header">
-                                            <th>Date</th>
-                                            <th>Clinical Notes</th>
-                                            <th>Prescription</th>
-                                            <th><a href="javascript:void(0);" style="font-size:18px;" id="addMore2" title="Add More Person"><span class="fa fa-plus"></span></a></th>
-                                        <tr>
-                                            <td><input type="date" name="name[]" class="valid"></td>
-                                            <td><textarea name="Prescription[]" class="valid"></textarea></td>
-                                            <td><textarea name="Cnotes[]" class="valid"></textarea></td>
-                                            <td><a href='javascript:void(0);' style="font-size:18px;" class='remove2' title="Remove"><span class='fa fa-minus'></span></a></td>
-                                        </tr>
-
-                                    </tbody>
-
-                            </table>
+                                <tr><th>Clinical Notes</th></tr>
+                                <tr><th><div class="form-textarea">
+                                            <textarea name="Cnotes[]" class="valid"></textarea>
+                                        </div></th></tr>
+                                
+                                <tr><th>Prescription</th></tr>
+                                <tr><th><div class="form-textarea">
+                                            <textarea name="Prescription[]" class="valid"></textarea>
+                                        </div></th></tr>
+                            </tbody>    
+                           </table>
                         </div>
 
                        <div class="form-group">
