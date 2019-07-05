@@ -155,40 +155,36 @@ if(!isset($_SESSION['id'])){
                               
                               <div class="form-group">
                                 <label for="Sex">Sex</label>
-                                <select class="form-control" id="Sex">
+                                <select class="form-control; valid" id="Sex" style="width: 130px">
                                       <option value="male">Male</option>
                                       <option value="female">Female</option>
                                 </select>
                               </div>
                               
                              
-                                 <div class="form-textarea" id="ObstetricHDiv">
-                                                  
-                                     <label for="ObstetricH" class="form-label">Obstetric History</label>
-                                     <td><input type="text" id="ObstetricH" name="ObstetricH" placeholder="Obstetric History" class="valid"></td>
-                                 </div>
+                                
                             
                             <div class="form-radio">
                                 <label for="Caste" class="form-label">Caste</label>
                                 <div class="form-radio-item">
                                     <input type="radio" name="Caste" value="SC" id="SC" />
-                                    <label for="SC">SC</label>
+                                    <label style="width: 68px" for="SC">SC</label>
     
                                     <input type="radio" name="Caste" value="ST" id="ST" />
-                                    <label for="ST">ST</label>
+                                    <label style="width: 68px" for="ST">ST</label>
 
                                     <input type="radio" name="Caste" value="Others" id="Others" />
-                                    <label for="Others">Others</label>
+                                    <label style="width: 68px" for="Others">Others</label>
                                 </div>
                             </div>
                             <div class="form-radio">
                                 <label for="ecostat" class="form-label">Economical Status</label>
                                 <div class="form-radio-item">
                                     <input type="radio" name="ecostat" value="BPL" id="BPL" checked="checked" />
-                                    <label for="BPL">BPL</label>
+                                    <label style="width: 80px" for="BPL">BPL</label>
     
                                     <input type="radio" name="ecostat" value="Non-BPL" id="Non-BPL" />
-                                    <label for="Non-BPL">Non-BPL</label>
+                                    <label style="width: 80px" for="Non-BPL">Non-BPL</label>
                                 </div>
                             </div>
                             </div>
@@ -378,10 +374,10 @@ if(!isset($_SESSION['id'])){
 
                         </div>
 
-                         <div class="form-textarea">
-                            <label for="ObstetricH" class="form-label">Obstetric History</label>
-                            <td><input type="text" name="ObstetricH" placeholder="Obstetric History" class="valid"></td> 
-                        </div>
+                         <div class="form-textarea" id="ObstetricHDiv">              
+                                     <label for="ObstetricH" class="form-label">Obstetric History</label>
+                                     <td><input type="text" id="ObstetricH" name="ObstetricH" placeholder="Obstetric History" class="valid"></td>
+                          </div>
 
                         <div class="form-textarea">
                             <label for="KLC" class="form-label" style="align-self: flex-start;padding-top: 40px;">Known Leprosy Contacts</label>
