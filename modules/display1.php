@@ -31,7 +31,7 @@ $result27= mysqli_query($conn,"SELECT * from disability d , record r where r.pid
 
 $result29 = mysqli_query($conn,"SELECT * from image where pid=$id");
 
-while ($row1 = mysqli_fetch_assoc($result1)){
+
   
   
 ?>
@@ -79,6 +79,13 @@ td{
         <th colspan="2" id="" >ID Number</th>
         <td colspan="5"><?php echo $id ?></td>
       </tr>
+<?php while ($row16 = mysqli_fetch_assoc($result16)){ ?>
+      <tr>
+        <th colspan="2">Patient Code:</th>
+        <td colspan="5"><?php echo $row16['patient_code']; ?></td>
+      </tr>
+<?php } ?>
+      <?php while ($row1 = mysqli_fetch_assoc($result1)){ ?>
       <tr>
         <th colspan="2" id="">Name</th>
         <td colspan="5"><?php echo $row1['fname']; ?></td>
