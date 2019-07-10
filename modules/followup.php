@@ -7,6 +7,15 @@ if(!isset($_SESSION['id'])){
     </script>
     ";
 }
+if(!isset($_GET['pid'])){
+    echo"<script>
+    alert('Please Select Patient');
+    document.location.href = 'health.php';
+    </script>
+    ";
+}
+
+$Pid = $_GET['pid'];
 
 ?>
 <!DOCTYPE html>
@@ -79,13 +88,26 @@ if(!isset($_SESSION['id'])){
     <div class="main">
 
         <div class="container">
-            <form method="POST" id="signup-form" class="signup-form" action="../assets/php/followup.php?pid=<?php echo $_GET['pid'];?>">
+            <form method="POST" id="signup-form" class="signup-form" action="../assets/php/followup.php?pid=<?php echo $Pid;?>">
                 
                
-                <h3>
+                <h2>
                     <span class="title_text">Follow-up Form</span>
-                </h3>
+                </h2>
+                <h3>
+                  <span class="patient_name"><?php echo "Patient Id: " . $Pid; ?></span>
+                </h3>               
                 <fieldset>
+                  <div class="form-textarea">
+                        <label for="Date" class="form-label">Date</label>
+                        <input style="width: 165px" type="date" name="name[]" class="valid">
+                  </div>
+
+                  <div class="form-group">
+                                <label for="Examiner" class="form-label">Examiner</label>
+                                <input type="text" name="Examiner" id="Examiner" style="width: 400px" />
+                            </div>
+
                       <div class="form-group">
                                 <label  class="form-label">Skin Smears</label>
                                  <table style="padding-left: 34px ;margin-top: 9px;" id="tb6" class="tab orlist">
@@ -104,7 +126,7 @@ if(!isset($_SESSION['id'])){
                                           </tr>                                                   
                                     </tbody>
                                     <tr>                                                                            
-                                        <td><a href='javascript:void(0);' style="font-size:18px;" id='avg'>Average</a></td>
+                                        <td><a href='javascript:void(0);' style="font-size:18px;" id='avg' class="valid">Average</a></td>
                                          <td ><p id="average">Averages Mi:</p></td>
                                          <td ><p id="average1">Average Bi:</p></td>
                                     </tr>
@@ -116,13 +138,11 @@ if(!isset($_SESSION['id'])){
                             <textarea name="Complaint" id="Complaint" placeholder=""  ></textarea>
                         </div>
 
-                        <div class="form-group">
+                       <div class="form-group">
                             <label  class="form-label" style="align-self: flex-start;padding-top: 40px;">Notes and Prescription</label>
                             <table style="padding-left: 34px ;margin-top: 9px" id="tb2" class="form-label">
                             <tbody>
-                                <tr class="tr-header"><th>Date</th></tr>
-                                <tr class="form-textarea"><th><input style="width: 165px" type="date" name="name[]" class="valid"></th></tr>
-                                
+                               
                                 <tr><th>Clinical Notes</th></tr>
                                 <tr><th><div class="form-textarea">
                                             <textarea name="Cnotes[]" class="valid"></textarea>
@@ -135,6 +155,7 @@ if(!isset($_SESSION['id'])){
                             </tbody>    
                            </table>
                         </div>
+
 
                        <div class="form-group">
                           <label for="dp" class="form-label" style=" padding-bottom: 6em;">Drug Prescription</label>
@@ -168,10 +189,7 @@ if(!isset($_SESSION['id'])){
                             </table>
                         
                         </div>
-                        <div class="form-group">
-                                <label for="Examiner" class="form-label">Examiner</label>
-                                <input type="text" name="Examiner" id="Examiner" />
-                            </div>
+                        
                         <div class="form-group">
 
                                 <label  class="form-label">Appointment </label>
@@ -183,8 +201,8 @@ if(!isset($_SESSION['id'])){
                                             <th>Next Appoinment Date:</th>
                                             <th><a href="javascript:void(0);" style="font-size:18px;" id="addMore4" title="Add More Appoinment"><span class="fa fa-plus"></span></a></th>
                                         <tr>
-                                            <td><input type="text" name="appoinment_for[]" placeholder="Appoinment for..."></td>
-                                            <td><input style="margin-left: 16px;" type="date" name="date_of_next_appoinment[]"></td>
+                                            <td><input type="text" name="appoinment_for[]" placeholder="Appoinment for..." style="width: 190px"></td>
+                                            <td><input style="margin-left: 16px; width: 172px;" type="date" name="date_of_next_appoinment[]"></td>
                                             
                                             <td><a href='javascript:void(0);' style="font-size:18px;" class='remove2' title="Remove"><span class='fa fa-minus'></span></a></td>
                                         </tr>
