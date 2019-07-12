@@ -27,7 +27,7 @@
 
 			echo "<script>alert('Wrong Credentials');
 					window.location.href = '../../modules/login.php';
-					</script>";
+					</script>zz";
 		}	
 	
 	}
