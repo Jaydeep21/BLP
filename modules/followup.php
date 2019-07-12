@@ -1,5 +1,22 @@
 <?php
 include('navbar.php');
+if(!isset($_SESSION['id'])){
+    echo"<script>
+    alert('Please Login in');
+    document.location.href = 'login.php';
+    </script>
+    ";
+}
+if(!isset($_GET['pid'])){
+    echo"<script>
+    alert('Please Select Patient');
+    document.location.href = 'health.php';
+    </script>
+    ";
+}
+
+$Pid = $_GET['pid'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +42,7 @@ include('navbar.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Patient Form</title>
+    <title>Followup Form</title>
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
@@ -71,103 +88,47 @@ include('navbar.php');
     <div class="main">
 
         <div class="container">
-            <form method="POST" id="signup-form" class="signup-form" action="../assets/php/form.php">
+            <form method="POST" id="signup-form" class="signup-form" action="../assets/php/followup.php?pid=<?php echo $Pid;?>">
                 
                
-                <h3>
+                <h2>
                     <span class="title_text">Follow-up Form</span>
-                </h3>
-                <fieldset>
-                    <div class="fieldset-content">
-
-                         <div class="form-group">
+                </h2>
+                <h3>
+                  <span class="patient_name"><?php echo "Patient Id: " . $Pid; ?></span>
+                </h3>                <fieldset>
+                      <div class="form-group">
                                 <label  class="form-label">Skin Smears</label>
-                                
-                                <table style="padding-left: 34px ;margin-top: 9px;" id="tb7" class="tab orlist">
-                                
+                                 <table style="padding-left: 34px ;margin-top: 9px;" id="tb6" class="tab orlist">
                                     <tbody>
-                                        <tr class="tr-header">
+                                          <tr class="tr-header">
                                             <th>Site</th>
                                             <th>Mi</th>
-                                            <th>Bi</th>   
-                                            
-                                            <tr style="padding: 2px;">
-                                            <td><input type="text" name="Site" class="valid"></td>
-                                            <td><input type="text" name="Mi" class="valid"></td>
-                                            <td><input type="text" name="Bi" class="valid"></td>
-                                            </tr>
-                                            
-                                            <tr style="padding: 2px;">
-                                            <td><input type="text" name="Site" class="valid"></td>
-                                            <td><input type="text" name="Mi" class="valid"></td>
-                                            <td><input type="text" name="Bi" class="valid"></td>
-                                            </tr>
-                                        
-                                            <tr style="padding: 2px;">
-                                            <td><input type="text" name="Site" class="valid"></td>
-                                            <td><input type="text" name="Mi" class="valid"></td>
-                                            <td><input type="text" name="Bi" class="valid"></td>
-                                            </tr>
-                                        
-                                            <tr style="padding: 2px;">
-                                            <td><input type="text" name="Site" class="valid"></td>
-                                            <td><input type="text" name="Mi" class="valid"></td>
-                                            <td><input type="text" name="Bi" class="valid"></td>
-                                            </tr>
-                                            
-                                            <tr style="padding: 2px;">
-                                            <td><input type="text" name="Site" class="valid"></td>
-                                            <td><input type="text" name="Mi" class="valid"></td>
-                                            <td><input type="text" name="Bi" class="valid"></td>
-                                            </tr>
-                                        
-                                            <tr style="padding: 2px;">
-                                            <td><input type="text" name="Site" class="valid"></td>
-                                            <td><input type="text" name="Mi" class="valid"></td>
-                                            <td><input type="text" name="Bi" class="valid"></td>
-                                            </tr>
-                                        
-                                            <tr style="padding: 2px;">
-                                            <td><input type="text" name="Site" class="valid"></td>
-                                            <td><input type="text" name="Mi" class="valid"></td>
-                                            <td><input type="text" name="Bi" class="valid"></td>
-                                            </tr>
-                                            
-                                            <tr style="padding: 2px;">
-                                            <td><input type="text" name="Site" class="valid"></td>
-                                            <td><input type="text" name="Mi" class="valid"></td>
-                                            <td><input type="text" name="Bi" class="valid"></td>
-                                            </tr>
-                                        
-                                            <tr style="padding: 2px;">
-                                            <td><input type="text" name="Site" class="valid"></td>
-                                            <td><input type="text" name="Mi" class="valid"></td>
-                                            <td><input type="text" name="Bi" class="valid"></td>
-                                            </tr>
-                                        
-                                            <tr style="padding: 2px;">
-                                            <td><input type="text" name="Site" class="valid"></td>
-                                            <td><input type="text" name="Mi" class="valid"></td>
-                                            <td><input type="text" name="Bi" class="valid"></td>
-                                            </tr>
-                                            
-
+                                            <th>Bi</th>
+                                            <th><a href="javascript:void(0);" style="font-size:18px;" id="addMore6" title="Add More Person"><span class="fa fa-plus"></span></a></th>   
+                                          </tr> 
+                                          <tr style="padding: 2px;" >
+                                            <td><input type="text" name="Site[]" class="valid"></td>
+                                            <td><input type="text" name="Mi[]" class="valid"></td>
+                                            <td><input type="text" name="Bi[]" class="valid"></td>
+                                            <td><a href='javascript:void(0);' style="font-size:18px;" class='remove6'><span class='fa fa-minus'></span></a></td>                                            
+                                          </tr>                                                   
                                     </tbody>
-                            </table>
+                                    <tr>                                                                            
+                                         <td><a href='javascript:void(0);' style="font-size:18px;" id='avg'>Average</a></td>
+                                         <input type="hidden" name="Site[]" value="Average">
+                                         <td><p id="average">Averages Mi:</p></td>
+                                         <input type="hidden" id="avg_mi" name="Mi[]" value="0">
+                                         <td><p id="average1">Average Bi:</p></td>
+                                         <input type="hidden" id="avg_bi" name="Bi[]" value="0">
+                                    </tr>
+                                 </table>                                                     
                             </div>
 
-
-
-
-                         <div class="form-textarea">
+                        <div class="form-textarea">
                             <label for="Complaint" class="form-label">Present Complaint</label>
                             <textarea name="Complaint" id="Complaint" placeholder=""  ></textarea>
                         </div>
-                        
-                              
-
-
-
 
                        <div class="form-group">
                             <label  class="form-label">Notes and Prescription</label>
@@ -182,8 +143,8 @@ include('navbar.php');
                                             <th><a href="javascript:void(0);" style="font-size:18px;" id="addMore2" title="Add More Person"><span class="fa fa-plus"></span></a></th>
                                         <tr>
                                             <td><input type="date" name="name[]" class="valid"></td>
-                                            <td><input type="text" name="age[]" class="valid"></td>
-                                            <td><input type="text" name="relation[]" class="valid"></td>
+                                            <td><textarea name="Prescription[]" class="valid"></textarea></td>
+                                            <td><textarea name="Cnotes[]" class="valid"></textarea></td>
                                             <td><a href='javascript:void(0);' style="font-size:18px;" class='remove2' title="Remove"><span class='fa fa-minus'></span></a></td>
                                         </tr>
 
@@ -191,6 +152,43 @@ include('navbar.php');
 
                             </table>
                         </div>
+
+                       <div class="form-group">
+                          <label for="dp" class="form-label" style=" padding-bottom: 6em;">Drug Prescription</label>
+                             <table style="padding-left: 34px ;margin-top: 9px;" id="tb5" class="tab orlist">
+                                
+                                    <tbody>
+                                        <tr class="tr-header">
+                                            <th>Drug Used</th>
+                                            <th>Drug Dosage</th>   
+                                            <th><a href="javascript:void(0);" style="font-size:18px;" id="addMore5" title="Add More Person"><span class="fa fa-plus"></span></a></th>
+                                        </tr>
+                                        
+                                        <tr style="padding: 2px;">
+                                            <td><input type="text" name="drug_used[]" class="valid"></td>
+                                            <td><input type="text" name="drug_dosage[]" class="valid"></td>
+                                            <td><a href='javascript:void(0);' style="font-size:18px;" class='remove5'><span class='fa fa-minus'></span></a></td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td><input style="margin-left: 16px;" type="date" name="Start_first_treatment[]" class="valid"></td> 
+                                            <td><input style="margin-left: 16px;" type="date" name="End_first_treatment[]" class="valid"></td> 
+                                        </tr>
+
+                                    </tbody>
+
+                            </table>
+                        
+                        </div>
+                        <div class="form-group">
+                                <label for="Examiner" class="form-label">Examiner</label>
+                                <input type="text" name="Examiner" id="Examiner" />
+                            </div>
                         <div class="form-group">
 
                                 <label  class="form-label">Appointment </label>
@@ -224,7 +222,7 @@ include('navbar.php');
                 <div class="fieldset-footer" style="padding: 40px 0px;">
                         <span></span>
                     </div>
-
+                    <input type="submit" name="submit">
             </form>
         <div>
             
@@ -241,7 +239,7 @@ include('navbar.php');
     <script src="../assets/js/multiselect.js"></script>
     <script src="../assets/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="../assets/vendor/jquery-steps/jquery.steps.min.js"></script>
-    <script src="../assets/js/main.js"></script>
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript">
@@ -262,23 +260,82 @@ $(function(){
       });
 });      
 </script>
+
 <script type="text/javascript">
     
 $(function(){
-    $('#addMore1').on('click', function() {
-              var data = $("#tb1 tr:eq(1)").clone(true).appendTo("#tb1");
+    $('#addMore5').on('click', function() {
+              var data = $("#tb5 tr:eq(0)").clone(true).appendTo("#tb5");
+              var data1 = $("#tb5 tr:eq(1)").clone(true).appendTo("#tb5");
+              var data2 = $("#tb5 tr:eq(2)").clone(true).appendTo("#tb5");
+              var data3 = $("#tb5 tr:eq(3)").clone(true).appendTo("#tb5");
+              data3.find("input").val('');
+              data2.find("input").val('');
+              data1.find("input").val('');
               data.find("input").val('');
      });
-     $(document).on('click', '.remove1', function() {
+     $(document).on('click', '.remove5', function() {
          var trIndex1 = $(this).closest("tr").index();
             if(trIndex1>1) {
              $(this).closest("tr").remove();
+             document.getElementById("tb5").deleteRow(trIndex1);
+             document.getElementById("tb5").deleteRow(trIndex1);
+             document.getElementById("tb5").deleteRow(trIndex1-1);
            } else {
              alert("Sorry!! Can't remove first row!");
            }
       });
 });      
 </script>
+
+<script type="text/javascript">
+    
+$(function(){
+    $('#addMore6').on('click', function() {
+              var data = $("#tb6 tr:eq(1)").clone(true).appendTo("#tb6");
+              data.find("input").val('');
+     });
+     $(document).on('click', '.remove6', function() {
+         var trIndex1 = $(this).closest("tr").index();
+            if(trIndex1>1) {
+             $(this).closest("tr").remove();
+           } else {
+             alert("Sorry!! Can't remove first row!");
+          } 
+      });
+});      
+</script>
+
+<script type="text/javascript">
+  $(function(){
+    $('#avg').on('click', function() {
+      var tbl = document.getElementById('tb6');
+      var count = 0;
+      var total = 0;
+      for(var i = 1; i < tbl.rows.length - 1; i++){
+        var num = Number(tbl.rows[i].cells[1].children[0].value);
+        total += num;
+        count++;
+    }
+      var count1 = 0;
+      var total1 = 0;
+      for(var i = 1; i < tbl.rows.length - 1; i++){
+        var num1 = Number(tbl.rows[i].cells[2].children[0].value);
+        total1 += num1;
+        count1++;
+    }
+    var avgMi = (total / count).toFixed(2);
+    var avgBi = (total1 / count1).toFixed(2);
+    // console.log(avgMi);
+    // console.log(avgBi);
+    document.getElementById("average").innerHTML = "Average MI &ensp;" + avgMi;
+    document.getElementById("average1").innerHTML = "Average BI &ensp;" + avgBi;
+    document.getElementById("avg_mi").value = avgMi;
+    document.getElementById("avg_bi").value = avgBi;
+  });
+});
+</script>
+
 <script type="text/javascript">
     
 $(function(){
@@ -300,46 +357,11 @@ $(function(){
 <script type="text/javascript">
     
 $(function(){
-    $('#addMore3').on('click', function() {
-              var data = $("#tb3 tr:eq(1)").clone(true).appendTo("#tb3");
-              data.find("input").val('');
-     });
-     $(document).on('click', '.remove3', function() {
-         var trIndex1 = $(this).closest("tr").index();
-            if(trIndex1>1) {
-             $(this).closest("tr").remove();
-           } else {
-             alert("Sorry!! Can't remove first row!");
-           }
-      });
-});      
-</script>
-<script type="text/javascript">
-    
-$(function(){
     $('#addMore4').on('click', function() {
               var data = $("#tb4 tr:eq(1)").clone(true).appendTo("#tb4");
               data.find("input").val('');
      });
      $(document).on('click', '.remove4', function() {
-         var trIndex1 = $(this).closest("tr").index();
-            if(trIndex1>1) {
-             $(this).closest("tr").remove();
-           } else {
-             alert("Sorry!! Can't remove first row!");
-           }
-      });
-});      
-</script>
-    
-<script type="text/javascript">
-    
-$(function(){
-    $('#addMore5').on('click', function() {
-              var data = $("#tb5 tr:eq(1)").clone(true).appendTo("#tb5");
-              data.find("input").val('');
-     });
-     $(document).on('click', '.remove5', function() {
          var trIndex1 = $(this).closest("tr").index();
             if(trIndex1>1) {
              $(this).closest("tr").remove();
