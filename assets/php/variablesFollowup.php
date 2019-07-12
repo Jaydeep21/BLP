@@ -1,5 +1,4 @@
 <?php
-echo "hi var";
 
 $follow_up_clinical_notes = escape(empty($_POST['follow_up_clinical_notes']) ? 'None' : $_POST['follow_up_clinical_notes']);
 $follow_up_prescription = escape(empty($_POST['follow_up_prescription']) ? 'None' : $_POST['follow_up_prescription']);
