@@ -3,7 +3,7 @@
 $dbname='blp';
 $dbhost='localhost';
 $dbpass='';
-$dbuser='poojn';
+$dbuser='root';
 
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname);
 if(!$conn){

@@ -15,19 +15,19 @@ $result9 =  mysqli_query($conn,"SELECT * from addiction where pid = $id");
 $result10 = mysqli_query($conn,"SELECT * from medical_history where pid = $id");
 $result12 = mysqli_query($conn,"SELECT * from obstetric_history where pid = $id");
 $result14 = mysqli_query($conn,"SELECT * from known_leprosy_contacts where pid = $id");
-$result19 = mysqli_query($conn,"SELECT s.touch, s.pinprick, s.temperature FROM treatment_record AS t ,sensory_test AS s WHERE t.pid=$id AND t.rid=s.rid");
-$result20 = mysqli_query($conn,"SELECT * from smear_test AS s, record AS r where r.pid = $id and r.rid=s.rid");
-$result22 = mysqli_query($conn,"SELECT d.dname,dp.dosage,dp.start_date,dp.end_date FROM `record` AS r,drugs AS d,drugs_prescribed AS dp WHERE r.pid=$id and dp.rid=r.rid and dp.did=d.did"); 
-$result21 = mysqli_query($conn,"SELECT rs.type_reaction,rs.description FROM `record` AS r , reactions AS rs WHERE r.pid=$id and r.rid=rs.rid");
+$result19 = mysqli_query($conn,"SELECT s.touch, s.pinprick, s.temperature FROM treatment_record AS t ,sensory_test AS s WHERE t.pid=$id");
+$result20 = mysqli_query($conn,"SELECT * from smear_test where pid = $id");
+$result22 = mysqli_query($conn,"SELECT d.dname,dp.dosage,dp.start_date,dp.end_date FROM `record` AS r,drugs AS d,drugs_prescribed AS dp WHERE r.pid=$id"); 
+$result21 = mysqli_query($conn,"SELECT rs.type_reaction,rs.description FROM `record` AS r , reactions AS rs WHERE r.pid=$id");
 $result7 =  mysqli_query($conn,"SELECT * from family_members where pid = $id");
 $result11 = mysqli_query($conn,"SELECT * from past_drugs where pid = $id");
-$result18 = mysqli_query($conn,"SELECT * FROM peripheral_nerves p, record r WHERE r.pid=$id AND p.rid=r.rid");
-$result17a =  mysqli_query($conn,"SELECT * from leprosy_diagnosed l, record r where r.pid=$id r.rid = l.rid ");
+$result18 = mysqli_query($conn,"SELECT * FROM peripheral_nerves p, record r WHERE pid=$id AND p.rid=r.rid");
+$result17a =  mysqli_query($conn,"SELECT * from leprosy_diagnosed l, record r where r.rid = l.rid ");
 $result17b =  mysqli_query($conn,"SELECT * from treatment_record where pid = $id ");
 $result17c =  mysqli_query($conn,"SELECT * from treatment_record where pid = $id ");
 $result17d =  mysqli_query($conn,"SELECT * from treatment_record where pid = $id ");
 $result26 =  mysqli_query($conn,"SELECT * from record where pid = $id ");
-$result27= mysqli_query($conn,"SELECT * from disability d , record r where r.pid = $id AND d.rid=r.rid");
+$result27= mysqli_query($conn,"SELECT * from disability d , record r where d.rid=r.rid AND pid = $id");
 $result28=mysqli_query($conn,"SELECT * from next_appointment where pid=$id");
 $result29 = mysqli_query($conn,"SELECT * from image where pid=$id");
 
@@ -319,7 +319,7 @@ td{
        <?php while( $row18 = mysqli_fetch_assoc($result18)){ ?>
          <tr>
             <td colspan="1">Nerves: <?php echo $row18['nerves']; ?></td>
-            <td colspan="3">Thickend: <?php echo $row18['thickness']; ?></td>
+            <td colspan="3">Thickness: <?php echo $row18['thickness']; ?></td>
             <td colspan="3">Tenderness:<?php echo $row18['tenderness']; ?></td>
          </tr>
        <?php } ?>
