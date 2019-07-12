@@ -79,17 +79,17 @@ if(!isset($_SESSION['id'])){
 
         <div class="container">
             <h2>Bombay Leprosy Project </h2>
-            <form method="POST" id="signup-form" class="signup-form" action="../assets/php/form.php">
+            <form method="POST" id="signup-form" class="signup-form" action="../assets/php/form.php" enctype="multipart/form-data">
                 <h3>
                     <span class="title_text">Patient History</span>
                 </h3>
 
                 <fieldset>
                     <div class="fieldset-content">
-                        <div class="form-group">
+                      <!--   <div class="form-group">
                             <label for="ID" class="form-label">ID</label>
                             <input type="text" name="ID" value="1" style="text-align: center;" placeholder=""  />
-                        </div>
+                        </div> -->
                         
                         <div class="form-group">
                             <label form="NOML" class="form-label">Clinic Area</label>
@@ -149,18 +149,25 @@ if(!isset($_SESSION['id'])){
                             <input type="number" name="aadhar" id="aadhar" placeholder="Aadhar Card Number" />
                         </div>
 
-                       <div class="clear"></div>
+                      
                             <div class="rows">
-                            <div class="form-radio">
-                              <label for="Sex" class="form-label">Sex</label>
-                              <div class="form-radio-item">
-                                    <input type="radio" name="Sex" value="male" id="male" checked="checked" />
-                                    <label for="male">Male</label>
-    
-                                    <input type="radio" name="Sex" value="female" id="female" />
-                                    <label for="female">Female</label>
-                                </div>
-                            </div>
+                            
+                              
+                              <div class="form-group">
+                                <label for="Sex">Sex</label>
+                                <select class="form-control" name="Sex" id="Sex">
+                                      <option value="male">Male</option>
+                                      <option value="female">Female</option>
+                                </select>
+                              </div>
+                              
+                             
+                                 <div class="form-textarea" id="ObstetricHDiv">
+                                                  
+                                     <label for="ObstetricH" class="form-label">Obstetric History</label>
+                                     <td><input type="text" id="ObstetricH" name="ObstetricH" placeholder="Obstetric History" class="valid"></td>
+                                 </div>
+                            
                             <div class="form-radio">
                                 <label for="Caste" class="form-label">Caste</label>
                                 <div class="form-radio-item">
@@ -200,11 +207,11 @@ if(!isset($_SESSION['id'])){
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="Contact1" class="form-label">Contact No.1</label>
-                                <input type="number" name="Contact1" id="Contact1" />
+                                <input type="number" name="Contact[]" id="Contact1" />
                             </div>
                             <div class="form-group"  >
                                 <label for="Contact2" class="form-label">Contact No.2</label>
-                                <input type="number" name="Contact2" id="Contact2" />
+                                <input type="number" name="Contact[]" id="Contact2" />
                             </div>
                         </div>
 
@@ -284,8 +291,8 @@ if(!isset($_SESSION['id'])){
                                     <table>
                                      <tr >
                                         <td><input type="text" name="Tobacco" class="valid" placeholder="Frequency"></td>
-                                            <td><input style="margin-left: 16px;" type="date" name="Tobacco_start" class="valid"></td> 
-                                            <td><input style="margin-left: 16px;" type="date" name="Tobacco_end" class="valid"></td> 
+                                            <td><input style="margin-left: 16px;width: 100px;" type="text" name="Tobacco_notes" class="valid" placeholder="Notes"></td> 
+                                            
                                             
                                     </tr>
                                     </table>
@@ -293,10 +300,7 @@ if(!isset($_SESSION['id'])){
                                     <table>
                                        <tr>
                                         <td><input type="text" name="Cigarette" class="valid" placeholder="Frequency"></td>
-                                            <td><input style="margin-left: 16px;" type="date" name="Cigarette_start" class="valid"></td> 
-                                            <td><input style="margin-left: 16px;" type="date" name="Cigarette_end" class="valid"></td> 
-                                             
-                                        
+                                            <td><input style="margin-left: 16px;width: 100px;" type="text" name="Cigarette_notes" class="valid" placeholder="Notes"></td>                                         
                                      </tr>
                                     </table>
                                  
@@ -305,8 +309,7 @@ if(!isset($_SESSION['id'])){
                                     <table>
                                         <tr>
                                             <td><input type="text" name="Alcohol" class="valid" placeholder="Frequency"></td>
-                                            <td><input style="margin-left: 16px;" type="date" name="Alcohol_start" class=""></td> 
-                                            <td><input style="margin-left: 16px;" type="date" name="Alcohol_end" class=""></td> 
+                                            <td><input style="margin-left: 16px;width: 100px;" type="text" name="Alcohol_notes" class="valid" placeholder="Notes"></td> 
                                      </tr>   
                                     </table></br\>
                                     </div>
@@ -375,13 +378,13 @@ if(!isset($_SESSION['id'])){
 
                         </div>
 
-                         <div class="form-textarea">
+                        <!--  <div class="form-textarea">
                             <label for="ObstetricH" class="form-label">Obstetric History</label>
                             <td><input type="text" name="ObstetricH" placeholder="Obstetric History" class="valid"></td> 
-                        </div>
+                        </div> -->
 
                         <div class="form-textarea">
-                            <label for="KLC" class="form-label">Known Leprosy Contacts</label>
+                            <label for="KLC" class="form-label" style="align-self: flex-start;padding-top: 40px;">Known Leprosy Contacts</label>
                               
                                <div class="form-group">
 
@@ -441,9 +444,13 @@ if(!isset($_SESSION['id'])){
                                 <label for="tld" class="form-label">Type of Leprosy diagnosed</label>
                                 <div class="form-radio-item ">
                                     <input type="checkbox" name="tld_pb" value="1" id="PB" />
-                                    <label style="width: 12%;" for="PB">PB</label>
+                                    <label  for="PB">PB</label>
                                     <input type="checkbox" name="tld_mb" value="1" id="MB" style=""  />
                                     <label for="MB">MB</label>
+                                    &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+                                </div>
+
+                                <div class="form-radio-item">
                                     <input type="checkbox" name="tld_tt" value="1" id="TT"/>
                                     <label for="TT">TT</label>
                                     <input type="checkbox" name="tld_bt" value="1" id="BT"/>
@@ -523,17 +530,28 @@ if(!isset($_SESSION['id'])){
                             <textarea name="Result" id="Result" placeholder="" rows="2" ></textarea>
                         </div>
 
-                        <div class="form-group">
-                                <label  class="form-label">Reaction Type</label>
-                                <select name="Reaction" style="width: 259px">
-                                        <option value="" disabled selected>Reaction Type</option>
-                                            <optgroup>
-                                                <option value="Type 1">Type 1</option>
-                                                <option value="Type 2">Type 2</option>
-                                                <option value="None">None</option>
-                                            </optgroup>
-                                    </select>
-                        </div>
+                        
+                        <div class="form-radio">
+                                <label for="reaction" class="form-label">Reaction Type</label>
+                                <div class="form-radio-item">
+                                    <input type="radio" name="Reaction" value="Type1" id="Type1" />
+                                    <label for="Type1">Type 1</label>
+    
+                                    <input type="radio" name="Reaction" value="Type2" id="Type2" />
+                                    <label for="Type2">Type 2</label>
+
+                                    <input type="checkbox" name="Neuritis" value="Neuritis" id="Neuritis" />
+                                    <label for="Neuritis">Neuritis</label>
+                                    
+                                    <input type="radio" name="Reaction" value="None" id="None" />
+                                    <label for="None">None</label>
+                                </div>
+                            </div>
+                    <!--     <div class="form-group">
+                                    <label for="reaction" class="form-label">Description</label>
+                                    <textarea name="Description" rows="8" placeholder="Description"></textarea> 
+                      </div> -->
+
 
                         <div class="form-textarea">
                             <label  class="form-label">Reaction Description</label>
@@ -709,55 +727,55 @@ if(!isset($_SESSION['id'])){
                             <thead>
                                <tr>
                                     <th>Name of Nerve </th>
-                                    <th>Thicken</th>
+                                    <th>Thickened</th>
                                     <th>Tender</th>
                                </tr>
                            </thead>
                            <tbody>
                               <tr>
                                 <td>Supra-orbital</td>
-                                <td><input type="checkbox" name="Supra_orbital_Thicken" value="Thicken"></td>
-                                <td><input type="checkbox" name="Supra_orbital_Tender" value="Tender"></td>
+                                <td><input type="checkbox" name="Supra_orbital_Yes" value="Yesed"></td>
+                                <td><input type="checkbox" name="Supra_orbital_Yes" value="Yes"></td>
                               </tr>
                               <tr>
                                 <td>Great Auricular</td>
-                                <td><input type="checkbox" name="Great_Auricular_Thicken" value="Thicken"></td>
-                                <td><input type="checkbox" name="Great_Auricular_Tender" value="Tender"></td>
+                                <td><input type="checkbox" name="Great_Auricular_Yes" value="Yesed"></td>
+                                <td><input type="checkbox" name="Great_Auricular_Yes" value="Yes"></td>
                               </tr>
                               <tr>
                                 <td>Ulnar</td>
-                                <td><input type="checkbox" name="Ulnar_Thicken" value="Thicken"></td>
-                                <td><input type="checkbox" name="Ulnar_Tender" value="Tender"></td>
+                                <td><input type="checkbox" name="Ulnar_Yes" value="Yes"></td>
+                                <td><input type="checkbox" name="Ulnar_Yes" value="Yes"></td>
                               </tr>
                               <tr>
-                                <td>Medial Cutaneous</td>
-                                <td><input type="checkbox" name="Medial_Cutaneous_Thicken" value="Thicken"></td>
-                                <td><input type="checkbox" name="Medial_Cutaneous_Tender" value="Tender"></td>
+                                <td>Median Cutaneous</td>
+                                <td><input type="checkbox" name="Median_Cutaneous_Yes" value="Yes"></td>
+                                <td><input type="checkbox" name="Median_Cutaneous_Yes" value="Yes"></td>
                               </tr>
                               <tr>
                                 <td>Radial Cutaneous</td>
-                                <td><input type="checkbox" name="Radial_Cutaneous_Thicken" value="Thicken"></td>
-                                <td><input type="checkbox" name="Radial_Cutaneous_Tender" value="Tender"></td>
+                                <td><input type="checkbox" name="Radial_Cutaneous_Yes" value="Yes"></td>
+                                <td><input type="checkbox" name="Radial_Cutaneous_Yes" value="Yes"></td>
                               </tr>
                               <tr>
                                 <td>Lateral Popliteal</td>
-                                <td><input type="checkbox" name="Lateral_Popliteal_Thicken" value="Thicken"></td>
-                                <td><input type="checkbox" name="Lateral_Popliteal_Tender" value="Tender"></td>
+                                <td><input type="checkbox" name="Lateral_Popliteal_Yes" value="Yes"></td>
+                                <td><input type="checkbox" name="Lateral_Popliteal_Yes" value="Yes"></td>
                               </tr>
                               <tr>
                                 <td>Sural Nerve</td>
-                                <td><input type="checkbox" name="Sural_Nerve_Thicken" value="Thicken"></td>
-                                <td><input type="checkbox" name="Sural_Nerve_Tender" value="Tender"></td>
+                                <td><input type="checkbox" name="Sural_Nerve_Yes" value="Yes"></td>
+                                <td><input type="checkbox" name="Sural_Nerve_Yes" value="Yes"></td>
                               </tr>
                               <tr>
                                 <td>Posterior Tibial</td>
-                                <td><input type="checkbox" name="Posterior_Tibial_Thicken" value="Thicken"></td>
-                                <td><input type="checkbox" name="Posterior_Tibial_Tender" value="Tender"></td>
+                                <td><input type="checkbox" name="Posterior_Tibial_Yes" value="Yes"></td>
+                                <td><input type="checkbox" name="Posterior_Tibial_Yes" value="Yes"></td>
                               </tr>
                               <tr>
                                 <td>Superficial Peroneal</td>
-                                <td><input type="checkbox" name="Superficial_Peroneal_Thicken" value="Thicken"></td>
-                                <td><input type="checkbox" name="Superficial_Peroneal_Tender" value="Tender"></td>
+                                <td><input type="checkbox" name="Superficial_Peroneal_Yes" value="Yes"></td>
+                                <td><input type="checkbox" name="Superficial_Peroneal_Yes" value="Yes"></td>
                               </tr>
                           </tbody> 
                      </table>
@@ -779,7 +797,7 @@ if(!isset($_SESSION['id'])){
 
                         <div class="form-label">
                             Upload Images:
-                            <input type="file" name="images">
+                            <input type="file" name="images[]" multiple="multiple">
                             <br>
                         </div>                      
                     </div>
@@ -881,6 +899,17 @@ $(function(){
 
 
 <script type="text/javascript">
+$("#Sex").change(function() {
+  if ($(this).val() == "female") {
+    $('#ObstetricHDiv').show();
+   
+  } else {
+    $('#ObstetricHDiv').hide();
+    
+  }
+});
+$("#Sex").trigger("change");
+    
     
 $(function(){
     $('#addMore6').on('click', function() {
@@ -950,4 +979,3 @@ $(function(){
 </body>
 
 </html>
-
