@@ -88,7 +88,7 @@ $Pid = $_GET['pid'];
     <div class="main">
 
         <div class="container">
-            <form method="POST" id="signup-form" class="signup-form" action="../assets/php/followup.php?pid=<?php echo $Pid;?>">
+            <form method="POST" id="signup-form" class="signup-form" action="../assets/php/followup.php?pid=<?php echo $Pid;?>" enctype="multipart/form-data">
                 
                
                 <h2>
@@ -213,7 +213,7 @@ $Pid = $_GET['pid'];
                         <div>
                             <div class="form-group">
                        <label  class="form-label">Upload Image </label>
-                            <input type="file" name="file">
+                            <input type="file" name="images[]" multiple="multiple">
                         </div>
                     </div>
                     

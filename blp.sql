@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 10, 2019 at 10:08 AM
+-- Generation Time: Jul 14, 2019 at 12:41 AM
 -- Server version: 5.7.26-0ubuntu0.16.04.1
 -- PHP Version: 7.0.33-0ubuntu0.16.04.5
 
@@ -29,8 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `addiction` (
   `pid` bigint(20) NOT NULL,
   `addiction_type` varchar(50) NOT NULL,
-  `addiction_start` varchar(20) DEFAULT NULL,
-  `addiction_end` varchar(20) DEFAULT NULL,
+  `addiction_notes` varchar(50) DEFAULT NULL,
   `addiction_frequency` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -38,31 +37,10 @@ CREATE TABLE `addiction` (
 -- Dumping data for table `addiction`
 --
 
-INSERT INTO `addiction` (`pid`, `addiction_type`, `addiction_start`, `addiction_end`, `addiction_frequency`) VALUES
-(23, 'Alcohol', '', '', '0'),
-(23, 'Cigarette', '', '', '0'),
-(23, 'Tobacco', '', '', '5'),
-(26, 'Alcohol', '', '', '0'),
-(26, 'Cigarette', '', '', '0'),
-(26, 'Tobacco', '', '', '0'),
-(27, 'Alcohol', '', '', '0'),
-(27, 'Cigarette', '', '', '0'),
-(27, 'Tobacco', '', '', '0'),
-(28, 'Alcohol', '', '', '0'),
-(28, 'Cigarette', '', '', '0'),
-(28, 'Tobacco', '', '', '0'),
-(29, 'Alcohol', '', '', '0'),
-(29, 'Cigarette', '', '', '0'),
-(29, 'Tobacco', '', '', '0'),
-(30, 'Alcohol', '', '', '0'),
-(30, 'Cigarette', '', '', '0'),
-(30, 'Tobacco', '', '', '0'),
-(31, 'Alcohol', '', '', '0'),
-(31, 'Cigarette', '', '', '0'),
-(31, 'Tobacco', '', '', '0'),
-(32, 'Alcohol', '', '', '0'),
-(32, 'Cigarette', '', '', '0'),
-(32, 'Tobacco', '', '', '0');
+INSERT INTO `addiction` (`pid`, `addiction_type`, `addiction_notes`, `addiction_frequency`) VALUES
+(2, 'Alcohol', 'Local Alcohol', '20'),
+(2, 'Cigarette', 'Hand Made Cigarette', '1'),
+(2, 'Tobacco', 'Shaggies', '5');
 
 -- --------------------------------------------------------
 
@@ -81,17 +59,8 @@ CREATE TABLE `address` (
 --
 
 INSERT INTO `address` (`pid`, `address`, `address_type`) VALUES
-(23, 'Beside Paan Ki Dukaan,\r\nBihar', 'Permanent'),
-(23, 'Opposite Bhojpuri Cinema,\r\nSion', 'Local'),
-(26, 'None', 'Permanent'),
-(27, 'None', 'Permanent'),
-(28, 'None', 'Permanent'),
-(29, 'None', 'Permanent'),
-(30, 'None', 'Permanent'),
-(31, 'None', 'Local'),
-(31, 'None', 'Permanent'),
-(32, 'None', 'Local'),
-(32, 'None', 'Permanent');
+(2, '4, Deshartan Marg,\r\nRajbansi Nagar,\r\nPatna, Bihar 800001', 'Permanent'),
+(2, 'Flat No. 5, Maichel Patel Chawl,\r\nDharavi Main Road,\r\nKoliwada', 'Local');
 
 -- --------------------------------------------------------
 
@@ -120,13 +89,8 @@ CREATE TABLE `contact` (
 --
 
 INSERT INTO `contact` (`pid`, `mobile`) VALUES
-(23, 0),
-(23, 98654321),
-(26, 0),
-(27, 0),
-(28, 0),
-(29, 0),
-(30, 0);
+(2, 987654321),
+(2, 1234567890);
 
 -- --------------------------------------------------------
 
@@ -145,7 +109,7 @@ CREATE TABLE `disability` (
 --
 
 INSERT INTO `disability` (`rid`, `grade`, `disability_area`) VALUES
-(21, 0, 'Grade0');
+(2, 1, 'Hand');
 
 -- --------------------------------------------------------
 
@@ -163,12 +127,8 @@ CREATE TABLE `drugs` (
 --
 
 INSERT INTO `drugs` (`did`, `dname`) VALUES
-(1, 'penicillin'),
-(2, 'cash'),
-(3, 'some drug'),
-(4, 'Ofloxin'),
-(5, ''),
-(6, 'Unknown');
+(1, 'Rifampicin'),
+(2, 'Clofazimine');
 
 -- --------------------------------------------------------
 
@@ -190,9 +150,8 @@ CREATE TABLE `drugs_prescribed` (
 --
 
 INSERT INTO `drugs_prescribed` (`rid`, `did`, `type`, `start_date`, `end_date`, `dosage`) VALUES
-(21, 4, '', '2019-07-07', '2019-08-06', '400'),
-(29, 6, '', '2019-07-10', '2019-07-10', 'Unknown'),
-(30, 6, '', '2019-07-10', '2019-07-10', 'Unknown');
+(2, 1, '', '2019-07-13', '2019-08-11', '600'),
+(2, 2, '', '2019-07-13', '2019-07-11', '400');
 
 -- --------------------------------------------------------
 
@@ -214,8 +173,7 @@ CREATE TABLE `family_members` (
 --
 
 INSERT INTO `family_members` (`pid`, `fm_relation`, `fm_name`, `fm_age`, `fm_disease`, `fm_diagnosis`) VALUES
-(23, 'Husband', 'Subhash', 33, '', ''),
-(32, 'Unknown', 'Unknown', 0, 'None', 'None');
+(2, 'Husband', 'Mahesh', 35, 'Diabetes', 'Taking medication since 3 months');
 
 -- --------------------------------------------------------
 
@@ -226,12 +184,19 @@ INSERT INTO `family_members` (`pid`, `fm_relation`, `fm_name`, `fm_age`, `fm_dis
 CREATE TABLE `follow_up_record` (
   `fid` bigint(20) NOT NULL,
   `pid` bigint(20) NOT NULL,
-  `clinical_notes` varchar(120) DEFAULT NULL,
-  `prescription` varchar(120) DEFAULT NULL,
-  `complaints` varchar(100) DEFAULT NULL,
+  `clinical_notes` varchar(200) DEFAULT NULL,
+  `prescription` varchar(200) DEFAULT NULL,
+  `complaints` varchar(200) DEFAULT NULL,
   `due_date` date DEFAULT NULL,
-  `further_observations` varchar(100) DEFAULT NULL
+  `further_observations` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `follow_up_record`
+--
+
+INSERT INTO `follow_up_record` (`fid`, `pid`, `clinical_notes`, `prescription`, `complaints`, `due_date`, `further_observations`) VALUES
+(3, 2, 'None', 'None', 'None', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -250,8 +215,8 @@ CREATE TABLE `image` (
 --
 
 INSERT INTO `image` (`pid`, `image_url`, `tags`) VALUES
-(23, 'P23_PB_BT_LL_PNL_20190707_1.png', NULL),
-(23, 'P23_PB_BT_LL_PNL_20190707_2.png', NULL);
+(2, 'P2_PB_TT_BT_20190713_1.jpeg', NULL),
+(2, 'P2_PB_TT_BT_20190713_2.jpeg', NULL);
 
 -- --------------------------------------------------------
 
@@ -273,12 +238,8 @@ CREATE TABLE `known_leprosy_contacts` (
 --
 
 INSERT INTO `known_leprosy_contacts` (`pid`, `kname`, `relation`, `contact`, `address`, `description`) VALUES
-(23, 'Anonymous', 'Unknown', '0', 'Unknown', 'None'),
-(26, 'Anonymous', 'Unknown', '0', 'Unknown', 'None'),
-(27, 'Anonymous', 'Unknown', '0', 'Unknown', 'None'),
-(30, 'Anonymous', 'Unknown', '0', 'Unknown', 'None'),
-(31, 'Anonymous', 'Unknown', '0', 'Unknown', 'None'),
-(32, 'Anonymous', 'Unknown', '0', 'Unknown', 'None');
+(2, 'Kisan Murti', 'Neighbour', '5432167890', 'Flat No. 3, Maichel Patel Chawl, Dharavi Main Road, Koliwada', 'Loss of sensation'),
+(2, 'Sujata Mathur', 'Neighbour', '9876501234', 'Flat No. 6, Maichel Patel Chawl, Dharavi Main Road, Koliwada', 'White patches on arm');
 
 -- --------------------------------------------------------
 
@@ -303,14 +264,7 @@ CREATE TABLE `leprosy_diagnosed` (
 --
 
 INSERT INTO `leprosy_diagnosed` (`rid`, `pb`, `mb`, `tt`, `bt`, `bb`, `bl`, `ll`, `pnl`) VALUES
-(21, 1, 0, 0, 1, 0, 0, 1, 1),
-(24, 0, 0, 0, 0, 0, 0, 0, 0),
-(25, 0, 0, 0, 0, 0, 0, 0, 0),
-(26, 0, 0, 0, 0, 0, 0, 0, 0),
-(27, 0, 0, 0, 0, 0, 0, 0, 0),
-(28, 0, 0, 0, 0, 0, 0, 0, 0),
-(29, 0, 0, 0, 0, 0, 0, 0, 0),
-(30, 0, 0, 0, 0, 0, 0, 0, 0);
+(2, 1, 0, 1, 1, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -342,14 +296,7 @@ CREATE TABLE `medical_history` (
 --
 
 INSERT INTO `medical_history` (`pid`, `disease`, `mmyy_diagnosis`, `mmyy_curation`) VALUES
-(23, 'Heart Stroke', NULL, NULL),
-(26, 'None', NULL, NULL),
-(27, 'None', NULL, NULL),
-(28, 'None', NULL, NULL),
-(29, 'None', NULL, NULL),
-(30, 'None', NULL, NULL),
-(31, 'None', NULL, NULL),
-(32, 'None', NULL, NULL);
+(2, 'Dengue last year', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -379,8 +326,7 @@ CREATE TABLE `obstetric_history` (
 --
 
 INSERT INTO `obstetric_history` (`pid`, `mmyy_pregnant`) VALUES
-(26, 'This should work'),
-(27, 'This should work');
+(2, 'Twins.A girl and a boy 3 years old ');
 
 -- --------------------------------------------------------
 
@@ -402,12 +348,7 @@ CREATE TABLE `past_drugs` (
 --
 
 INSERT INTO `past_drugs` (`pid`, `hospital`, `drugs`, `mmyy_start`, `mmyy_end`, `dosage`) VALUES
-(23, 'Unknown', 'Unknown', '2018-10-02', '2018-12-29', 'Unknown'),
-(26, 'Unknown', 'Unknown', '', '', 'Unknown'),
-(27, 'Unknown', 'Unknown', '', '', 'Unknown'),
-(30, 'Unknown', 'Unknown', '', '', 'Unknown'),
-(31, 'Unknown', 'Unknown', '2019-07-10', '2019-07-10', 'Unknown'),
-(32, 'Unknown', 'Unknown', '2019-07-10', '2019-07-10', 'Unknown');
+(2, 'Chhota Sion', 'Prednisone', '2018-12-07', '2018-12-28', '40');
 
 -- --------------------------------------------------------
 
@@ -427,14 +368,7 @@ CREATE TABLE `patient` (
 --
 
 INSERT INTO `patient` (`pid`, `clinic`, `patient_code`, `diagnosed`) VALUES
-(23, 'HO', '1270', 1),
-(26, 'ESIS', '234', 1),
-(27, 'ESIS', '234', 1),
-(28, 'HO', '0', 1),
-(29, 'HO', '0', 1),
-(30, 'SG', '2089', 1),
-(31, 'DHUHC', '456', 1),
-(32, 'DHUHC', '456', 1);
+(2, 'HO', '911', 1);
 
 -- --------------------------------------------------------
 
@@ -454,78 +388,15 @@ CREATE TABLE `peripheral_nerves` (
 --
 
 INSERT INTO `peripheral_nerves` (`rid`, `nerves`, `thickness`, `tenderness`) VALUES
-(21, 'Great Auricular', 'No', 'No'),
-(21, 'Lateral Popliteal', 'No', 'No'),
-(21, 'Medial Cutaneous', '', ''),
-(21, 'Posterior Tibial', 'No', 'No'),
-(21, 'Radial Cutaneous', 'No', 'No'),
-(21, 'Superficial Peroneal', 'No', 'No'),
-(21, 'Supra orbital', 'No', 'No'),
-(21, 'Sural Nerve', 'No', 'No'),
-(21, 'Ulnar', 'No', 'No'),
-(24, 'Great Auricular', 'No', 'No'),
-(24, 'Lateral Popliteal', 'No', 'No'),
-(24, 'Medial Cutaneous', '', ''),
-(24, 'Posterior Tibial', 'No', 'No'),
-(24, 'Radial Cutaneous', 'No', 'No'),
-(24, 'Superficial Peroneal', 'No', 'No'),
-(24, 'Supra orbital', 'No', 'No'),
-(24, 'Sural Nerve', 'No', 'No'),
-(24, 'Ulnar', 'No', 'No'),
-(25, 'Great Auricular', 'No', 'No'),
-(25, 'Lateral Popliteal', 'No', 'No'),
-(25, 'Medial Cutaneous', '', ''),
-(25, 'Posterior Tibial', 'No', 'No'),
-(25, 'Radial Cutaneous', 'No', 'No'),
-(25, 'Superficial Peroneal', 'No', 'No'),
-(25, 'Supra orbital', 'No', 'No'),
-(25, 'Sural Nerve', 'No', 'No'),
-(25, 'Ulnar', 'No', 'No'),
-(26, 'Great Auricular', 'No', 'No'),
-(26, 'Lateral Popliteal', 'No', 'No'),
-(26, 'Medial Cutaneous', '', ''),
-(26, 'Posterior Tibial', 'No', 'No'),
-(26, 'Radial Cutaneous', 'No', 'No'),
-(26, 'Superficial Peroneal', 'No', 'No'),
-(26, 'Supra orbital', 'No', 'No'),
-(26, 'Sural Nerve', 'No', 'No'),
-(26, 'Ulnar', 'No', 'No'),
-(27, 'Great Auricular', 'No', 'No'),
-(27, 'Lateral Popliteal', 'No', 'No'),
-(27, 'Medial Cutaneous', '', ''),
-(27, 'Posterior Tibial', 'No', 'No'),
-(27, 'Radial Cutaneous', 'No', 'No'),
-(27, 'Superficial Peroneal', 'No', 'No'),
-(27, 'Supra orbital', 'No', 'No'),
-(27, 'Sural Nerve', 'No', 'No'),
-(27, 'Ulnar', 'No', 'No'),
-(28, 'Great Auricular', 'No', 'No'),
-(28, 'Lateral Popliteal', 'No', 'No'),
-(28, 'Medial Cutaneous', '', ''),
-(28, 'Posterior Tibial', 'No', 'No'),
-(28, 'Radial Cutaneous', 'No', 'No'),
-(28, 'Superficial Peroneal', 'No', 'No'),
-(28, 'Supra orbital', 'No', 'No'),
-(28, 'Sural Nerve', 'No', 'No'),
-(28, 'Ulnar', 'No', 'No'),
-(29, 'Great Auricular', 'No', 'No'),
-(29, 'Lateral Popliteal', 'No', 'No'),
-(29, 'Medial Cutaneous', '', ''),
-(29, 'Posterior Tibial', 'No', 'No'),
-(29, 'Radial Cutaneous', 'No', 'No'),
-(29, 'Superficial Peroneal', 'No', 'No'),
-(29, 'Supra orbital', 'No', 'No'),
-(29, 'Sural Nerve', 'No', 'No'),
-(29, 'Ulnar', 'No', 'No'),
-(30, 'Great Auricular', 'No', 'No'),
-(30, 'Lateral Popliteal', 'No', 'No'),
-(30, 'Medial Cutaneous', '', ''),
-(30, 'Posterior Tibial', 'No', 'No'),
-(30, 'Radial Cutaneous', 'No', 'No'),
-(30, 'Superficial Peroneal', 'No', 'No'),
-(30, 'Supra orbital', 'No', 'No'),
-(30, 'Sural Nerve', 'No', 'No'),
-(30, 'Ulnar', 'No', 'No');
+(2, 'Great Auricular', 'No', 'No'),
+(2, 'Lateral Popliteal', 'No', 'No'),
+(2, 'Medial Cutaneous', '', ''),
+(2, 'Posterior Tibial', 'No', 'No'),
+(2, 'Radial Cutaneous', 'No', 'No'),
+(2, 'Superficial Peroneal', 'No', 'No'),
+(2, 'Supra orbital', 'No', 'No'),
+(2, 'Sural Nerve', 'No', 'No'),
+(2, 'Ulnar', 'No', 'No');
 
 -- --------------------------------------------------------
 
@@ -557,14 +428,7 @@ CREATE TABLE `person` (
 --
 
 INSERT INTO `person` (`pid`, `fname`, `mname`, `lname`, `dob`, `sex`, `aadhar`, `occupation`, `person_created`, `person_updated`, `economical_status`, `caste`, `age`, `allergy`, `clinic`, `referred`) VALUES
-(23, 'Smita Bhojpuri', NULL, NULL, '1990-08-20', 'Male', 123423456789, 'Radio Jockey at India\'s Got Radio', '2019-07-06 23:47:22', '2019-07-06 23:47:22', 'Non-BPL', 'ST', 28, 'School Exams', 'HO', 'Dr.Kulkarni'),
-(26, 'Random Name', NULL, NULL, '0000-01-01', 'female', 0, 'None', '2019-07-06 23:58:29', '2019-07-06 23:58:29', 'BPL', 'Others', 35, 'None', 'ESIS', 'None'),
-(27, 'Random Name', NULL, NULL, '0000-01-01', 'female', 0, 'None', '2019-07-07 00:12:29', '2019-07-07 00:12:29', 'BPL', 'Others', 35, 'None', 'ESIS', 'None'),
-(28, 'Anonymous', NULL, NULL, '0000-01-01', 'Male', 0, 'None', '2019-07-07 06:52:54', '2019-07-07 06:52:54', 'Non-BPL', 'Others', 0, 'None', 'HO', 'None'),
-(29, 'Anonymous', NULL, NULL, '0000-01-01', 'Male', 0, 'None', '2019-07-07 07:49:59', '2019-07-07 07:49:59', 'Non-BPL', 'Others', 0, 'None', 'HO', 'None'),
-(30, 'Kuldeep yadav', NULL, NULL, '0000-01-01', 'male', 0, 'None', '2019-07-10 00:23:08', '2019-07-10 00:23:08', 'BPL', 'Others', 0, 'None', 'SG', 'None'),
-(31, 'Kabir Joker', NULL, NULL, '0000-01-01', 'male', 0, 'None', '2019-07-10 01:09:03', '2019-07-10 01:09:03', 'BPL', 'Others', 0, 'None', 'DHUHC', 'None'),
-(32, 'Kabir Joker', NULL, NULL, '0000-01-01', 'male', 0, 'None', '2019-07-10 01:10:31', '2019-07-10 01:10:31', 'BPL', 'Others', 0, 'None', 'DHUHC', 'None');
+(2, 'Trishla Kayastha', NULL, NULL, '1990-08-25', 'female', 908786545321, 'Shop Keeper', '2019-07-13 16:49:09', '2019-07-13 16:49:09', 'Non-BPL', 'SC', 28, 'Pollen Allergy', 'HO', 'Dr.Kulkarni');
 
 -- --------------------------------------------------------
 
@@ -575,7 +439,7 @@ INSERT INTO `person` (`pid`, `fname`, `mname`, `lname`, `dob`, `sex`, `aadhar`, 
 CREATE TABLE `reactions` (
   `rid` bigint(20) NOT NULL,
   `type_reaction` varchar(50) DEFAULT NULL,
-  `description` varchar(50) DEFAULT NULL,
+  `description` varchar(100) DEFAULT NULL,
   `neuritis` varchar(20) DEFAULT 'No'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -584,14 +448,7 @@ CREATE TABLE `reactions` (
 --
 
 INSERT INTO `reactions` (`rid`, `type_reaction`, `description`, `neuritis`) VALUES
-(21, 'Type2', 'Lepra Reaction aroind the LL pole of spectrum', 'Neuritis'),
-(24, 'None', 'None', 'No'),
-(25, 'None', 'None', 'No'),
-(26, 'None', 'None', 'No'),
-(27, 'None', 'None', 'No'),
-(28, 'None', 'None', 'No'),
-(29, 'None', 'None', 'No'),
-(30, 'None', 'None', 'No');
+(2, 'Type1', 'Red skin patches and rashes and other light coloured patches on body', 'Neuritis');
 
 -- --------------------------------------------------------
 
@@ -611,14 +468,8 @@ CREATE TABLE `record` (
 --
 
 INSERT INTO `record` (`rid`, `pid`, `date_attend`, `examiner`) VALUES
-(21, 23, '2019-07-07 00:00:00', 'Dr.Pratima'),
-(24, 26, '2019-07-07 00:00:00', 'Unknown'),
-(25, 27, '2019-07-07 00:00:00', 'Unknown'),
-(26, 28, '2019-07-07 00:00:00', 'Unknown'),
-(27, 29, '2019-07-07 00:00:00', 'Unknown'),
-(28, 30, '2019-07-10 00:00:00', 'Unknown'),
-(29, 31, '2019-07-10 00:00:00', 'Unknown'),
-(30, 32, '2019-07-10 00:00:00', 'Unknown');
+(2, 2, '2019-07-13 00:00:00', 'Dr. Fatima'),
+(3, 2, '2019-07-13 00:00:00', 'Dr. Fatima');
 
 -- --------------------------------------------------------
 
@@ -650,14 +501,7 @@ CREATE TABLE `sensory_test` (
 --
 
 INSERT INTO `sensory_test` (`rid`, `pinprick`, `touch`, `temperature`) VALUES
-(21, 'Partial', 'Present', 'Hot Present/Cold Absent'),
-(24, 'None', 'None', 'Unknown'),
-(25, 'None', 'None', 'Unknown'),
-(26, 'None', 'None', 'Unknown'),
-(27, 'None', 'None', 'Unknown'),
-(28, 'None', 'None', 'Unknown'),
-(29, 'None', 'None', 'Unknown'),
-(30, 'None', 'None', 'Unknown');
+(2, 'Total', 'Present', 'Hot Present/Cold Present');
 
 -- --------------------------------------------------------
 
@@ -672,6 +516,15 @@ CREATE TABLE `smear_test` (
   `mi` float DEFAULT NULL,
   `bi` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `smear_test`
+--
+
+INSERT INTO `smear_test` (`rid`, `site`, `pid`, `mi`, `bi`) VALUES
+(3, 'Average', 2, 1.5, 1),
+(3, 'Right Forearm', 2, 2, -1),
+(3, 'Right Shoulder', 2, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -696,14 +549,7 @@ CREATE TABLE `treatment_record` (
 --
 
 INSERT INTO `treatment_record` (`rid`, `pid`, `opthalmic_involvement`, `eyes`, `skin_lesions`, `result`, `symptoms`, `other_mdt_courses`, `t_notes`) VALUES
-(21, 23, 'Ocular manifestation is under control', 'Good condition', 'Damage and disfiguring', 'Decrease in redness and blisters. Patches have shrunk in size.', 'Blisters and redness', 'Combination of Rifampicin, clofazimine, dapsone', 'Initial stage of Leprosy.\r\nHere are some $ymbo!s to "test" character\'s es<ape.'),
-(24, 26, 'None', 'None', 'None', 'Unknown', 'None', 'None', 'None'),
-(25, 27, 'None', 'None', 'None', 'Unknown', 'None', 'None', 'None'),
-(26, 28, 'None', 'None', 'None', 'Unknown', 'None', 'None', 'None'),
-(27, 29, 'None', 'None', 'None', 'Unknown', 'None', 'None', 'None'),
-(28, 30, 'None', 'None', 'None', 'Unknown', 'None', 'None', 'None'),
-(29, 31, 'None', 'None', 'None', 'Unknown', 'None', 'None', 'None'),
-(30, 32, 'None', 'None', 'None', 'Unknown', 'None', 'None', 'None');
+(2, 2, 'Eyelids close and open fully', 'Vision is clear', 'No visible nodules or lumps', 'Reduction of rashes', 'Red skin patches and rashes', 'Dapsone and Ofloxacin', 'The patches are limited to arms\r\nNo other signs of leprosy elsewhere');
 
 -- --------------------------------------------------------
 
@@ -722,7 +568,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `password`) VALUES
-(3, 'rahulgupta', 'rahul123');
+(1, 'rahulgupta', 'rahul123');
 
 --
 -- Indexes for dumped tables
@@ -905,27 +751,27 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `drugs`
 --
 ALTER TABLE `drugs`
-  MODIFY `did` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `did` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `follow_up_record`
 --
 ALTER TABLE `follow_up_record`
-  MODIFY `fid` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `fid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `person`
 --
 ALTER TABLE `person`
-  MODIFY `pid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `pid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `record`
 --
 ALTER TABLE `record`
-  MODIFY `rid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `rid` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --

@@ -59,4 +59,6 @@ if ( !empty($Site) ) {
 
 }
 
+$Images = empty($_FILES['images']) ? NULL : $_FILES['images'];
+
 ?>

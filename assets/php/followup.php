@@ -50,7 +50,7 @@ if ( !empty($Pid) ) {
 
             foreach ($Site as $key => $value) {
 
-            	if( empty($Site[$key]) ) { continue; }
+            	if( empty($Site[$key]) ) { break; }
 
                 $mi[$key] = empty($mi[$key]) ? 0 : $mi[$key];
                 $bi[$key] = empty($bi[$key]) ? 0 : $bi[$key];
@@ -71,26 +71,47 @@ if ( !empty($Pid) ) {
         echo "<br>Record not created<br>";
     }
 
-    if ( !empty($Images['error'][0]) ) {
 
-        foreach ($Images["error"] as $count => $error) {
+    $qry12 = "SELECT `pb`, `mb`, `tt`, `bt`, `bb`, `bl`, `ll`, `pnl` FROM `leprosy_diagnosed` l, `record` r WHERE r.`pid` = $Pid AND r.`rid` = l.`rid`";
+    $leprosyDiag = mysqli_query($conn, $qry12) or die("Error : " . mysqli_error($conn));
 
-            if ($error == UPLOAD_ERR_OK) {
+    // for naming of images
+    $imageTags = '';
 
-                $tmp_name = $Images["tmp_name"][$count];
+    if ($leprosyDiag) {
 
-                if (!$tmp_name) continue;
+        $type = mysqli_fetch_assoc($leprosyDiag);
 
-                uploadImages($Pid, $Images, $count, $tag);
-            }
-            else {
-                echo ">Error  : " . $error;
-            }
+            // type of leprosy diagnosed
+        if( $type['pb'] ) { $imageTags = $imageTags . "_PB"; }
+        if( $type['mb'] ) { $imageTags = $imageTags . "_MB"; }
+        if( $type['tt'] ) { $imageTags = $imageTags . "_TT"; }
+        if( $type['bt'] ) { $imageTags = $imageTags . "_BT"; }
+        if( $type['bb'] ) { $imageTags = $imageTags . "_BB"; }
+        if( $type['bl'] ) { $imageTags = $imageTags . "_BL"; }
+        if( $type['ll'] ) { $imageTags = $imageTags . "_LL"; }
+        if( $type['pnl'] ) { $imageTags = $imageTags . "_PNL"; }
+    }
+    // print_r($imageTags);
+
+    // print_r($Images);
+    
+    foreach ($Images["name"] as $count => $error) {
+        echo "hi";
+        if ($error == UPLOAD_ERR_OK) {
+            $tmp_name = $Images["tmp_name"][$count];
+            if (!$tmp_name) continue;
+
+            uploadImages($Pid, $Images, $count, $imageTags);
+        }
+        elseif ($error == 4) {
+          echo "<br>No images were uploaded.<br>";
+        }
+        else {
+            echo "Error  : " . $error;
         }
     }
-    else {
-        echo "<br>No file found.<br>";
-    }
+
 
 }
 else {
@@ -99,7 +120,7 @@ else {
     // document.location.href = 'health.php';
     // </script>
     // ";
-    echo "no pid";
+    echo "Pid Absent";
 }
 
 ?>
