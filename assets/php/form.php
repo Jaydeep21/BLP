@@ -106,14 +106,16 @@
 
     // if(!empty($contact[0])) {
 
-      foreach ($contact as $key => $value) {
+      foreach ($Contact as $key => $value) {
 
-        $Contact = empty($_POST['Contact']) ? 0000000000 : $_POST['Contact'];
+        $Contact[$key] = empty($_POST['Contact'][$key]) ? 0000000000 : $_POST['Contact'][$key];
 
         query("INSERT INTO `contact` (
          `pid`,
         `mobile`
-       ) VALUES ($Pid, $Contact);", 'contact');
+       ) VALUES ($Pid, $Contact[$key]);", 'contact');
+
+        if( $Contact[$key] == 0000000000 ) break;
       }
     // }
 
@@ -142,26 +144,23 @@
     $qry2_1 = "INSERT INTO `addiction` (
       `pid` ,
       `addiction_type` ,
-      `addiction_start` ,
-      `addiction_end` ,
+      `addiction_notes` ,
       `addiction_frequency`
-    ) VALUES ($Pid, 'Cigarette', '$Cigarette_start', '$Cigarette_end', '$Cigarette');";
+    ) VALUES ($Pid, 'Cigarette', '$Cigarette_notes', '$Cigarette');";
 
     $qry2_2 = "INSERT INTO `addiction` (
       `pid` ,
       `addiction_type` ,
-      `addiction_start` ,
-      `addiction_end` ,
+      `addiction_notes` ,
       `addiction_frequency`
-    ) VALUES  ($Pid, 'Alcohol', '$Alcohol_start', '$Alcohol_end', '$Alcohol');";
+    ) VALUES  ($Pid, 'Alcohol', '$Alcohol_notes', '$Alcohol');";
 
     $qry2_3 = "INSERT INTO `addiction` (
       `pid` ,
       `addiction_type` ,
-      `addiction_start` ,
-      `addiction_end` ,
+      `addiction_notes` ,
       `addiction_frequency`
-    ) VALUES ($Pid, 'Tobacco', '$Tobacco_start', '$Tobacco_end', '$Tobacco');";
+    ) VALUES ($Pid, 'Tobacco', '$Tobacco_notes', '$Tobacco');";
 
     $qry2_4 = "INSERT INTO `medical_history` (
       `pid` ,
