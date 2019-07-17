@@ -88,7 +88,7 @@ $Pid = $_GET['pid'];
     <div class="main">
 
         <div class="container">
-            <form method="POST" id="signup-form" class="signup-form" action="../assets/php/followup.php?pid=<?php echo $Pid;?>">
+            <form method="POST" id="signup-form" class="signup-form" action="../assets/php/followup.php?pid=<?php echo $Pid;?>" enctype="multipart/form-data">
                 
                
                 <h2>
@@ -96,18 +96,7 @@ $Pid = $_GET['pid'];
                 </h2>
                 <h3>
                   <span class="patient_name"><?php echo "Patient Id: " . $Pid; ?></span>
-                </h3>               
-                <fieldset>
-                  <div class="form-textarea">
-                        <label for="Date" class="form-label">Date</label>
-                        <input style="width: 165px" type="date" name="name[]" class="valid">
-                  </div>
-
-                  <div class="form-group">
-                                <label for="Examiner" class="form-label">Examiner</label>
-                                <input type="text" name="Examiner" id="Examiner" style="width: 400px" />
-                            </div>
-
+                </h3>                <fieldset>
                       <div class="form-group">
                                 <label  class="form-label">Skin Smears</label>
                                  <table style="padding-left: 34px ;margin-top: 9px;" id="tb6" class="tab orlist">
@@ -121,14 +110,17 @@ $Pid = $_GET['pid'];
                                           <tr style="padding: 2px;" >
                                             <td><input type="text" name="Site[]" class="valid"></td>
                                             <td><input type="text" name="Mi[]" class="valid"></td>
-                                            <td ><input type="text" name="Bi[]" class="valid"></td>
+                                            <td><input type="text" name="Bi[]" class="valid"></td>
                                             <td><a href='javascript:void(0);' style="font-size:18px;" class='remove6'><span class='fa fa-minus'></span></a></td>                                            
                                           </tr>                                                   
                                     </tbody>
                                     <tr>                                                                            
-                                        <td><a href='javascript:void(0);' style="font-size:18px;" id='avg' class="valid">Average</a></td>
-                                         <td ><p id="average">Averages Mi:</p></td>
-                                         <td ><p id="average1">Average Bi:</p></td>
+                                         <td><a href='javascript:void(0);' style="font-size:18px;" id='avg'>Average</a></td>
+                                         <input type="hidden" name="Site[]" value="Average">
+                                         <td><p id="average">Averages Mi:</p></td>
+                                         <input type="hidden" id="avg_mi" name="Mi[]" value="0">
+                                         <td><p id="average1">Average Bi:</p></td>
+                                         <input type="hidden" id="avg_bi" name="Bi[]" value="0">
                                     </tr>
                                  </table>                                                     
                             </div>
@@ -139,23 +131,27 @@ $Pid = $_GET['pid'];
                         </div>
 
                        <div class="form-group">
-                            <label  class="form-label" style="align-self: flex-start;padding-top: 40px;">Notes and Prescription</label>
-                            <table style="padding-left: 34px ;margin-top: 9px" id="tb2" class="form-label">
-                            <tbody>
-                               
-                                <tr><th>Clinical Notes</th></tr>
-                                <tr><th><div class="form-textarea">
-                                            <textarea name="Cnotes[]" class="valid"></textarea>
-                                        </div></th></tr>
+                            <label  class="form-label">Notes and Prescription</label>
+                            
+                             <table style="padding-left: 34px ;margin-top: 9px;" id="tb2" class="form-label">
                                 
-                                <tr><th>Prescription</th></tr>
-                                <tr><th><div class="form-textarea">
-                                            <textarea name="Prescription[]" class="valid"></textarea>
-                                        </div></th></tr>
-                            </tbody>    
-                           </table>
-                        </div>
+                                    <tbody>
+                                        <tr class="tr-header">
+                                            <th>Date</th>
+                                            <th>Clinical Notes</th>
+                                            <th>Prescription</th>
+                                            <th><a href="javascript:void(0);" style="font-size:18px;" id="addMore2" title="Add More Person"><span class="fa fa-plus"></span></a></th>
+                                        <tr>
+                                            <td><input type="date" name="name[]" class="valid"></td>
+                                            <td><textarea name="Prescription[]" class="valid"></textarea></td>
+                                            <td><textarea name="Cnotes[]" class="valid"></textarea></td>
+                                            <td><a href='javascript:void(0);' style="font-size:18px;" class='remove2' title="Remove"><span class='fa fa-minus'></span></a></td>
+                                        </tr>
 
+                                    </tbody>
+
+                            </table>
+                        </div>
 
                        <div class="form-group">
                           <label for="dp" class="form-label" style=" padding-bottom: 6em;">Drug Prescription</label>
@@ -189,7 +185,10 @@ $Pid = $_GET['pid'];
                             </table>
                         
                         </div>
-                        
+                        <div class="form-group">
+                                <label for="Examiner" class="form-label">Examiner</label>
+                                <input type="text" name="Examiner" id="Examiner" />
+                            </div>
                         <div class="form-group">
 
                                 <label  class="form-label">Appointment </label>
@@ -201,8 +200,8 @@ $Pid = $_GET['pid'];
                                             <th>Next Appoinment Date:</th>
                                             <th><a href="javascript:void(0);" style="font-size:18px;" id="addMore4" title="Add More Appoinment"><span class="fa fa-plus"></span></a></th>
                                         <tr>
-                                            <td><input type="text" name="appoinment_for[]" placeholder="Appoinment for..." style="width: 190px"></td>
-                                            <td><input style="margin-left: 16px; width: 172px;" type="date" name="date_of_next_appoinment[]"></td>
+                                            <td><input type="text" name="appoinment_for[]" placeholder="Appoinment for..."></td>
+                                            <td><input style="margin-left: 16px;" type="date" name="date_of_next_appoinment[]"></td>
                                             
                                             <td><a href='javascript:void(0);' style="font-size:18px;" class='remove2' title="Remove"><span class='fa fa-minus'></span></a></td>
                                         </tr>
@@ -214,7 +213,7 @@ $Pid = $_GET['pid'];
                         <div>
                             <div class="form-group">
                        <label  class="form-label">Upload Image </label>
-                            <input type="file" name="file">
+                            <input type="file" name="images[]" multiple="multiple">
                         </div>
                     </div>
                     
@@ -261,6 +260,7 @@ $(function(){
       });
 });      
 </script>
+
 <script type="text/javascript">
     
 $(function(){
@@ -287,6 +287,7 @@ $(function(){
       });
 });      
 </script>
+
 <script type="text/javascript">
     
 $(function(){
@@ -304,31 +305,37 @@ $(function(){
       });
 });      
 </script>
+
 <script type="text/javascript">
   $(function(){
     $('#avg').on('click', function() {
       var tbl = document.getElementById('tb6');
       var count = 0;
       var total = 0;
-      for(var i= 1; i<tbl.rows.length-1; i++){
+      for(var i = 1; i < tbl.rows.length - 1; i++){
         var num = Number(tbl.rows[i].cells[1].children[0].value);
         total += num;
         count++;
     }
       var count1 = 0;
       var total1 = 0;
-      for(var i= 1; i<tbl.rows.length-1; i++){
+      for(var i = 1; i < tbl.rows.length - 1; i++){
         var num1 = Number(tbl.rows[i].cells[2].children[0].value);
         total1 += num1;
         count1++;
     }
-    console.log(total/count);
-    console.log(total1/count1);
-    document.getElementById("average").innerHTML = "Average MI &ensp;"+(total/count).toFixed(2);
-    document.getElementById("average1").innerHTML = "Average BI &ensp;"+(total1/count1).toFixed(2);
+    var avgMi = (total / count).toFixed(2);
+    var avgBi = (total1 / count1).toFixed(2);
+    // console.log(avgMi);
+    // console.log(avgBi);
+    document.getElementById("average").innerHTML = "Average MI &ensp;" + avgMi;
+    document.getElementById("average1").innerHTML = "Average BI &ensp;" + avgBi;
+    document.getElementById("avg_mi").value = avgMi;
+    document.getElementById("avg_bi").value = avgBi;
   });
 });
 </script>
+
 <script type="text/javascript">
     
 $(function(){
@@ -346,6 +353,7 @@ $(function(){
       });
 });      
 </script>
+
 <script type="text/javascript">
     
 $(function(){

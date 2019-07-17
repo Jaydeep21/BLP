@@ -47,10 +47,17 @@ $result29 = mysqli_query($conn,"SELECT * from image where pid=$id");
   <title>Patient Record</title>
   <meta charset="utf-8">
   <meta charset="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <style type="text/css">
    
@@ -177,32 +184,29 @@ td{
         <?php if($row9['addiction_type']==='Tobacco'){ ?>
       
         <td colspan="2 ">Tobacco:</td>
-        <td colspan="2"> Start: <?php echo $row9['addiction_start']; ?></td>
-        <td colspan="2"> End: <?php echo $row9['addiction_end'];?></td>
-        <td colspan="2"> Addiction Frequency: <?php echo $row9['addiction_frequency'];  ?></td> 
+        <td colspan="2">Addiction Frequency: <?php echo $row9['addiction_frequency']; ?></td>
+          <td colspan="3">Notes: <?php echo $row9['addiction_notes'] ;?></td></td> 
         
 
         <?php  } if($row9['addiction_type']==='Cigarette'){ ?>
         <tr>
          
         <td colspan="2">Cigarettes:</td>
-        <td colspan="2">Start: <?php echo $row9['addiction_start']; ?></td>
-        <td colspan="2">End: <?php echo $row9['addiction_end']; ?></td>
-        <td colspan="2">Addiction Frequency: <?php echo $row9['addiction_frequency']; ?></td> 
+        <td colspan="2">Addiction Frequency: <?php echo $row9['addiction_frequency']; ?></td>
+          <td colspan="3">Notes: <?php echo $row9['addiction_notes'] ;?></td>
         </td>
         </tr>
 
         <?php } if($row9['addiction_type']==='Alcohol'){ ?>
         <tr>
-        <td colspan="2">Alcohol:</td>
-        <td colspan="2">Start: <?php echo $row9['addiction_start'] ;?></td>
-        <td colspan="2">End: <?php echo $row9['addiction_end'] ;?></td>
-        <td colspan="2">Addiction Frequency: <?php echo $row9['addiction_frequency']; ?></td>
+          <td colspan="2">Alcohol:</td>
+          <td colspan="2">Addiction Frequency: <?php echo $row9['addiction_frequency']; ?></td>
+          <td colspan="3">Notes: <?php echo $row9['addiction_notes'] ;?></td>
         </tr> 
        <?php } } ?>
-       </tr>
+       
 
-       <tr>
+      <tr>
         <th colspan="7" id="" class="text-center"><h4><strong>Leprosy History</strong></h4></th>
       </tr>
 
@@ -292,8 +296,8 @@ td{
       <tr>
         <th colspan="1" id="">Drug Used</th>
         <td colspan="2">Drug Name:<?php echo $row22['dname']; ?></td>
-        <td colspan="1">Dosage:<?php echo $row22['dosage']; ?> </td>
-        <td colspan="2">Start Date:<?php echo $row22['start_date']; ?></td>
+        <td colspan="2">Dosage:<?php echo $row22['dosage']; ?> </td>
+        <td colspan="1">Start Date:<?php echo $row22['start_date']; ?></td>
         <td colspan="1">End Date:<?php echo $row22['end_date']; ?></td>
       </tr>
 <?php } ?>
@@ -346,8 +350,8 @@ td{
       <tr>
         
         <th colspan="1" id="">Sensory Testing</th>
-        <td colspan="1">Touch: <?php echo $row19['touch']; ?></td>
-        <td colspan="3">Temperature: <?php echo $row19['temperature']; ?></td>
+        <td colspan="2">Touch: <?php echo $row19['touch']; ?></td>
+        <td colspan="2">Temperature: <?php echo $row19['temperature']; ?></td>
         <td colspan="2">Pinprick: <?php echo $row19['pinprick']; ?></td>
       </tr>
         <?php }?>
@@ -368,7 +372,14 @@ td{
         <td colspan="4"><?php echo $row17d['eyes'];  } ?></td>
       </tr>
 
-      <?php   ?>
+      <tr>
+        <th colspan="7" id="">Images</th>
+        <?php  while( $row29 = mysqli_fetch_assoc($result29)){ ?>
+        <tr>
+          <td colspan="7"><img src="http://localhost/blp/assets/images/patient/<?php echo $row29['image_url'] ?>"></td>
+        </tr>
+        <?php } ?>
+      </tr>
   </tbody>
 </table>
 </div>
@@ -428,5 +439,7 @@ $qry = mysqli_query($conn,"SELECT * from record where $fid=rid");
 </div>
 
 <?php } ?>
-<a href="followup.php?pid=<?php echo $id; ?>" target="/blank"><button type="button" class="btn btn-primary" >Fill Followup Form</button></a><br><br>
+<div class="d-flex justify-content-center">
+  <a href="followup.php?pid=<?php echo $id; ?>" target="/blank" class=""><button type="button" class="btn btn-primary " >Fill Followup Form</button></a><br><br>
+</div>
 </body>

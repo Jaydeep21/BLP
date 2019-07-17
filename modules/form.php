@@ -79,17 +79,17 @@ if(!isset($_SESSION['id'])){
 
         <div class="container">
             <h2>Bombay Leprosy Project </h2>
-            <form method="POST" id="signup-form" class="signup-form" action="../assets/php/form.php">
+            <form method="POST" id="signup-form" class="signup-form" action="../assets/php/form.php" enctype="multipart/form-data">
                 <h3>
                     <span class="title_text">Patient History</span>
                 </h3>
 
                 <fieldset>
                     <div class="fieldset-content">
-                        <div class="form-group">
+                      <!--   <div class="form-group">
                             <label for="ID" class="form-label">ID</label>
                             <input type="text" name="ID" value="1" style="text-align: center;" placeholder=""  />
-                        </div>
+                        </div> -->
                         
                         <div class="form-group">
                             <label form="NOML" class="form-label">Clinic Area</label>
@@ -155,36 +155,40 @@ if(!isset($_SESSION['id'])){
                               
                               <div class="form-group">
                                 <label for="Sex">Sex</label>
-                                <select class="form-control; valid" id="Sex" style="width: 130px">
+                                <select class="form-control" name="Sex" id="Sex">
                                       <option value="male">Male</option>
                                       <option value="female">Female</option>
                                 </select>
                               </div>
                               
                              
-                                
+                                 <div class="form-textarea" id="ObstetricHDiv">
+                                                  
+                                     <label for="ObstetricH" class="form-label">Obstetric History</label>
+                                     <td><input type="text" id="ObstetricH" name="ObstetricH" placeholder="Obstetric History" class="valid"></td>
+                                 </div>
                             
                             <div class="form-radio">
                                 <label for="Caste" class="form-label">Caste</label>
                                 <div class="form-radio-item">
                                     <input type="radio" name="Caste" value="SC" id="SC" />
-                                    <label style="width: 68px" for="SC">SC</label>
+                                    <label for="SC">SC</label>
     
                                     <input type="radio" name="Caste" value="ST" id="ST" />
-                                    <label style="width: 68px" for="ST">ST</label>
+                                    <label for="ST">ST</label>
 
                                     <input type="radio" name="Caste" value="Others" id="Others" />
-                                    <label style="width: 68px" for="Others">Others</label>
+                                    <label for="Others">Others</label>
                                 </div>
                             </div>
                             <div class="form-radio">
                                 <label for="ecostat" class="form-label">Economical Status</label>
                                 <div class="form-radio-item">
                                     <input type="radio" name="ecostat" value="BPL" id="BPL" checked="checked" />
-                                    <label style="width: 80px" for="BPL">BPL</label>
+                                    <label for="BPL">BPL</label>
     
                                     <input type="radio" name="ecostat" value="Non-BPL" id="Non-BPL" />
-                                    <label style="width: 80px" for="Non-BPL">Non-BPL</label>
+                                    <label for="Non-BPL">Non-BPL</label>
                                 </div>
                             </div>
                             </div>
@@ -203,11 +207,11 @@ if(!isset($_SESSION['id'])){
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="Contact1" class="form-label">Contact No.1</label>
-                                <input type="number" name="Contact1" id="Contact1" />
+                                <input type="number" name="Contact[]" id="Contact1" />
                             </div>
                             <div class="form-group"  >
                                 <label for="Contact2" class="form-label">Contact No.2</label>
-                                <input type="number" name="Contact2" id="Contact2" />
+                                <input type="number" name="Contact[]" id="Contact2" />
                             </div>
                         </div>
 
@@ -305,7 +309,7 @@ if(!isset($_SESSION['id'])){
                                     <table>
                                         <tr>
                                             <td><input type="text" name="Alcohol" class="valid" placeholder="Frequency"></td>
-                                            <td><input style="margin-left: 16px;width: 100px;" type="text" name="Alcoholnotes" class="valid" placeholder="Notes"></td> 
+                                            <td><input style="margin-left: 16px;width: 100px;" type="text" name="Alcohol_notes" class="valid" placeholder="Notes"></td> 
                                      </tr>   
                                     </table></br\>
                                     </div>
@@ -374,10 +378,10 @@ if(!isset($_SESSION['id'])){
 
                         </div>
 
-                         <div class="form-textarea" id="ObstetricHDiv">              
-                                     <label for="ObstetricH" class="form-label">Obstetric History</label>
-                                     <td><input type="text" id="ObstetricH" name="ObstetricH" placeholder="Obstetric History" class="valid"></td>
-                          </div>
+                        <!--  <div class="form-textarea">
+                            <label for="ObstetricH" class="form-label">Obstetric History</label>
+                            <td><input type="text" name="ObstetricH" placeholder="Obstetric History" class="valid"></td> 
+                        </div> -->
 
                         <div class="form-textarea">
                             <label for="KLC" class="form-label" style="align-self: flex-start;padding-top: 40px;">Known Leprosy Contacts</label>
@@ -530,23 +534,23 @@ if(!isset($_SESSION['id'])){
                         <div class="form-radio">
                                 <label for="reaction" class="form-label">Reaction Type</label>
                                 <div class="form-radio-item">
-                                    <input type="radio" name="reaction" value="Type1" id="Type1" />
+                                    <input type="radio" name="Reaction" value="Type1" id="Type1" />
                                     <label for="Type1">Type 1</label>
     
-                                    <input type="radio" name="reaction" value="Type2" id="Type2" />
+                                    <input type="radio" name="Reaction" value="Type2" id="Type2" />
                                     <label for="Type2">Type 2</label>
 
-                                    <input type="radio" name="reation" value="Neuritis" id="Neuritis" />
+                                    <input type="checkbox" name="Neuritis" value="Neuritis" id="Neuritis" />
                                     <label for="Neuritis">Neuritis</label>
                                     
-                                    <input type="radio" name="reation" value="None" id="None" />
+                                    <input type="radio" name="Reaction" value="None" id="None" />
                                     <label for="None">None</label>
                                 </div>
                             </div>
-                        <div class="form-group">
+                    <!--     <div class="form-group">
                                     <label for="reaction" class="form-label">Description</label>
                                     <textarea name="Description" rows="8" placeholder="Description"></textarea> 
-                      </div>
+                      </div> -->
 
 
                         <div class="form-textarea">
@@ -730,48 +734,48 @@ if(!isset($_SESSION['id'])){
                            <tbody>
                               <tr>
                                 <td>Supra-orbital</td>
-                                <td><input type="checkbox" name="Supra_orbital_Yes" value="Yesed"></td>
-                                <td><input type="checkbox" name="Supra_orbital_Yes" value="Yes"></td>
+                                <td><input type="checkbox" name="Supra_orbital_Thicken" value="Yes"></td>
+                                <td><input type="checkbox" name="Supra_orbital_Tender" value="Yes"></td>
                               </tr>
                               <tr>
                                 <td>Great Auricular</td>
-                                <td><input type="checkbox" name="Great_Auricular_Yes" value="Yesed"></td>
-                                <td><input type="checkbox" name="Great_Auricular_Yes" value="Yes"></td>
+                                <td><input type="checkbox" name="Great_Auricular_Thicken" value="Yes"></td>
+                                <td><input type="checkbox" name="Great_Auricular_Tender" value="Yes"></td>
                               </tr>
                               <tr>
                                 <td>Ulnar</td>
-                                <td><input type="checkbox" name="Ulnar_Yes" value="Yes"></td>
-                                <td><input type="checkbox" name="Ulnar_Yes" value="Yes"></td>
+                                <td><input type="checkbox" name="Ulnar_Thicken" value="Yes"></td>
+                                <td><input type="checkbox" name="Ulnar_Tender" value="Yes"></td>
                               </tr>
                               <tr>
                                 <td>Median Cutaneous</td>
-                                <td><input type="checkbox" name="Median_Cutaneous_Yes" value="Yes"></td>
-                                <td><input type="checkbox" name="Median_Cutaneous_Yes" value="Yes"></td>
+                                <td><input type="checkbox" name="Median_Cutaneous_Thicken" value="Yes"></td>
+                                <td><input type="checkbox" name="Median_Cutaneous_Tender" value="Yes"></td>
                               </tr>
                               <tr>
                                 <td>Radial Cutaneous</td>
-                                <td><input type="checkbox" name="Radial_Cutaneous_Yes" value="Yes"></td>
-                                <td><input type="checkbox" name="Radial_Cutaneous_Yes" value="Yes"></td>
+                                <td><input type="checkbox" name="Radial_Cutaneous_Thicken" value="Yes"></td>
+                                <td><input type="checkbox" name="Radial_Cutaneous_Tender" value="Yes"></td>
                               </tr>
                               <tr>
                                 <td>Lateral Popliteal</td>
-                                <td><input type="checkbox" name="Lateral_Popliteal_Yes" value="Yes"></td>
-                                <td><input type="checkbox" name="Lateral_Popliteal_Yes" value="Yes"></td>
+                                <td><input type="checkbox" name="Lateral_Popliteal_Thicken" value="Yes"></td>
+                                <td><input type="checkbox" name="Lateral_Popliteal_Tender" value="Yes"></td>
                               </tr>
                               <tr>
                                 <td>Sural Nerve</td>
-                                <td><input type="checkbox" name="Sural_Nerve_Yes" value="Yes"></td>
-                                <td><input type="checkbox" name="Sural_Nerve_Yes" value="Yes"></td>
+                                <td><input type="checkbox" name="Sural_Nerve_Thicken" value="Yes"></td>
+                                <td><input type="checkbox" name="Sural_Nerve_Tender" value="Yes"></td>
                               </tr>
                               <tr>
                                 <td>Posterior Tibial</td>
-                                <td><input type="checkbox" name="Posterior_Tibial_Yes" value="Yes"></td>
-                                <td><input type="checkbox" name="Posterior_Tibial_Yes" value="Yes"></td>
+                                <td><input type="checkbox" name="Posterior_Tibial_Thicken" value="Yes"></td>
+                                <td><input type="checkbox" name="Posterior_Tibial_Tender" value="Yes"></td>
                               </tr>
                               <tr>
                                 <td>Superficial Peroneal</td>
-                                <td><input type="checkbox" name="Superficial_Peroneal_Yes" value="Yes"></td>
-                                <td><input type="checkbox" name="Superficial_Peroneal_Yes" value="Yes"></td>
+                                <td><input type="checkbox" name="Superficial_Peroneal_Thicken" value="Yes"></td>
+                                <td><input type="checkbox" name="Superficial_Peroneal_Tender" value="Yes"></td>
                               </tr>
                           </tbody> 
                      </table>
@@ -779,8 +783,8 @@ if(!isset($_SESSION['id'])){
 
 
                         <div class="form-group">
-                            <label for="EYes" class="form-label">EYes</label>
-                            <input type="text" name="EYes" id="EYes" />
+                            <label for="Eyes" class="form-label">Eyes</label>
+                            <input type="text" name="Eyes" id="Eyes" />
                         </div>
 
 
@@ -793,7 +797,7 @@ if(!isset($_SESSION['id'])){
 
                         <div class="form-label">
                             Upload Images:
-                            <input type="file" name="images">
+                            <input type="file" name="images[]" multiple="multiple">
                             <br>
                         </div>                      
                     </div>
@@ -844,7 +848,6 @@ $(function(){
             if(trIndex1>1) {
              $(this).closest("tr").remove();
              document.getElementById("tb").deleteRow(trIndex1);
-
              document.getElementById("tb").deleteRow(trIndex1);
              document.getElementById("tb").deleteRow(trIndex1-1);
              document.getElementById("tb").deleteRow(trIndex1-2);
@@ -880,7 +883,6 @@ $(function(){
             if(trIndex1>1) {
              $(this).closest("tr").remove();
              document.getElementById("tb1").deleteRow(trIndex1);
-
              document.getElementById("tb1").deleteRow(trIndex1);
              document.getElementById("tb1").deleteRow(trIndex1-1);
              document.getElementById("tb1").deleteRow(trIndex1-2);
