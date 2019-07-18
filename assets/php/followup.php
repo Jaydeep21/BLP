@@ -46,7 +46,7 @@ if ( !empty($Pid) ) {
         // echo $qry10;
         query($qry10, 'follow_up_record');
 
-        if ( !empty($Site) ) {
+        if ( !empty($Site) && count($Site) > 1 ) {
 
             foreach ($Site as $key => $value) {
 
@@ -96,8 +96,7 @@ if ( !empty($Pid) ) {
 
     // print_r($Images);
     
-    foreach ($Images["name"] as $count => $error) {
-        echo "hi";
+    foreach ($Images["error"] as $count => $error) {
         if ($error == UPLOAD_ERR_OK) {
             $tmp_name = $Images["tmp_name"][$count];
             if (!$tmp_name) continue;

@@ -315,7 +315,7 @@
         `nerves` ,
         `thickness` ,
         `tenderness`
-      ) VALUES ($Rid,'Medial Cutaneous','$Medial_Cutaneous_Thicken','$Medial_Cutaneous_Tender');";
+      ) VALUES ($Rid,'Median Cutaneous','$Median_Cutaneous_Thicken','$Median_Cutaneous_Tender');";
 
       $qry44 = "INSERT INTO `peripheral_nerves` (
         `rid` ,

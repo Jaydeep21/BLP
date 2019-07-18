@@ -734,49 +734,49 @@ if(!isset($_SESSION['id'])){
                            <tbody>
                               <tr>
                                 <td>Supra-orbital</td>
-                                <td><input type="checkbox" name="Supra_orbital_Yes" value="Yesed"></td>
-                                <td><input type="checkbox" name="Supra_orbital_Yes" value="Yes"></td>
+                                <td><input type="checkbox" name="Supra_orbital_Thicken" value="Yes"></td>
+                                <td><input type="checkbox" name="Supra_orbital_Tender" value="Yes"></td>
                               </tr>
                               <tr>
                                 <td>Great Auricular</td>
-                                <td><input type="checkbox" name="Great_Auricular_Yes" value="Yesed"></td>
-                                <td><input type="checkbox" name="Great_Auricular_Yes" value="Yes"></td>
+                                <td><input type="checkbox" name="Great_Auricular_Thicken" value="Yes"></td>
+                                <td><input type="checkbox" name="Great_Auricular_Tender" value="Yes"></td>
                               </tr>
                               <tr>
                                 <td>Ulnar</td>
-                                <td><input type="checkbox" name="Ulnar_Yes" value="Yes"></td>
-                                <td><input type="checkbox" name="Ulnar_Yes" value="Yes"></td>
+                                <td><input type="checkbox" name="Ulnar_Thicken" value="Yes"></td>
+                                <td><input type="checkbox" name="Ulnar_Tender" value="Yes"></td>
                               </tr>
                               <tr>
                                 <td>Median Cutaneous</td>
-                                <td><input type="checkbox" name="Median_Cutaneous_Yes" value="Yes"></td>
-                                <td><input type="checkbox" name="Median_Cutaneous_Yes" value="Yes"></td>
+                                <td><input type="checkbox" name="Median_Cutaneous_Thicken" value="Yes"></td>
+                                <td><input type="checkbox" name="Median_Cutaneous_Tender" value="Yes"></td>
                               </tr>
                               <tr>
                                 <td>Radial Cutaneous</td>
-                                <td><input type="checkbox" name="Radial_Cutaneous_Yes" value="Yes"></td>
-                                <td><input type="checkbox" name="Radial_Cutaneous_Yes" value="Yes"></td>
+                                <td><input type="checkbox" name="Radial_Cutaneous_Thicken" value="Yes"></td>
+                                <td><input type="checkbox" name="Radial_Cutaneous_Tender" value="Yes"></td>
                               </tr>
                               <tr>
                                 <td>Lateral Popliteal</td>
-                                <td><input type="checkbox" name="Lateral_Popliteal_Yes" value="Yes"></td>
-                                <td><input type="checkbox" name="Lateral_Popliteal_Yes" value="Yes"></td>
+                                <td><input type="checkbox" name="Lateral_Popliteal_Thicken" value="Yes"></td>
+                                <td><input type="checkbox" name="Lateral_Popliteal_Tender" value="Yes"></td>
                               </tr>
                               <tr>
                                 <td>Sural Nerve</td>
-                                <td><input type="checkbox" name="Sural_Nerve_Yes" value="Yes"></td>
-                                <td><input type="checkbox" name="Sural_Nerve_Yes" value="Yes"></td>
+                                <td><input type="checkbox" name="Sural_Nerve_Thicken" value="Yes"></td>
+                                <td><input type="checkbox" name="Sural_Nerve_Tender" value="Yes"></td>
                               </tr>
                               <tr>
                                 <td>Posterior Tibial</td>
-                                <td><input type="checkbox" name="Posterior_Tibial_Yes" value="Yes"></td>
-                                <td><input type="checkbox" name="Posterior_Tibial_Yes" value="Yes"></td>
+                                <td><input type="checkbox" name="Posterior_Tibial_Thicken" value="Yes"></td>
+                                <td><input type="checkbox" name="Posterior_Tibial_Tender" value="Yes"></td>
                               </tr>
                               <tr>
                                 <td>Superficial Peroneal</td>
-                                <td><input type="checkbox" name="Superficial_Peroneal_Yes" value="Yes"></td>
-                                <td><input type="checkbox" name="Superficial_Peroneal_Yes" value="Yes"></td>
-                              </tr>
+                                <td><input type="checkbox" name="Superficial_Peroneal_Thicken" value="Yes"></td>
+                                <td><input type="checkbox" name="Superficial_Peroneal_Tender" value="Yes"></td>
+                            </tr>
                           </tbody> 
                      </table>
                         </div>
