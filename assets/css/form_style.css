@@ -400,7 +400,7 @@ select {
 input[type='file'] {
   height: 50px;
   opacity: .5; }
-				
+        
 
 #val {
   width: 345px;
@@ -750,7 +750,7 @@ fieldset {
   .form-row {
     padding-left: 0px; } }
 @media screen and (max-width: 600px) {
-	    [class*="col-"] {
+      [class*="col-"] {
   width: 100%;
 }
   #val {
@@ -1215,7 +1215,7 @@ p.wickedpicker__title {
     width: 100%; }
     .form-textarea{
         width: 100%;
-	}   
+  }   
     
 
   .left-agileits-w3layouts {
