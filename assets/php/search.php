@@ -8,10 +8,8 @@ if(isset($_POST["query"]))
  $query = "
   SELECT * FROM person 
   WHERE Fname LIKE '%".$search."%'
-  OR Sex LIKE '%".$search."%' 
+  OR Pid LIKE '%".$search."%' 
   OR Aadhar LIKE '%".$search."%' 
-  OR Occupation LIKE '%".$search."%' 
- 
  ";
 }
 else
@@ -19,6 +17,7 @@ else
  $query = "
   SELECT * FROM person ORDER BY pid
  ";
+    
 }
 $result = mysqli_query($conn, $query);
 if(mysqli_num_rows($result) > 0)
@@ -27,20 +26,18 @@ if(mysqli_num_rows($result) > 0)
   <div class="table-responsive">
    <table class="table table bordered">
     <tr>
-     <th>Fname</th>
-     <th>Sex</th>
-     <th>Aadhar</th>
-     <th>Occupation</th>
+     <th>Patient ID</th>
+     <th>Patient Name</th>
+     <th>Aadhaar No.</th>    
     </tr>
  ';
  while($row = mysqli_fetch_array($result))
  {
   $output .= '
    <tr>
+    <td><a href="display1.php?pid='.$row["pid"].'">'.$row["pid"].'</a></td>
     <td><a href="display1.php?pid='.$row["pid"].'">'.$row["fname"].'</a></td>
-    <td>'.$row["sex"].'</td>
-    <td>'.$row["aadhar"].'</td>
-    <td>'.$row["occupation"].'</td>
+    <td><a href="display1.php?pid='.$row["pid"].'">'.$row["aadhar"].'</td>
    </tr>
   ';
  }
