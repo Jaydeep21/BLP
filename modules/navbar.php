@@ -60,14 +60,15 @@ session_start();
                             </div>
                             
                         </li>
-                         <li class="m_nav_item menu__item" id="moble_nav_item_3"> <a href="http://localhost/BLP/modules/form.php" class="menu__link"><i class="menu-icon fa fa-check-square-o" aria-hidden="true"></i>Form</a> </li>    
+                            
             <li class="m_nav_item menu__item" id="moble_nav_item_5"> <a href="http://localhost/BLP/index.php#grid-gallery" class="menu__link"><i class="menu-icon fas fa-image" aria-hidden="true"></i>Gallery</a> </li>
             <li class="m_nav_item menu__item" id="moble_nav_item_6"> <a href="http://localhost/BLP/index.php#contact" class="menu__link"><i class="menu-icon fa fa-map-marker" aria-hidden="true"></i> Contact </a> </li>
             <?php
               if(isset($_SESSION['name'])){
             ?>
-            <li class="m_nav_item menu__item" id="moble_nav_item_6"> <a href="#" class="menu__link"><i class="menu-icon fa f-md sicona-user" aria-hidden="true"></i> <?php echo $_SESSION['name']; ?> </a> </li>
-            <li class="m_nav_item menu__item" id="moble_nav_item_6"> <a href="http://localhost/BLP/assets/php/logout.php" class="menu__link"><i class="menu-icon fa fa-sign-in" aria-hidden="true"></i> Logout </a> </li>
+            <li class="m_nav_item menu__item" id="moble_nav_item_3"> <a href="http://localhost/BLP/modules/form.php" class="menu__link"><i class="menu-icon fa fa-check-square-o" aria-hidden="true"></i>Form</a> </li>
+            <li class="m_nav_item menu__item" id="moble_nav_item_3"> <a href="http://localhost/BLP/modules/search.php" class="menu__link"><i class="menu-icon fa fa-check-square-o" aria-hidden="true"></i>Search</a> </li>
+            <li class="m_nav_item menu__item" id="moble_nav_item_6"> <a href="http://localhost/BLP/assets/php/logout.php" class="menu__link"><i class="menu-icon fa fa-sign-in" aria-hidden="true"></i> Logout <br><?php echo $_SESSION['name']; ?></a> </li>
             <?php
 
             }else{
