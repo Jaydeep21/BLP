@@ -399,7 +399,7 @@ if(!isset($_SESSION['id'])){
                                         
                                         <tr style="padding: 2px;">
                                             <td><input type="text" name="klp_name[]" class="valid"></td>
-                                            <td><input type="text" name="klp_contact[]" class="valid"></td>
+                                            <td><input type="number" name="klp_contact[]" class="valid"></td>
                                             <td><a href='javascript:void(0);' style="font-size:18px;" class='remove6'><span class='fa fa-minus'></span></a></td>
                                         </tr> 
                                         
