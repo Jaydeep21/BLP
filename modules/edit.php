@@ -33,7 +33,6 @@ $result18f = mysqli_query($conn,"SELECT * FROM peripheral_nerves p, record r WHE
 $result18g = mysqli_query($conn,"SELECT * FROM peripheral_nerves p, record r WHERE pid=$id AND p.rid=r.rid AND p.nerves = 'Sural Nerve'");
 $result18h = mysqli_query($conn,"SELECT * FROM peripheral_nerves p, record r WHERE pid=$id AND p.rid=r.rid AND p.nerves = 'Posterior Tibial'");
 $result18i = mysqli_query($conn,"SELECT * FROM peripheral_nerves p, record r WHERE pid=$id AND p.rid=r.rid AND p.nerves = 'Superficial Personal'");
-$result17 = mysqli_query($conn,"SELECT * from treatment_record where pid = $id ");
 $result17a =    mysqli_query($conn,"SELECT * from leprosy_diagnosed l, record r where l.rid = r.rid");
 $result17b =  mysqli_query($conn,"SELECT * from treatment_record where pid = $id ");
 $result17c =  mysqli_query($conn,"SELECT * from treatment_record where pid = $id ");
@@ -80,7 +79,7 @@ while ($row1 = mysqli_fetch_assoc($result1)){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Edit Form</title>
+    <title>Patient Form</title>
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
@@ -135,9 +134,152 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                 <fieldset>
                     <div class="fieldset-content">
                         <div class="form-group">
-                            <label for="ID" class="form-label">Id Number</label>
+                            <label for="ID" class="form-label">ID</label>
                             <input type="text" name="ID" value=<?php echo $id ?> style="text-align: center;" placeholder=""  />
                         </div>
+                        
+                                                <div class="form-group">
+                            <label form="NOML" class="form-label">Clinic Area</label>
+                            <?php while( $row1a = mysqli_fetch_assoc($result1a)){ ?>
+                            <table style="padding-left: 34px ;margin-top: 9px;" id="tb8" class="form-label">
+                                
+                                    <tbody>
+                                        <tr class="tr-header">
+                                            <th>Area Code</th>
+                                            <th>ID Number</th>
+                                        </tr>
+
+                                        <tr>
+                                            <td><select style="width: 259px">
+                                                        <?php if($row1a['']==='BH') {?>
+                                                        <option value="" disabled selected>Clinic Area Code</option>
+                                                            <optgroup>
+                                                                <option value="BH">BH</option>
+                                                                <option value="DH">DH</option> 
+                                                                <option value="DHUHC">DHUHC</option>
+                                                                <option value="ESIS">ESIS</option>
+                                                                <option value="HO">HO</option>
+                                                                <option value="JJH">JJH</option>
+                                                                <option value="R">R</option>
+                                                                <option value="SG">SG</option>
+                                                            </optgroup>
+                                                
+                                                        <?php } elseif($row1a['']==='DH') {?>
+                                                        <option value="" disabled selected>Clinic Area Code</option>
+                                                            <optgroup>
+                                                                <option value="BH">BH</option>
+                                                                <option value="DH">DH</option> 
+                                                                <option value="DHUHC">DHUHC</option>
+                                                                <option value="ESIS">ESIS</option>
+                                                                <option value="HO">HO</option>
+                                                                <option value="JJH">JJH</option>
+                                                                <option value="R">R</option>
+                                                                <option value="SG">SG</option>
+                                                            </optgroup>
+                                                
+                                                        <?php } elseif($row1a['']==='DHUNC') {?>
+                                                        <option value="" disabled selected>Clinic Area Code</option>
+                                                            <optgroup>
+                                                                <option value="BH">BH</option>
+                                                                <option value="DH">DH</option> 
+                                                                <option value="DHUHC">DHUHC</option>
+                                                                <option value="ESIS">ESIS</option>
+                                                                <option value="HO">HO</option>
+                                                                <option value="JJH">JJH</option>
+                                                                <option value="R">R</option>
+                                                                <option value="SG">SG</option>
+                                                            </optgroup>
+                                                
+                                                        <?php } elseif($row1a['']==='ESIS') {?>
+                                                                <option value="" disabled selected>Clinic Area Code</option>
+                                                                    <optgroup>
+                                                                        <option value="BH">BH</option>
+                                                                        <option value="DH">DH</option> 
+                                                                        <option value="DHUHC">DHUHC</option>
+                                                                        <option value="ESIS">ESIS</option>
+                                                                        <option value="HO">HO</option>
+                                                                        <option value="JJH">JJH</option>
+                                                                        <option value="R">R</option>
+                                                                        <option value="SG">SG</option>
+                                                                    </optgroup>
+
+                                                        <?php } elseif($row1a['']==='HO') {?>
+                                                                <option value="" disabled selected>Clinic Area Code</option>
+                                                                    <optgroup>
+                                                                        <option value="BH">BH</option>
+                                                                        <option value="DH">DH</option> 
+                                                                        <option value="DHUHC">DHUHC</option>
+                                                                        <option value="ESIS">ESIS</option>
+                                                                        <option value="HO">HO</option>
+                                                                        <option value="JJH">JJH</option>
+                                                                        <option value="R">R</option>
+                                                                        <option value="SG">SG</option>
+                                                                    </optgroup>
+
+                                                        <?php } elseif($row1a['']==='JJH') {?>
+                                                                <option value="" disabled selected>Clinic Area Code</option>
+                                                                    <optgroup>
+                                                                        <option value="BH">BH</option>
+                                                                        <option value="DH">DH</option> 
+                                                                        <option value="DHUHC">DHUHC</option>
+                                                                        <option value="ESIS">ESIS</option>
+                                                                        <option value="HO">HO</option>
+                                                                        <option value="JJH">JJH</option>
+                                                                        <option value="R">R</option>
+                                                                        <option value="SG">SG</option>
+                                                                    </optgroup>
+
+                                                        <?php } elseif($row1a['']==='R') {?>
+                                                                <option value="" disabled selected>Clinic Area Code</option>
+                                                                    <optgroup>
+                                                                        <option value="BH">BH</option>
+                                                                        <option value="DH">DH</option> 
+                                                                        <option value="DHUHC">DHUHC</option>
+                                                                        <option value="ESIS">ESIS</option>
+                                                                        <option value="HO">HO</option>
+                                                                        <option value="JJH">JJH</option>
+                                                                        <option value="R">R</option>
+                                                                        <option value="SG">SG</option>
+                                                                    </optgroup>
+
+                                                        <?php } elseif($row1a['']==='SG') {?>
+                                                                <option value="" disabled selected>Clinic Area Code</option>
+                                                                    <optgroup>
+                                                                        <option value="BH">BH</option>
+                                                                        <option value="DH">DH</option> 
+                                                                        <option value="DHUHC">DHUHC</option>
+                                                                        <option value="ESIS">ESIS</option>
+                                                                        <option value="HO">HO</option>
+                                                                        <option value="JJH">JJH</option>
+                                                                        <option value="R">R</option>
+                                                                        <option value="SG">SG</option>
+                                                                    </optgroup>
+                                                
+                                                        <?php } else  { ?>
+                                                                <option value="" disabled selected>Clinic Area Code</option>
+                                                                    <optgroup>
+                                                                        <option value="BH">BH</option>
+                                                                        <option value="DH">DH</option> 
+                                                                        <option value="DHUHC">DHUHC</option>
+                                                                        <option value="ESIS">ESIS</option>
+                                                                        <option value="HO">HO</option>
+                                                                        <option value="JJH">JJH</option>
+                                                                        <option value="R">R</option>
+                                                                        <option value="SG">SG</option>
+                                                                    </optgroup>
+                                                        <?php } ?>
+                                                        <?php } ?>
+                                                </select>
+                                            </td>
+                                            <td><input type="number" name="ID Number" id="ID Number" placeholder="ID Number" value=<?php echo $row1a['']; ?> /></td>
+                                        </tr>
+                                        
+                                        
+                                    </tbody>
+
+                            </table>
+                        </div>
+                        
                         <div class="form-group">
                             <label for="email" class="form-label">Name</label>
                             <input type="text" name="Name" id="Name" value=<?php echo $row1['fname'];  ?> placeholder="Name"/>
@@ -168,16 +310,16 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                               <div class="form-radio-item">
                                 <?php if($row1['sex']=="male"){?>
                                     <input type="radio" name="Sex" value="male" id="male" checked="checked" />
-                                    <label for="male">Male</label>
+                                    <label for="male" style="width: 68px;">Male</label>
     
                                     <input type="radio" name="Sex" value="female" id="female" />
-                                    <label for="female" >Female</label>
+                                    <label for="female" style="width: 68px;">Female</label>
                                     <?php }else{?>
                                     <input type="radio" name="Sex" value="male" id="male" />
-                                    <label for="male">Male</label>
+                                    <label for="male" style="width: 68px;">Male</label>
     
                                     <input type="radio" name="Sex" value="female" id="female" checked="checked"/>
-                                    <label for="female" >Female</label>
+                                    <label for="female" style="width: 68px;">Female</label>
                                     <?php } ?>
                                 </div>
                             </div>
@@ -186,33 +328,33 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                                 <div class="form-radio-item">
                                     <?php if($row1['caste']==='SC'){?>
                                     <input type="radio" name="Caste" value="SC" id="SC" checked="checked"/>
-                                    <label for="SC">SC</label>
+                                    <label for="SC" style="width: 65px;">SC</label>
     
                                     <input type="radio" name="Caste" value="ST" id="ST" />
-                                    <label for="ST">ST</label>
+                                    <label for="ST" style="width: 65px;">ST</label>
 
                                     <input type="radio" name="Caste" value="Others" id="Others" />
-                                    <label for="Others">Others</label>
+                                    <label for="Others" style="width: 65px;">Others</label>
                                     <?php } ?>
                                     <?php if($row1['caste']==='ST'){?>
                                     <input type="radio" name="Caste" value="SC" id="SC" />
-                                    <label for="SC">SC</label>
+                                    <label for="SC" style="width: 65px;">SC</label>
     
                                     <input type="radio" name="Caste" value="ST" id="ST" checked="checked"/>
-                                    <label for="ST">ST</label>
+                                    <label for="ST" style="width: 65px;">ST</label>
 
                                     <input type="radio" name="Caste" value="Others" id="Others" />
-                                    <label for="Others">Others</label>
+                                    <label for="Others" style="width: 65px;">Others</label>
                                     <?php } ?>
                                     <?php if($row1['caste']==='Others'){?>
                                     <input type="radio" name="Caste" value="SC" id="SC" />
-                                    <label for="SC">SC</label>
+                                    <label for="SC" style="width: 65px;">SC</label>
     
                                     <input type="radio" name="Caste" value="ST" id="ST" />
-                                    <label for="ST">ST</label>
+                                    <label for="ST" style="width: 65px;">ST</label>
 
                                     <input type="radio" name="Caste" value="Others" id="Others" checked="checked"/>
-                                    <label for="Others">Others</label>
+                                    <label for="Others" style="width: 65px;">Others</label>
                                     <?php }?>
                                 </div>
                             </div>
@@ -221,16 +363,16 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                                 <div class="form-radio-item">
                                     <?php if($row1['economical_status']=="BPL"){?>
                                     <input type="radio" name="ecostat" value="BPL" id="BPL" checked="checked" />
-                                    <label for="BPL">BPL</label>
+                                    <label for="BPL" style="width: 80px;">BPL</label>
     
                                     <input type="radio" name="ecostat" value="Non-BPL" id="Non-BPL" />
-                                    <label for="Non-BPL">Non-BPL</label>
+                                    <label for="Non-BPL" style="width: 80px;">Non-BPL</label>
                                     <?php }else{?>
                                     <input type="radio" name="ecostat" value="BPL" id="BPL"  />
-                                    <label for="BPL">BPL</label>
+                                    <label for="BPL" style="width: 80px;">BPL</label>
     
                                     <input type="radio" name="ecostat" value="Non-BPL" id="Non-BPL" checked="checked"/>
-                                    <label for="Non-BPL">Non-BPL</label>
+                                    <label for="Non-BPL" style="width: 80px;">Non-BPL</label>
                                     <?php } ?>
                                 </div>
                             </div>
@@ -287,26 +429,39 @@ while ($row1 = mysqli_fetch_assoc($result1)){
 
                         <div class="form-group">
                             <label form="NOML" class="form-label">Number of members living in same household</label>
-                            <?php while( $row7 = mysqli_fetch_assoc($result7)){ ?>
                              <table style="padding-left: 34px ;margin-top: 9px;" id="tb" class="form-label">
                                 
                                     <tbody>
+                                        <?php while( $row7 = mysqli_fetch_assoc($result7)){ ?>
                                         <tr class="tr-header">
                                             <th>Name</th>
                                             <th>Age</th>
-                                            <th>Relation</th>
-                                            <th>Disease</th>
-                                            <th>Notes</th>
                                             <th><a href="javascript:void(0);" style="font-size:18px;" id="addMore" title="Add More Person"><span class="fa fa-plus"></span></a></th>
+                                        </tr>
                                         <tr>
                                             <td><input type="text" name="name[]" class="valid" value=<?php echo $row7['fm_name']; ?>></td>
                                             <td><input type="number" name="age[]" class="valid" value=<?php echo $row7['fm_age']; ?>></td>
-                                            <td><input type="text" name="relation[]" class="valid" value=<?php echo $row7['fm_relation']; ?>></td>
-                                            <td><input type="text" name="Disease[]" class="valid" value=<?php echo $row7['fm_disease'];?>></td>
-                                            <td><input type="text-area" name="Notes[]" class="valid" placeholder="Eg: Date of Diagosis,Description of Diagosis" value=<?php echo $row7['fm_diagnosis'];} ?>></td>
                                             <td><a href='javascript:void(0);' style="font-size:18px;" class='remove' title="Remove"><span class='fa fa-minus'></span></a></td>
                                         </tr>
-
+                                        
+                                        <tr>
+                                            <th>Relation</th>
+                                            <th>Disease</th>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td><input type="text" name="relation[]" class="valid" value=<?php echo $row7['fm_relation']; ?>></td>
+                                            <td><input type="text" name="disease[]" class="valid" value=<?php echo $row7['fm_disease']; ?>></td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <th colspan="3">Notes</th>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td colspan="3"><input type="text" name="notes[]" class="valid" value=<?php echo $row7['fm_diagnosis']; ?>></td>
+                                        </tr>
+                                      <?php } ?>
                                     </tbody>
 
                             </table>
@@ -392,30 +547,42 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                     <div class="fieldset-content">
                          <div class="form-textarea">
                              <label for="PLH" class="form-label">Past Leprosy History</label>
-                             <div class="form-group">
-                             
+                              <div class="form-group">
+
                              <table style="padding-left: 34px ;margin-top: 9px;" id="tb1" class="tab orlist">
                                 
                                     <tbody>
                                         <?php while( $row11 = mysqli_fetch_assoc($result11)){ ?>
                                         <tr class="tr-header">
-                                            <th>Hospital</th>
-                                            <th>Drug</th>
-                                            <th>Dosage</th>
-                                            <th>Start Date</th>
-                                            <th>End Date</th>   
+                                            <th colspan="3">Hospital</th>
                                             <th><a href="javascript:void(0);" style="font-size:18px;" id="addMore1" title="Add More Person"><span class="fa fa-plus"></span></a></th>
                                         </tr>
-                                            
-                                            <tr style="padding: 2px;">
-                                            <td><input type="text" name="hospital" class="valid" value=0<?php echo $row11['hospital']; ?>></td>
+                                        
+                                        <tr style="padding: 2px;">
+                                            <td colspan="3"><input type="text" name="hospital" class="valid" value=<?php echo $row11['hospital']; ?>></td>
+                                            <td><a href='javascript:void(0);' style="font-size:18px;" class='remove1'><span class='fa fa-minus'></span></a></td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <th>Drug</th>
+                                            <th>Dosage</th> 
+                                        </tr>
+                                        
+                                        <tr>
                                             <td><input type="text" name="drug" class="valid" value=<?php echo $row11['drugs']; ?>></td>
                                             <td><input type="text" name="dosage" class="valid" value=<?php echo $row11['dosage']; ?>></td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                        </tr>
+                                        
+                                        <tr>
                                             <td><input style="margin-left: 16px;" type="date" name="Start_past_date" class="valid" value=<?php echo $row11['mmyy_start']; ?>></td> 
                                             <td><input style="margin-left: 16px;" type="date" name="End_past_date" class="valid" value=<?php echo $row11['mmyy_end']; ?>></td> 
-                                            <td><a href='javascript:void(0);' style="font-size:18px;" class='remove1'><span class='fa fa-minus'></span></a></td>
-                                            </tr>
-                                            <?php } ?>
+                                        </tr>
+                                        <?php } ?>
                                     </tbody>
 
                             </table>
@@ -433,29 +600,46 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                             <label for="KLC" class="form-label">Known Leprosy Contacts</label>
                               
                                 <div class="form-group">
-                                 
-                                    <table style="padding-left: 34px ;margin-top: 9px;" id="tb6" class="tab orlist">
+
+                             <table style="padding-left: 34px ;margin-top: 9px;" id="tb6" class="tab orlist">
                                 
-                                          <tbody>
-                                            <?php while( $row14 = mysqli_fetch_assoc($result14)){ ?>
-                                               <tr class="tr-header">
-                                                    <th>Name</th>
-                                                    <th>Contact</th>
-                                                    <th>Address</th>   
-                                                    <th>Relation</th>
-                                                    <th><a href="javascript:void(0);" style="font-size:18px;" id="addMore6" title="Add More Person"><span class="fa fa-plus"></span></a></th>
-                                                    <tr style="padding: 2px;">
-                                                    <td><input type="text" name="name" class="valid" value=<?php echo $row14['kname']; ?> ></td>
-                                                    <td><input type="text" name="contact" class="valid" value=<?php echo $row14['contact']; ?> ></td>
-                                                    <td><input type="text" name="address" class="valid" value=<?php echo $row14['address']; ?> ></td>
-                                                    <td><input type="text" name="relation" class="valid" value=<?php echo $row14['relation']; ?> ></td>
-                                                    <td><a href='javascript:void(0);' style="font-size:18px;" class='remove6'><span class='fa fa-minus'></span></a></td>
-                                                </tr>
-                                                <?php } ?>
-                                          </tbody>
-                                    </table>
-                                    
-                              </div>      
+                                    <tbody>
+                                        <?php while( $row14 = mysqli_fetch_assoc($result14)){ ?>
+                                        <tr class="tr-header">
+                                            <th>Name</th>
+                                            <th>Relation</th>
+                                            <th>Contact</th>                                               
+                                            <th><a href="javascript:void(0);" style="font-size:18px;" id="addMore6" title="Add More Person"><span class="fa fa-plus"></span></a></th>
+                                        </tr>
+                                        
+                                        <tr style="padding: 2px;">
+                                            <td><input type="text" name="name" class="valid" value=<?php echo $row14['kname']; ?>></td>
+                                            <td><input type="text" name="relation" class="valid" value=<?php echo $row14['relation']; ?>></td>
+                                            <td><input type="text" name="contact" class="valid" value=<?php echo $row14['contact']; ?>></td>
+                                            <td><a href='javascript:void(0);' style="font-size:18px;" class='remove6'><span class='fa fa-minus'></span></a></td>
+                                        </tr> 
+                                        
+                                        <tr>
+                                            <th colspan="3">Address</th>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td colspan="3"><input type="text" name="address" class="valid" value=<?php echo $row14['address']; ?>></td>
+                                        </tr>
+                                        
+                                        <tr>
+                                       
+                                            <th colspan="3">Description</th>
+                                        </tr>
+                                        
+                                        <tr>
+                                            
+                                            <td colspan="3"><input type="text" name="description" class="valid" value=<?php echo $row14['description']; ?>></td>
+                                        </tr>
+                                        <?php } ?>
+                                    </tbody>
+                            </table>
+                            </div>
                        </div> 
 
 
@@ -573,32 +757,38 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                             </div>
 
 
-                        <div class="form-textarea">
-                             <div class="form-group">
+                            <div class="form-group">
                              <label for="dp" class="form-label">Drug Prescription</label>
-                             <?php while( $row22 = mysqli_fetch_assoc($result22)){ ?>
                              <table style="padding-left: 34px ;margin-top: 9px;" id="tb5" class="tab orlist">
                                 
                                     <tbody>
+                                        <?php while( $row22 = mysqli_fetch_assoc($result22)){ ?>
                                         <tr class="tr-header">
                                             <th>Drug Used</th>
-                                            <th>Drug Dosage</th>
-                                            <th>Start Date</th>
-                                            <th>End Date</th>   
+                                            <th>Drug Dosage</th>   
                                             <th><a href="javascript:void(0);" style="font-size:18px;" id="addMore5" title="Add More Person"><span class="fa fa-plus"></span></a></th>
-                                            <tr style="padding: 2px;">
+                                        </tr>
+                                        
+                                        <tr style="padding: 2px;">
                                             <td><input type="text" name="drug used" class="valid" value=<?php echo $row22['dname']; ?>></td>
                                             <td><input type="text" name="drug dosage" class="valid" value=<?php echo $row22['dosage']; ?>></td>
-                                            <td><input style="margin-left: 16px;" type="date" name="Start_drug_date" class="valid" value=<?php echo $row22['start_date']; ?>></td> 
-                                            <td><input style="margin-left: 16px;" type="date" name="End_drug_date" class="valid" value=<?php echo $row22['end_date']; }?>></td> 
                                             <td><a href='javascript:void(0);' style="font-size:18px;" class='remove5'><span class='fa fa-minus'></span></a></td>
-                                            </tr>
-
+                                        </tr>
+                                        
+                                        <tr>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td><input style="margin-left: 16px;" type="date" name="Start_drug_date" class="valid" value=<?php echo $row22['start_date']; ?>></td> 
+                                            <td><input style="margin-left: 16px;" type="date" name="End_drug_date" class="valid" value=<?php echo $row22['end_date']; ?>></td> 
+                                        </tr>
+                                        <?php } ?>
                                     </tbody>
 
                             </table>
                         
-                        </div>
                         </div>
                         
                         <div class="clear"></div>
@@ -614,40 +804,42 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                         </div>
 
                         <div class="form-group">
-                                <label  class="form-label">Reaction and Treatment</label>
+                                <label  class="form-label">Reaction Type</label>
                                 <?php while( $row21 = mysqli_fetch_assoc($result21)){ ?>
-                                <table style="padding-left: 34px ;margin-top: 9px;" class="form-label">
-                                    <tbody>
-                                    <tr class="tr-header" >
-                                    <select name="Reaction" class="custom-select">
-                                        <?php if($row21['type_reaction']=== 'Type 1') {?>
-                                        <option  value="" disabled selected>Reaction Type</option>
-                                        <option value="Type 1" selected>Type 1</option>
-                                        <option value="Type 2">Type 2</option>
-                                        <option value="None">None</option>
-
-                                        <?php } elseif($row21['type_reaction']=== 'Type 2') {?>
-                                        <option  value="" disabled selected>Reaction Type</option>
-                                        <option value="Type 1">Type 1</option>
-                                        <option value="Type 2" selected >Type 2</option>
-                                        <option value="None"> >None</option>
-
+                                 <select name="Reaction" style="width: 259px">
+                                        <?php if($row21['type_reaction']==='Type 1') {?>
+                                        <option value="" disabled selected>Reaction Type</option>
+                                            <optgroup>
+                                                <option value="Type 1" selected>Type 1</option>
+                                                <option value="Type 2">Type 2</option>
+                                                <option value="None">None</option>
+                                            </optgroup>
+                            
+                                        <?php } elseif($row21['type_reaction']==='Type 2') {?>
+                                        <option value="" disabled selected>Reaction Type</option>
+                                            <optgroup>
+                                                <option value="Type 1">Type 1</option>
+                                                <option value="Type 2" selected>Type 2</option>
+                                                <option value="None">None</option>
+                                            </optgroup>
+                                     
                                         <?php } else {?>
-                                        <option  value="" disabled selected>Reaction Type</option>
-                                        <option value="Type 1">Type 1</option>
-                                        <option value="Type 2">Type 2</option>
-                                        <option value="None" selected> >None</option>
+                                        <option value="" disabled selected>Reaction Type</option>
+                                            <optgroup>
+                                                <option value="Type 1">Type 1</option>
+                                                <option value="Type 2">Type 2</option>
+                                                <option value="None">None</option>
+                                            </optgroup>
                                         <?php } ?>
-                                    </select>
-                                    </tr>
-                                    <tr class="tr-header">
-                                        <th>Description</th>
-                                    </tr>
-                                    <tr class="tr-header">
-                                        <td><textarea name="Description" rows="8" placeholder="Description" value=""><?php echo $row21['description']; }?></textarea> </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                                        
+                                </select>
+                                
+                        </div>
+
+                        <div class="form-textarea">
+                            <label  class="form-label">Reaction Description</label>
+                            <textarea name="Description" rows="4" placeholder="Description"><?php echo $row21['description'];  ?></textarea>
+                            <?php } ?>
                         </div>
 
                          <div class="form-textarea">
@@ -823,7 +1015,7 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                             <div class="form-group">
                              <?php   while( $row19 = mysqli_fetch_assoc($result19)){ ?>
                             <label for="Sensory" class="form-label">Sensory Testing(On Diagram)</label>
-                            <select name="Touch" class="custom-select">
+                            <select name="Touch" class="custom-select" style="height: 50px;">
                                 <?php if($row19['touch']=== 'Present') { ?>
                                    <option value="" disabled selected>Touch</option>
                                    <option value="Present" selected>Touch : Present</option>
@@ -845,7 +1037,7 @@ while ($row1 = mysqli_fetch_assoc($result1)){
 
                             </select>
                             
-                            <select name="Pain" class="custom-select">
+                            <select name="Pain" class="custom-select"  style="height: 50px;">
                                 <?php if($row19['pinprick']=== 'Partial') { ?>
                                     <option value="" disabled selected>Pain</option>
                                     <option value="Partial" selected>Partial</option>
@@ -1171,41 +1363,75 @@ while ($row1 = mysqli_fetch_assoc($result1)){
     <script src="../assets/js/main.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript">
+    
+<script type="text/javascript">
     
 $(function(){
     $('#addMore').on('click', function() {
-        
-              var data = $("#tb tr:eq(1)").clone(true).appendTo("#tb");
+              var data = $("#tb tr:eq(0)").clone(true).appendTo("#tb");
+              var data1 = $("#tb tr:eq(1)").clone(true).appendTo("#tb");
+              var data2 = $("#tb tr:eq(2)").clone(true).appendTo("#tb");
+              var data3 = $("#tb tr:eq(3)").clone(true).appendTo("#tb");
+              var data4 = $("#tb tr:eq(4)").clone(true).appendTo("#tb");
+              var data5 = $("#tb tr:eq(5)").clone(true).appendTo("#tb");
+              data5.find("input").val('');
+              data4.find("input").val('');
+              data3.find("input").val('');
+              data2.find("input").val('');
+              data1.find("input").val('');
               data.find("input").val('');
      });
      $(document).on('click', '.remove', function() {
-         var trIndex = $(this).closest("tr").index();
-            if(trIndex>1) {
-             $(this).closest("tr").remove();
+         var trIndex1 = $(this).closest("tr").index();
+            if(trIndex1>1) {
+             $(this).closest("tr").remove(); 
+             document.getElementById("tb").deleteRow(trIndex1);
+             document.getElementById("tb").deleteRow(trIndex1);
+             document.getElementById("tb").deleteRow(trIndex1);
+             document.getElementById("tb").deleteRow(trIndex1);
+             document.getElementById("tb").deleteRow(trIndex1-1);
+             
            } else {
              alert("Sorry!! Can't remove first row!");
            }
       });
 });      
 </script>
+                                    
 <script type="text/javascript">
     
 $(function(){
     $('#addMore1').on('click', function() {
-              var data = $("#tb1 tr:eq(1)").clone(true).appendTo("#tb1");
+              var data = $("#tb1 tr:eq(0)").clone(true).appendTo("#tb1");
+              var data1 = $("#tb1 tr:eq(1)").clone(true).appendTo("#tb1");
+              var data2 = $("#tb1 tr:eq(2)").clone(true).appendTo("#tb1");
+              var data3 = $("#tb1 tr:eq(3)").clone(true).appendTo("#tb1");
+              var data4 = $("#tb1 tr:eq(4)").clone(true).appendTo("#tb1");
+              var data5 = $("#tb1 tr:eq(5)").clone(true).appendTo("#tb1");
+              data5.find("input").val('');
+              data4.find("input").val('');
+              data3.find("input").val('');
+              data2.find("input").val('');
+              data1.find("input").val('');
               data.find("input").val('');
      });
      $(document).on('click', '.remove1', function() {
          var trIndex1 = $(this).closest("tr").index();
             if(trIndex1>1) {
              $(this).closest("tr").remove();
+             document.getElementById("tb1").deleteRow(trIndex1);
+             document.getElementById("tb1").deleteRow(trIndex1);
+             document.getElementById("tb1").deleteRow(trIndex1);
+             document.getElementById("tb1").deleteRow(trIndex1);
+             document.getElementById("tb1").deleteRow(trIndex1-1);
+             
            } else {
              alert("Sorry!! Can't remove first row!");
            }
       });
 });      
 </script>
+                                    
 <script type="text/javascript">
     
 $(function(){
@@ -1263,37 +1489,59 @@ $(function(){
     
 $(function(){
     $('#addMore5').on('click', function() {
-              var data = $("#tb5 tr:eq(1)").clone(true).appendTo("#tb5");
+              var data = $("#tb5 tr:eq(0)").clone(true).appendTo("#tb5");
+              var data1 = $("#tb5 tr:eq(1)").clone(true).appendTo("#tb5");
+              var data2 = $("#tb5 tr:eq(2)").clone(true).appendTo("#tb5");
+              var data3 = $("#tb5 tr:eq(3)").clone(true).appendTo("#tb5");
+              data3.find("input").val('');
+              data2.find("input").val('');
+              data1.find("input").val('');
               data.find("input").val('');
      });
      $(document).on('click', '.remove5', function() {
          var trIndex1 = $(this).closest("tr").index();
             if(trIndex1>1) {
              $(this).closest("tr").remove();
+             document.getElementById("tb5").deleteRow(trIndex1);
+             document.getElementById("tb5").deleteRow(trIndex1);
+             document.getElementById("tb5").deleteRow(trIndex1-1);
            } else {
              alert("Sorry!! Can't remove first row!");
            }
       });
 });      
 </script>
+                                    
 <script type="text/javascript">
     
 $(function(){
     $('#addMore6').on('click', function() {
-              var data = $("#tb6 tr:eq(1)").clone(true).appendTo("#tb6");
-              var data1 = $("#tb6 tr:eq(0)").clone(true).appendTo("#tb6");
-              data.find("input").val('');
+              var data = $("#tb6 tr:eq(0)").clone(true).appendTo("#tb6");
+              var data1 = $("#tb6 tr:eq(1)").clone(true).appendTo("#tb6");
+              var data2 = $("#tb6 tr:eq(2)").clone(true).appendTo("#tb6");
+              var data3 = $("#tb6 tr:eq(3)").clone(true).appendTo("#tb6");
+              var data4 = $("#tb6 tr:eq(4)").clone(true).appendTo("#tb6");
+              var data5 = $("#tb6 tr:eq(5)").clone(true).appendTo("#tb6");
+              data5.find("input").val('');
+              data4.find("input").val('');
+              data3.find("input").val('');
+              data2.find("input").val('');
               data1.find("input").val('');
+              data.find("input").val('');
      });
      $(document).on('click', '.remove6', function() {
          var trIndex1 = $(this).closest("tr").index();
             if(trIndex1>1) {
              $(this).closest("tr").remove();
-             document.getElementById("tb5").deleteRow(trIndex1);
-             document.getElementById("tb5").deleteRow(trIndex1);
+             document.getElementById("tb6").deleteRow(trIndex1);
+             document.getElementById("tb6").deleteRow(trIndex1);
+             document.getElementById("tb6").deleteRow(trIndex1);
+             document.getElementById("tb6").deleteRow(trIndex1);
+             document.getElementById("tb6").deleteRow(trIndex1-1);
+             
            } else {
              alert("Sorry!! Can't remove first row!");
-           }
+          } 
       });
 });      
 </script>
