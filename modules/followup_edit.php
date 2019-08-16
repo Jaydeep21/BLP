@@ -1,5 +1,7 @@
 <?php
 include('navbar.php');
+include('../assets/php/connection.php');
+
 if(!isset($_SESSION['id'])){
     echo"<script>
     alert('Please Login in');
@@ -7,7 +9,7 @@ if(!isset($_SESSION['id'])){
     </script>
     ";
 }
-if(!isset($_GET['pid'])){
+if(!isset($_GET['pid'])|| !isset($_GET['fid'])){
     echo"<script>
     alert('Please Select Patient');
     document.location.href = 'searchindex.php';
@@ -15,7 +17,9 @@ if(!isset($_GET['pid'])){
     ";
 }
 
-$Pid = $_GET['pid'];
+$pid = $_GET['pid'];
+$fid = $_GET['fid'];
+
 
 
 
@@ -94,43 +98,54 @@ $Pid = $_GET['pid'];
                     <span class="title_text">Follow-up Form</span>
                 </h2>
                 <h3>
-                  <span class="patient_name"><?php echo "Patient Id: " . $Pid; ?></span>
+                  <span class="patient_name"><?php echo "Patient Id: " . $pid; ?></span>
                 </h3>                
                 <fieldset>
                       <div class="form-group">
                             <label  class="form-label">Skin Smears</label>
                                  <table style="padding-left: 34px ;margin-top: 9px;" id="tb6" class="tab orlist">
                                     <tbody>
-                                        <?php while( $row2 = mysqli_fetch_assoc($result2)){ ?>
+                                        
                                         <tr class="tr-header">
                                             <th>Site</th>
                                             <th>Mi</th>
                                             <th>Bi</th>
                                             <th><a href="javascript:void(0);" style="font-size:18px;" id="addMore6" title="Add More Person"><span class="fa fa-plus"></span></a></th>   
                                         </tr> 
+                                          
+  <?php $result1 = mysqli_query($conn,"SELECT * from smear_test where $fid=rid and site!='Average'");
+                                            while( $row1 = mysqli_fetch_assoc($result1)){ ?>
                                           <tr style="padding: 2px;" >
-                                            <td><input type="text" name="Site[]" class="valid" value=<?php echo $row2['site']; ?>></td>
-                                            <td><input type="text" name="Mi[]" class="valid" value=<?php echo $row2['mi']; ?>></td>
-                                            <td><input type="text" name="Bi[]" class="valid" value=<?php echo $row2['bi']; ?>></td>
-                                            <td><a href='javascript:void(0);' style="font-size:18px;" class='remove6'><span class='fa fa-minus'></span></a></td>                 
+                                            <td><input type="text" name="Site[]" class="valid" value=<?php echo $row1['site']; ?>></td>
+                                            <td><input type="text" name="Mi[]" class="valid" value=<?php echo $row1['mi']; ?>></td>
+                                            <td><input type="text" name="Bi[]" class="valid" value=<?php echo $row1['bi']; ?>></td>
+                                            <td><a href='javascript:void(0);' style="font-size:18px;" class='remove6'><span class='fa fa-minus'></span></a></td>  
+                                                           
                                           </tr> 
                                         <?php } ?>
                                     </tbody>
-                                    <tr>                                                                            
+                                      
+                  <?php $result2 = mysqli_query($conn,"SELECT * from smear_test where $fid=rid and site='Average'");
+                                            while( $row2 = mysqli_fetch_assoc($result2)){ ?>
+                                      <tr>                                                                                
                                          <td><a href='javascript:void(0);' style="font-size:18px;" id='avg'>Average</a></td>
                                          <input type="hidden" name="Site[]" value="Average">
-                                         <td><p id="average">Averages Mi:</p></td>
+                                         <td><p id="average">Averages Mi:<?php echo $row2['mi']; ?></p></td>
                                          <input type="hidden" id="avg_mi" name="Mi[]" value="0">
-                                         <td><p id="average1">Average Bi:</p></td>
+                                         <td><p id="average1">Average Bi:<?php echo $row2['bi']; ?></p></td>
                                          <input type="hidden" id="avg_bi" name="Bi[]" value="0">
-                                    </tr>
+                                      </tr>
+                                         <?php }?>
+                                  
                                  </table>                                                     
                             </div>
 
                         <div class="form-textarea">
                             <label for="Complaint" class="form-label">Present Complaint</label>
-                            <?php while( $row3 = mysqli_fetch_assoc($result3)){?>
-                            <textarea name="Complaint" id="Complaint" placeholder=""  ><?php echo $row3['complaints'];}?></textarea>
+                            <?php 
+$result3 = mysqli_query($conn,"SELECT * from follow_up_record where fid=$fid");
+                             while( $row3 = mysqli_fetch_assoc($result3)){?>
+                            <textarea name="Complaint" id="Complaint" placeholder=""  ><?php echo $row3['complaints']; ?></textarea>
                         </div>
 
                        <div class="form-group">
@@ -139,17 +154,16 @@ $Pid = $_GET['pid'];
                              <table style="padding-left: 34px ;margin-top: 9px;" id="tb2" class="form-label">
                                 
                                     <tbody>
-                                         <?php while( $row4 = mysqli_fetch_assoc($result4)){ ?>
+                                         
                                         <tr class="tr-header">
-                                            <th>Date</th>
+                                            
                                             <th>Clinical Notes</th>
                                             <th>Prescription</th>
-                                            <th><a href="javascript:void(0);" style="font-size:18px;" id="addMore2" title="Add More Person"><span class="fa fa-plus"></span></a></th>
+                                        </tr>    
                                         <tr>
-                                            <td><input type="date" name="name[]" class="valid" value=<?php echo $row4['due_date']; ?>></td>
-                                            <td><textarea name="Prescription[]" class="valid" value=<?php echo $row4['prescription']; ?>></textarea></td>
-                                            <td><textarea name="Cnotes[]" class="valid" value=<?php echo $row4['clinical_notes']; ?>></textarea></td>
-                                            <td><a href='javascript:void(0);' style="font-size:18px;" class='remove2' title="Remove"><span class='fa fa-minus'></span></a></td>
+                                            <td><textarea name="Prescription[]" class="valid" ><?php echo $row3['prescription']; ?></textarea></td>
+                                            <td><textarea name="Cnotes[]" class="valid" ><?php echo $row3['clinical_notes']; ?></textarea></td>
+                                            
                                         </tr>
                                         <?php } ?>
                                     </tbody>
@@ -162,7 +176,10 @@ $Pid = $_GET['pid'];
                              <table style="padding-left: 34px ;margin-top: 9px;" id="tb5" class="tab orlist">
                                 
                                     <tbody>
-                                        <?php while( $row5 = mysqli_fetch_assoc($result5)){ ?>
+                                      
+                                        <?php 
+$result5 = mysqli_query($conn,"SELECT * from past_drugs where pid=$pid");
+                                        while( $row5 = mysqli_fetch_assoc($result5)){ ?>
                                         <tr class="tr-header">
                                             <th>Drug Used</th>
                                             <th>Drug Dosage</th>   
@@ -170,7 +187,7 @@ $Pid = $_GET['pid'];
                                         </tr>
                                         
                                         <tr style="padding: 2px;">
-                                            <td><input type="text" name="drug_used[]" class="valid" value=<?php echo $row5['dname']; ?>></td>
+                                            <td><input type="text" name="drug_used[]" class="valid" value=<?php echo $row5['drugs']; ?>></td>
                                             <td><input type="text" name="drug_dosage[]" class="valid" value=<?php echo $row5['dosage']; ?>></td>
                                             <td><a href='javascript:void(0);' style="font-size:18px;" class='remove5'><span class='fa fa-minus'></span></a></td>
                                         </tr>
@@ -181,8 +198,8 @@ $Pid = $_GET['pid'];
                                         </tr>
                                         
                                         <tr>
-                                            <td><input style="margin-left: 16px;" type="date" name="Start_first_treatment[]" class="valid" value=<?php echo $row5['start_date']; ?>></td> 
-                                            <td><input style="margin-left: 16px;" type="date" name="End_first_treatment[]" class="valid" value=<?php echo $row5['end_date']; ?>></td> 
+                                            <td><input style="margin-left: 16px;" type="date" name="Start_first_treatment[]" class="valid" value=<?php echo $row5['mmyy_start']; ?>></td> 
+                                            <td><input style="margin-left: 16px;" type="date" name="End_first_treatment[]" class="valid" value=<?php echo $row5['mmyy_end']; ?>></td> 
                                         </tr>
                                         <?php } ?>
                                     </tbody>
@@ -192,8 +209,10 @@ $Pid = $_GET['pid'];
                         </div>
                         <div class="form-group">
                                 <label for="Examiner" class="form-label">Examiner</label>
-                                <?php while( $row6 = mysqli_fetch_assoc($result6)){ ?>
-                                <input type="text" name="Examiner" id="Examiner" value=<?php echo $row6['examiner'];?> />
+                                <?php 
+$result6 = mysqli_query($conn,"SELECT * from record where rid=$fid and pid=$pid");
+                                while( $row6 = mysqli_fetch_assoc($result6)){ ?>
+                                <input type="text" name="Examiner" id="Examiner" value="<?php echo $row6['examiner'];?>" />
                                 <?php } ?>
                         </div>
                     
@@ -203,7 +222,9 @@ $Pid = $_GET['pid'];
                             <table style="padding-left: 34px ;margin-top: 9px;" id="tb4" class="form-label">
                                 
                                     <tbody>
-                                        <?php while( $row7 = mysqli_fetch_assoc($result7)){ ?>
+                                        <?php 
+$result7 = mysqli_query($conn,"SELECT * from next_appointment where fid=$fid");
+                                        while( $row7 = mysqli_fetch_assoc($result7)){ ?>
                                         <tr class="tr-header">
                                             <th>Next Appointment For:</th>
                                             <th>Next Appoinment Date:</th>
@@ -343,24 +364,6 @@ $(function(){
     document.getElementById("avg_bi").value = avgBi;
   });
 });
-</script>
-
-<script type="text/javascript">
-    
-$(function(){
-    $('#addMore2').on('click', function() {
-              var data = $("#tb2 tr:eq(1)").clone(true).appendTo("#tb2");
-              data.find("input").val('');
-     });
-     $(document).on('click', '.remove2', function() {
-         var trIndex1 = $(this).closest("tr").index();
-            if(trIndex1>1) {
-             $(this).closest("tr").remove();
-           } else {
-             alert("Sorry!! Can't remove first row!");
-           }
-      });
-});      
 </script>
 
 <script type="text/javascript">
