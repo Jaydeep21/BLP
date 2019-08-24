@@ -159,21 +159,22 @@ td{
       </tr>
       <?php } ?>
      
-      <?php while( $row24 = mysqli_fetch_assoc($result24)){ ?>
+      
       <tr>
         <th colspan="2" id="">Reffered By</th>
-        <td colspan="5"><?php echo $row24['doctor_name']; ?></td>
+        <td colspan="5"><?php echo $row1['referred']; ?></td>
       </tr>
-      
+      <?php while( $row7 = mysqli_fetch_assoc($result7)){ ?>
       <tr colspan="">
-        <?php while( $row7 = mysqli_fetch_assoc($result7)){ ?>
+        
         <th colspan="2" id="">Number of Members Living in Same Household</th>
         <td colspan="">Name: <?php echo $row7['fm_name']; ?></td>
         <td colspan="">Age: <?php echo $row7['fm_age']; ?></td>
         <td colspan="">Relation: <?php echo $row7['fm_relation']; ?></td>
         <td colspan="">Disease: <?php echo $row7['fm_disease']; ?></td>
-        <td colspan="" rowspan ="">Notes: <?php echo $row7['fm_diagnosis'];} ?></td>
+        <td colspan="" rowspan ="">Notes: <?php echo $row7['fm_diagnosis']; ?></td>
      </tr>      
+     <?php } ?>
       <tr>
         <th colspan="2" id="">Allergies</th>
         <td colspan="5"><?php echo $row1['allergy']; } ?></td>
@@ -246,7 +247,7 @@ td{
       <tr>
           <?php while( $row17 = mysqli_fetch_assoc($result17)){ ?>
           <th colspan="3" id="">First Signs and Symptoms(with date of onset) </th>
-          <td colspan="4"><?php echo $row17['symptoms']; }?></td>
+          <td colspan="4"><?php echo $row17['symptoms']; ?></td>
       </tr>
 <?php while( $row17a = mysqli_fetch_assoc($result17a)){ ?>
       <tr>
@@ -303,7 +304,7 @@ td{
 <?php } ?>
       <tr>
         <th colspan="3" id="">Other MDT courses</th>
-        <td colspan="4"><?php echo $row17['other_mdt_courses']; }?></td>
+        <td colspan="4"><?php echo $row17['other_mdt_courses']; ?></td>
       </tr>
 
       <tr>
@@ -319,9 +320,10 @@ td{
         <td colspan="3">Description: <?php echo $row21['description']; ?></td>
      </tr>
      <?php } ?>
-     <!--tr>
-       <th> Current Treatment</th>
-     </tr-->
+     <tr>
+       <th colspan="2"> Current Treatment</th>
+       <td colspan="5"><?php echo $row17['current_treatment']; ?></td>
+     </tr>
 <?php while( $row27 = mysqli_fetch_assoc($result27)){ ?>
       <tr>
         
@@ -352,7 +354,7 @@ td{
         <th colspan="1" id="">Sensory Testing</th>
         <td colspan="2">Touch: <?php echo $row19['touch']; ?></td>
         <td colspan="2">Temperature: <?php echo $row19['temperature']; ?></td>
-        <td colspan="2">Pinprick: <?php echo $row19['pinprick']; ?></td>
+        <td colspan="2">Pain: <?php echo $row19['pinprick']; ?></td>
       </tr>
         <?php }?>
       <tr>
@@ -371,17 +373,24 @@ td{
         <?php while( $row17d = mysqli_fetch_assoc($result17d)){ ?>
         <td colspan="4"><?php echo $row17d['eyes'];  } ?></td>
       </tr>
-
+      <tr>
+        <th colspan="2">Further Observations</th>
+        <td colspan="5"> <?php echo $row17['t_notes']; }?></td>
+      </tr>
       <tr>
         <th colspan="7" id="">Images</th>
         <?php  while( $row29 = mysqli_fetch_assoc($result29)){ ?>
-        <tr>
-          <td colspan="7"><img src="http://localhost/blp/assets/images/patient/<?php echo $row29['image_url'] ?>"></td>
+      <tr>
+          <td colspan="7"><img src="http://localhost/blp/assets/images/patient/<?php echo $row29['image_url'] ?>"><br><?php echo $row29['date'] ?></td>
+
         </tr>
         <?php } ?>
       </tr>
   </tbody>
 </table>
+<div class="d-flex justify-content-center">
+  <a href="edit.php?pid=<?php echo $id; ?>" target="/blank" class=""><button type="button" class="btn btn-danger " >Edit Details</button></a><br><br>
+</div>
 </div>
  
 <?php while( $row25 = mysqli_fetch_assoc($result25)){ 
@@ -436,6 +445,9 @@ $qry = mysqli_query($conn,"SELECT * from record where $fid=rid");
        
     </tbody>
   </table>  
+<div class="d-flex justify-content-center">
+  <a href="edit_followup.php?pid=<?php echo $id; ?>&fid=<?php echo $fid; ?>" target="/blank" class=""><button type="button" class="btn btn-warning " >Edit Follow Up</button></a><br><br>
+</div>
 </div>
 
 <?php } ?>

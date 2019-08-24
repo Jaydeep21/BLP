@@ -93,7 +93,7 @@ $fid = $_GET['fid'];
 
     <div class="main">
             <div class="container">
-            <form method="POST" id="signup-form" class="signup-form" action="../assets/php/followup.php?pid=<?php echo $Pid;?>" enctype="multipart/form-data">
+            <form method="POST" id="signup-form" class="signup-form" action="../assets/php/updateFollowup.php?pid=<?php echo $pid;?>&rid=<?php echo $fid;?>" enctype="multipart/form-data">
                 <h2>
                     <span class="title_text">Follow-up Form</span>
                 </h2>

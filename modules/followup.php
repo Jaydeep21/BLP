@@ -10,7 +10,7 @@ if(!isset($_SESSION['id'])){
 if(!isset($_GET['pid'])){
     echo"<script>
     alert('Please Select Patient');
-    document.location.href = 'health.php';
+    document.location.href = 'searchindex.php';
     </script>
     ";
 }
@@ -140,12 +140,12 @@ $Pid = $_GET['pid'];
                                             <th>Date</th>
                                             <th>Clinical Notes</th>
                                             <th>Prescription</th>
-                                            <th><a href="javascript:void(0);" style="font-size:18px;" id="addMore2" title="Add More Person"><span class="fa fa-plus"></span></a></th>
+                                            
                                         <tr>
                                             <td><input type="date" name="name[]" class="valid"></td>
                                             <td><textarea name="Prescription[]" class="valid"></textarea></td>
                                             <td><textarea name="Cnotes[]" class="valid"></textarea></td>
-                                            <td><a href='javascript:void(0);' style="font-size:18px;" class='remove2' title="Remove"><span class='fa fa-minus'></span></a></td>
+                                            
                                         </tr>
 
                                     </tbody>
@@ -334,24 +334,6 @@ $(function(){
     document.getElementById("avg_bi").value = avgBi;
   });
 });
-</script>
-
-<script type="text/javascript">
-    
-$(function(){
-    $('#addMore2').on('click', function() {
-              var data = $("#tb2 tr:eq(1)").clone(true).appendTo("#tb2");
-              data.find("input").val('');
-     });
-     $(document).on('click', '.remove2', function() {
-         var trIndex1 = $(this).closest("tr").index();
-            if(trIndex1>1) {
-             $(this).closest("tr").remove();
-           } else {
-             alert("Sorry!! Can't remove first row!");
-           }
-      });
-});      
 </script>
 
 <script type="text/javascript">

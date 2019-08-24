@@ -23,7 +23,7 @@ $result19 = mysqli_query($conn,$query19);
 
 $result20 = mysqli_query($conn,"SELECT * from smear_test where pid = $id");
 $result22 = mysqli_query($conn,"SELECT d.dname,dp.dosage,dp.start_date,dp.end_date FROM `record` AS r,drugs AS d,drugs_prescribed AS dp, patient AS p WHERE p.pid=$id and p.pid=r.pid and r.rid=dp.rid and d.did=dp.did"); 
-$result21 = mysqli_query($conn,"SELECT rs.type_reaction,rs.description,rs.neuritis FROM `record` AS r , reactions AS rs, patient as p WHERE p.pid=$id and p.pid=r.pid and rs.rid=r.rid");
+$result21 = mysqli_query($conn,"SELECT * FROM `record` AS r , reactions AS rs, patient as p WHERE p.pid=$id and p.pid=r.pid and rs.rid=r.rid");
 $result7 =  mysqli_query($conn,"SELECT * from family_members where pid = $id");
 $result11 = mysqli_query($conn,"SELECT * from past_drugs where pid = $id");
 $result18 = mysqli_query($conn,"SELECT * FROM peripheral_nerves p, record r WHERE pid=$id AND p.rid=r.rid");
@@ -55,6 +55,9 @@ $result27ci= mysqli_query($conn,"SELECT * from disability d , patient p, record 
 $result27cj= mysqli_query($conn,"SELECT * from disability d , patient p, record r where p.pid=$id and r.pid=p.pid and d.rid=r.rid AND d.grade = 2 AND d.disability_area='Fixed Right'");
 $result27ck= mysqli_query($conn,"SELECT * from disability d , patient p, record r where p.pid=$id and r.pid=p.pid and d.rid=r.rid AND d.grade = 2 AND d.disability_area='Foot Left'");
 $result27cl= mysqli_query($conn,"SELECT * from disability d , patient p, record r where p.pid=$id and r.pid=p.pid and d.rid=r.rid AND d.grade = 2 AND d.disability_area='Foot Right'");
+$result28 = mysqli_query($conn,"SELECT * from record where pid=$id");
+$row28=mysqli_fetch_assoc($result28);
+$pid=$row28['rid'];
 while ($row1 = mysqli_fetch_assoc($result1)){
 
 ?>
@@ -129,7 +132,7 @@ while ($row1 = mysqli_fetch_assoc($result1)){
 
         <div class="container">
             <h2>Bombay Leprosy Project </h2>
-            <form method="POST" id="signup-form" class="signup-form" action="../assets/php/edit.php">
+            <form method="POST" id="signup-form" class="signup-form" action="../assets/php/update.php?pid=<?php echo $id; ?>&rid=<?php echo $pid; ?>">
                 <h3>
                     <span class="title_text">Patient History</span>
                 </h3>
@@ -270,7 +273,7 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                                                         
                                                 </select>
                                             </td>
-                                            <td><input type="number" name="ID Number" id="ID Number" placeholder="ID Number" value=<?php echo $row1a['patient_code']; ?> /></td>
+                                            <td><input type="number" name="IDclinic" id="IDclinic" placeholder="ID Number" value=<?php echo $row1a['patient_code']; ?> /></td>
                                         </tr>
                                         
                                         
@@ -393,7 +396,7 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                         <div class="form-textarea">
                             <label for="Add2" class="form-label">Local Address</label>
                             <?php while( $row2b = mysqli_fetch_assoc($result2b)){?>
-                            <textarea name="Add0" id="Add2" placeholder="Address 2" value=""><?php echo $row2b['address'];?></textarea>
+                            <textarea name="Add2" id="Add2" placeholder="Address 2" value=""><?php echo $row2b['address'];?></textarea>
                             <?php}?>
                         </div>
 
@@ -402,7 +405,7 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                             <?php while($row4 = mysqli_fetch_assoc($result4)){ ?>
                                 <div class="form-group">
                                          <label for="Contact1" class="form-label">Contact No</label>
-                                         <input type="number" name="Contact1" id="Contact1" value=<?php echo $row4['mobile'];  ?> />
+                                         <input type="number" name="Contact[]" id="Contact[]" value=<?php echo $row4['mobile'];  ?> />
                                 </div>
                             <?php } ?>
                         </div>
@@ -443,8 +446,8 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                                             <th><a href="javascript:void(0);" style="font-size:18px;" id="addMore" title="Add More Person"><span class="fa fa-plus"></span></a></th>
                                         </tr>
                                         <tr>
-                                            <td><input type="text" name="name[]" class="valid" value=<?php echo $row7['fm_name']; ?>></td>
-                                            <td><input type="number" name="age[]" class="valid" value=<?php echo $row7['fm_age']; ?>></td>
+                                            <td><input type="text" name="name_fh[]" class="valid" value=<?php echo $row7['fm_name']; ?>></td>
+                                            <td><input type="number" name="age_fh[]" class="valid" value=<?php echo $row7['fm_age']; ?>></td>
                                             <td><a href='javascript:void(0);' style="font-size:18px;" class='remove' title="Remove"><span class='fa fa-minus'></span></a></td>
                                         </tr>
                                         
@@ -454,8 +457,8 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                                         </tr>
                                         
                                         <tr>
-                                            <td><input type="text" name="relation[]" class="valid" value=<?php echo $row7['fm_relation']; ?>></td>
-                                            <td><input type="text" name="disease[]" class="valid" value=<?php echo $row7['fm_disease']; ?>></td>
+                                            <td><input type="text" name="Relation_fh[]" class="valid" value=<?php echo $row7['fm_relation']; ?>></td>
+                                            <td><input type="text" name="Disease_fh[]" class="valid" value=<?php echo $row7['fm_disease']; ?>></td>
                                         </tr>
                                         
                                         <tr>
@@ -463,7 +466,7 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                                         </tr>
                                         
                                         <tr>
-                                            <td colspan="3"><input type="text" name="notes[]" class="valid" value=<?php echo $row7['fm_diagnosis']; ?>></td>
+                                            <td colspan="3"><input type="text" name="Notes_fh[]" class="valid" value=<?php echo $row7['fm_diagnosis']; ?>></td>
                                         </tr>
                                       <?php } ?>
                                     </tbody>
@@ -565,7 +568,7 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                                         </tr>
                                         
                                         <tr style="padding: 2px;">
-                                            <td colspan="3"><input type="text" name="hospital" class="valid" value=<?php echo $row11['hospital']; ?>></td>
+                                            <td colspan="3"><input type="text" name="hospital_pmh[]" class="valid" value=<?php echo $row11['hospital']; ?>></td>
                                             <td><a href='javascript:void(0);' style="font-size:18px;" class='remove1'><span class='fa fa-minus'></span></a></td>
                                         </tr>
                                         
@@ -575,8 +578,8 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                                         </tr>
                                         
                                         <tr>
-                                            <td><input type="text" name="drug" class="valid" value=<?php echo $row11['drugs']; ?>></td>
-                                            <td><input type="text" name="dosage" class="valid" value=<?php echo $row11['dosage']; ?>></td>
+                                            <td><input type="text" name="drug_pmh[]" class="valid" value=<?php echo $row11['drugs']; ?>></td>
+                                            <td><input type="text" name="dosage_pmh[]" class="valid" value=<?php echo $row11['dosage']; ?>></td>
                                         </tr>
                                         
                                         <tr>
@@ -585,8 +588,8 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                                         </tr>
                                         
                                         <tr>
-                                            <td><input style="margin-left: 16px;" type="date" name="Start_past_date" class="valid" value=<?php echo $row11['mmyy_start']; ?>></td> 
-                                            <td><input style="margin-left: 16px;" type="date" name="End_past_date" class="valid" value=<?php echo $row11['mmyy_end']; ?>></td> 
+                                            <td><input style="margin-left: 16px;" type="date" name="Start_past_date_pmh[]" class="valid" value=<?php echo $row11['mmyy_start']; ?>></td> 
+                                            <td><input style="margin-left: 16px;" type="date" name="End_past_date_pmh[]" class="valid" value=<?php echo $row11['mmyy_end']; ?>></td> 
                                         </tr>
                                         <?php } ?>
                                     </tbody>
@@ -615,9 +618,9 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                                         </tr>
                                         
                                         <tr style="padding: 2px;">
-                                            <td><input type="text" name="name" class="valid" value=<?php echo $row14['kname']; ?>></td>
-                                            <td><input type="text" name="relation" class="valid" value=<?php echo $row14['relation']; ?>></td>
-                                            <td><input type="text" name="contact" class="valid" value=<?php echo $row14['contact']; ?>></td>
+                                            <td><input type="text" name="klp_name[]" class="valid" value=<?php echo $row14['kname']; ?>></td>
+                                            <td><input type="text" name="klp_relation[]" class="valid" value=<?php echo $row14['relation']; ?>></td>
+                                            <td><input type="text" name="klp_contact[]" class="valid" value=<?php echo $row14['contact']; ?>></td>
                                             <td><a href='javascript:void(0);' style="font-size:18px;" class='remove6'><span class='fa fa-minus'></span></a></td>
                                         </tr> 
                                         
@@ -626,7 +629,7 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                                         </tr>
                                         
                                         <tr>
-                                            <td colspan="3"><input type="text" name="address" class="valid" value=<?php echo $row14['address']; ?>></td>
+                                            <td colspan="3"><input type="text" name="klp_address[]" class="valid" value=<?php echo $row14['address']; ?>></td>
                                         </tr>
                                         
                                         <tr>
@@ -636,7 +639,7 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                                         
                                         <tr>
                                             
-                                            <td colspan="3"><input type="text" name="description" class="valid" value=<?php echo $row14['description']; ?>></td>
+                                            <td colspan="3"><input type="text" name="klp_description[]" class="valid" value=<?php echo $row14['description']; ?>></td>
                                         </tr>
                                         <?php } ?>
                                     </tbody>
@@ -648,61 +651,61 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                         <div class="form-group">
                             <label for="fcfs" class="form-label">First Signs and Symptoms(with date of onset)</label>
                             <?php while( $row17 = mysqli_fetch_assoc($result17)){ ?>
-                            <input type="text" name="fcfs" id="fcfs" placeholder="All the known Symtoms" value=<?php echo $row17['symptoms'];  ?> />
+                            <input type="text" name="fcfs" id="fcfs" placeholder="All the known Symptoms" value="<?php echo $row17['symptoms'];  ?>" />
                         </div>
-                        
+                            
 
                         <div class="form-radio">
                                 <label for="tld" class="form-label">Type of Leprosy diagnosed</label>
                                 <?php while( $row17a = mysqli_fetch_assoc($result17a)){ ?>
                                 <div class="form-radio-item ">
                                     <?php if($row17a['pb']==='1'){ ?> 
-                                    <input type="checkbox" name="tld" value="PB" id="PB" checked='checked'/>
+                                    <input type="checkbox" name="tld_pb" value="1" id="PB" checked='checked'/>
                                     <label style="width: 12%;" for="PB">PB</label>
                                     <?php }else{ ?>
-                                    <input type="checkbox" name="tld" value="PB" id="PB"/>
+                                    <input type="checkbox" name="tld_pb" value="1" id="PB"/>
                                     <label style="width: 12%;" for="PB">PB</label>
                                     <?php } if($row17a['mb']==='1'){ ?>
-                                    <input type="checkbox" name="tld" value="MB" id="MB" style="" checked='checked' />
+                                    <input type="checkbox" name="tld_mb" value="1" id="MB" style="" checked='checked' />
                                     <label for="MB">MB</label>&ensp;&ensp;&ensp;&ensp;&ensp;
                                     <?php }else{ ?>
-                                    <input type="checkbox" name="tld" value="MB" id="MB" style=""  />
+                                    <input type="checkbox" name="tld_mb" value="1" id="MB" style=""  />
                                     <label for="MB">MB</label>&ensp;&ensp;&ensp;&ensp;&ensp;
                                     <?php } if($row17a['tt']==='1'){ ?>
-                                    <input type="checkbox" name="tld" value="TT" id="TT" checked='checked' />
+                                    <input type="checkbox" name="tld_tt" value="1" id="TT" checked='checked' />
                                     <label for="TT">TT</label>
                                     <?php }else{ ?>
-                                    <input type="checkbox" name="tld" value="TT" id="TT" />
+                                    <input type="checkbox" name="tld_tt" value="1" id="TT" />
                                     <label for="TT">TT</label>
                                     <?php } if($row17a['bt']==='1'){ ?>
-                                    <input type="checkbox" name="tld" value="BT" id="BT" checked='checked'/>
+                                    <input type="checkbox" name="tld_bt" value="1" id="BT" checked='checked'/>
                                     <label for="BT">BT</label>
                                     <?php }else{ ?>
-                                    <input type="checkbox" name="tld" value="BT" id="BT" />
+                                    <input type="checkbox" name="tld_bt" value="1" id="BT" />
                                     <label for="BT">BT</label>
                                     <?php } if($row17a['bb']==='1'){ ?>
-                                    <input type="checkbox" name="tld" value="BB" id="BB" checked='checked'/>
+                                    <input type="checkbox" name="tld_bb" value="1" id="BB" checked='checked'/>
                                     <label for="BB">BB</label>
                                     <?php }else{ ?>
-                                    <input type="checkbox" name="tld" value="BB" id="BB" />
+                                    <input type="checkbox" name="tld_bb" value="1" id="BB" />
                                     <label for="BB">BB</label>
                                     <?php } if($row17a['bl']==='1'){ ?>
-                                    <input type="checkbox" name="tld" value="BL" id="BL" checked='checked'/>
+                                    <input type="checkbox" name="tld_bl" value="1" id="BL" checked='checked'/>
                                     <label for="BL">BL</label>
                                     <?php }else{ ?>
-                                    <input type="checkbox" name="tld" value="BL" id="BL" />
+                                    <input type="checkbox" name="tld_bl" value="1" id="BL" />
                                     <label for="BL">BL</label>
                                     <?php } if($row17a['ll']==='1'){ ?>
-                                    <input type="checkbox" name="tld" value="LL" id="LL" checked='checked'/>
+                                    <input type="checkbox" name="tld_ll" value="1" id="LL" checked='checked'/>
                                     <label for="LL">LL</label>
                                     <?php }else{ ?>
-                                    <input type="checkbox" name="tld" value="LL" id="LL" />
+                                    <input type="checkbox" name="tld_ll" value="1" id="LL" />
                                     <label for="LL">LL</label>
                                     <?php } if($row17a['pnl']==='1'){ ?>
-                                    <input type="checkbox" name="tld" value="PNL" id="PNL" checked='checked'/>
+                                    <input type="checkbox" name="tld_pnl" value="1" id="PNL" checked='checked'/>
                                     <label for="PNL">PNL</label>
                                     <?php }else{ ?>
-                                    <input type="checkbox" name="tld" value="PNL" id="PNL" />
+                                    <input type="checkbox" name="tld_pnl" value="1" id="PNL" />
                                     <label for="PNL">PNL</label>
 
                                     <?php }  ?>
@@ -742,8 +745,8 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                                         </tr>
                                         
                                         <tr style="padding: 2px;">
-                                            <td><input type="text" name="drug used" class="valid" value=<?php echo $row22['dname']; ?>></td>
-                                            <td><input type="text" name="drug dosage" class="valid" value=<?php echo $row22['dosage']; ?>></td>
+                                            <td><input type="text" name="drug_used[]" class="valid" value=<?php echo $row22['dname']; ?>></td>
+                                            <td><input type="text" name="drug_dosage[]" class="valid" value=<?php echo $row22['dosage']; ?>></td>
                                             <td><a href='javascript:void(0);' style="font-size:18px;" class='remove5'><span class='fa fa-minus'></span></a></td>
                                         </tr>
                                         
@@ -753,8 +756,8 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                                         </tr>
                                         
                                         <tr>
-                                            <td><input style="margin-left: 16px;" type="date" name="Start_drug_date" class="valid" value=<?php echo $row22['start_date']; ?>></td> 
-                                            <td><input style="margin-left: 16px;" type="date" name="End_drug_date" class="valid" value=<?php echo $row22['end_date']; ?>></td> 
+                                            <td><input style="margin-left: 16px;" type="date" name="Start_first_treatment[]" class="valid" value=<?php echo $row22['start_date']; ?>></td> 
+                                            <td><input style="margin-left: 16px;" type="date" name="End_first_treatment[]" class="valid" value=<?php echo $row22['end_date']; ?>></td> 
                                         </tr>
                                         <?php } ?>
                                     </tbody>
@@ -766,6 +769,7 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                         <div class="clear"></div>
                          <div class="form-group">
                             <label for="omc" class="form-label">Other MDT courses</label>
+
                             <input type="text" name="omc" id="omc" placeholder="Other MDT courses" value=<?php echo $row17['other_mdt_courses']; }?> />
                         </div>
 
@@ -774,68 +778,68 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                             <?php while( $row17b = mysqli_fetch_assoc($result17b)){ ?>
                             <textarea name="Result" id="Result" placeholder="" rows="2" value=""><?php echo $row17b['result']; }?></textarea>
                         </div>
-
+                       
                         
                         
                         <div class="form-radio">
                                 <label for="reaction" class="form-label">Reaction Type</label>
-                            <?php while( $row21 = mysqli_fetch_assoc($result21)){ ?>
+                                <?php while( $row21 = mysqli_fetch_assoc($result21)){ ?>
                                 <div class="form-radio-item">
                                     <?php if($row21['type_reaction']==='Type1') {?>
-                                    <input type="radio" name="Reaction" value="Type1" id="Type1" checked="checked"/>
+                                    <input type="radio" name="Reaction" value="Type1" id="Type1" checked/>
                                     <label for="Type1" style="width: 68px">Type 1</label>
     
-                                    <input type="radio" name="Reaction" value="Type2" id="Type2" />
-                                    <label for="Type2" style="width: 68px">Type 2</label>
-
-                                    <input type="radio" name="Reaction" value="None" id="None" />
-                                    <label for="None" style="width: 68px">None</label>
+                                    <?php }else{?>
+                                        <input type="radio" name="Reaction" value="Type1" id="Type1" />
+                                        <label for="Type1" style="width: 68px">Type 1</label>
+                                    <?php } if($row21['type_reaction']==='Type2') {?>
                                     
-                                    <?php } elseif($row21['type_reaction']==='Type2') {?>
-                                    <input type="radio" name="Reaction" value="Type1" id="Type1" />
-                                    <label for="Type1" style="width: 68px">Type 1</label>
     
-                                    <input type="radio" name="Reaction" value="Type2" id="Type2" checked="checked"/>
-                                    <label for="Type2" style="width: 68px">Type 2</label>
+                                    <input type="radio" name="Reaction" value="Type2" id="Type2" checked/>
+                                    <label for="Type2" style="width: 68px">Type sf2</label>
 
-                                    <input type="radio" name="Reaction" value="None" id="None" />
+                                    <?php }else{?>
+                                        <input type="radio" name="Reaction" value="Type2" id="Type2" />
+                                        <label for="Type2" style="width: 68px">Type 2</label>    
+                                    <?php } if($row21['type_reaction']==='None') {?>
+                                    
+                                    <input type="radio" name="Reaction" value="None" id="None" checked />
                                     <label for="None" style="width: 68px">None</label>
                                     
-                                    <?php } else {?>
-                                    <input type="radio" name="Reaction" value="Type1" id="Type1" />
-                                    <label for="Type1" style="width: 68px">Type 1</label>
-    
-                                    <input type="radio" name="Reaction" value="Type2" id="Type2" />
-                                    <label for="Type2" style="width: 68px">Type 2</label>
-
-                                    <input type="radio" name="Reaction" value="None" id="None" />
-                                    <label for="None" style="width: 68px">None</label>
+                                    <?php }else{ ?>
+                                        <input type="radio" name="Reaction" value="None" id="None" />
+                                        <label for="None" style="width: 68px">None</label>
+                                    <?php }if($row21['neuritis']==='Neuritis') {?>
                                     
-                                    <?php } ?>
-                                    &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-                                </div>
+                                        <input type="checkbox" name="Neuritis" value="Neuritis" id="Neuritis" checked/>
+                                        <label for="Neuritis" style="width: 68px">Neuritis</label>
+                                    
+                                <?php }else{ ?>
+                                        <input type="checkbox" name="Neuritis" value="Neuritis" id="Neuritis" />
+                                        <label for="Neuritis" style="width: 68px">Neuritis</label>
+                                <?php}?>    
+                                    
+                         </div>
                             
-                                <div class="form-radio-item">
-                                <?php if($row21['neuritis']==='Neuritis') {?>
-                                    
-                                    <input type="checkbox" name="Neuritis" value="Neuritis" id="Neuritis" checked="checked"/>
-                                    <label for="Neuritis" style="width: 68px">Neuritis</label>
-                                    
-                                <?php } ?>
-                                </div>
-                            </div>
-                        
-
+                              <?php } ?>     
+                            
+                        </div>
+                    
                         <div class="form-textarea">
                             <label  class="form-label">Reaction Description</label>
-                            <textarea name="Description" rows="4" placeholder="Description"><?php echo $row21['description'];  ?></textarea>
-                            <?php } ?>
+                            <textarea name="Reaction_description" rows="4" placeholder="Description"><?php echo $row21['description'];  ?></textarea>
+                            
                         </div>
-
+                     
                         
                          <div class="form-textarea">
                             <label for="Current" class="form-label">Current treatment</label>
-                            <textarea name="Current" id="Current" placeholder=""  ></textarea>
+                            <?php 
+                            $qry17 = mysqli_query($conn,"SELECT * from treatment_record AS t where pid = $id ");
+                            
+                            while($qrys17 = mysqli_fetch_assoc($qry17) ){ ?>
+                                
+                            <textarea name="Current_treatment" id="Current_treatment" placeholder=""  ><?php echo $qrys17['current_treatment']; }?></textarea>
                         </div>
 
 
@@ -849,9 +853,9 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                                 
                                 <th>Grade 0 </th>
                                 <?php if(mysqli_num_rows($result27a)>0){ ?> 
-                                <td><input type="checkbox" name="Grade0" checked="checked" value="Present"></td>
+                                <td><input type="checkbox" name="Grade0" checked="checked" value="Grade0"></td>
                                <?php }else{ ?>
-                                <td><input type="checkbox" name="Grade0" value="Present"></td>
+                                <td><input type="checkbox" name="Grade0" value="Grade0"></td>
                                 <?php } ?>
                               </tr>
                          </table>
@@ -865,18 +869,18 @@ while ($row1 = mysqli_fetch_assoc($result1)){
 
                                       <th >Anesthesia of hand</th>
                                       <?php if($row27b['disability_area']=== 'hand') {?>
-                                      <td><input  type="checkbox" name="Grade1" checked="checked"></td>
+                                      <td><input  type="checkbox" name="Grade1[]" checked="checked" value="Hand"></td>
                                       <?php } else {?>
-                                      <td><input  type="checkbox" name="Grade1"></td>
+                                      <td><input  type="checkbox" name="Grade1[]" value="Hand"></td>
                                       <?php } ?>
                                   </tr> 
                                   
                                    <tr>
                                          <th >Anesthesia of leg</th>
                                          <?php if($row27b['disability_area']==='leg') {?>   
-                                         <td><input type="checkbox" name="Grade1"  checked="checked" style="width: 20px"></td>
+                                         <td><input type="checkbox" name="Grade1[]"  value="Leg" checked="checked" style="width: 20px"></td>
                                          <?php } else {?>
-                                         <td><input type="checkbox" name="Grade1" style="width: 20px"></td>
+                                         <td><input type="checkbox" name="Grade1[]" value="Leg" style="width: 20px"></td>
                                          <?php } ?>
                                       </tr>
                                   
@@ -887,7 +891,7 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                                       <th rowspan="2">Grade 1</th>
 
                                       <th >Anesthesia of hand</th>
-                                      <td><input type="checkbox" name="Grade1"  style="width: 20px"></td>
+                                      <td><input type="checkbox" name="Grade1[]" value="Hand" style="width: 20px"></td>
                                       
                                       
                                   </tr> 
@@ -897,7 +901,7 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                                             
                                          <th >Anesthesia of leg</th>
                                          
-                                         <td><input type="checkbox" name="Grade1" style="width: 20px"></td>
+                                         <td><input type="checkbox" name="Grade1[]" value="Leg" style="width: 20px"></td>
                                          
                                       </tr>
                                   </table>
@@ -1006,7 +1010,7 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                        <div class="form-group">
                             <label for="Ophtalmic_involvement" class="form-label">Opthalmic involvement</label>
                             <?php while( $row17c = mysqli_fetch_assoc($result17c)){ ?>
-                        <input type="text" name="Ophtalmic_involvement" id="Ophtalmic_involvement" value=<?php echo $row17c['opthalmic_involvement']; }?> />
+                        <input type="text" name="Opthalmic_involvement" id="Opthalmic_involvement" value="<?php echo $row17c['opthalmic_involvement']; ?>" />
                         </div>
                     </div>
 
@@ -1022,7 +1026,11 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                 </h3>
                 <fieldset>
                     <div class="fieldset-content">
-                             
+                            
+                        <div class="form-group">
+                            <label for="Assessment" class="form-label">Assessment Of Skin Lesions</label>
+                            <input type="text" name="Assessment" id="Assessment" value="<?php echo $row17c['skin_lesions'];} ?>" />
+                        </div> 
                             <div class="form-group">
                              <?php   while( $row19 = mysqli_fetch_assoc($result19)){ ?>
                             <label for="Sensory" class="form-label">Sensory Testing(On Diagram)</label>
@@ -1069,7 +1077,7 @@ while ($row1 = mysqli_fetch_assoc($result1)){
 
                                 <?php } ?>        
                             </select>
-                             <?php  }//yaha } dalega to hoyega?>
+                             <?php  }?>
                         </div>
                         
                       
@@ -1164,13 +1172,13 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                                 <td>Supra-orbital</td>
                                 <?php while( $row18a = mysqli_fetch_assoc($result18a)){ ?>
                                 <?php if($row18a['thickness']==='Thicken'){?>
-                                <td><input type="checkbox" name="Supra-orbital" value="Thicken" checked="checked"></td>
-                                <td><input type="checkbox" name="Supra-orbital" value="Tender"></td>
+                                <td><input type="checkbox" name="Supra_orbital_Thicken" value="Thicken" checked="checked"></td>
+                                <td><input type="checkbox" name="Supra_orbital_Tender" value="Tender"></td>
                                 <?php } elseif($row18a['tenderness']==='Tender') { ?>
-                                <td><input type="checkbox" name="Supra-orbital" value="Thicken" ></td>
-                                <td><input type="checkbox" name="Supra-orbital" value="Tender" checked="checked"></td><?php } else{?>
-                                    <td><input type="checkbox" name="Supra-orbital" value="Thicken" ></td>
-                                <td><input type="checkbox" name="Supra-orbital" value="Tender"></td>
+                                <td><input type="checkbox" name="Supra_orbital_Thicken" value="Thicken" ></td>
+                                <td><input type="checkbox" name="Supra-orbital_Tender" value="Tender" checked="checked"></td><?php } else{?>
+                                    <td><input type="checkbox" name="Supra_orbital_Thicken" value="Thicken" ></td>
+                                <td><input type="checkbox" name="Supra-orbital_Tender" value="Tender"></td>
 
                                 <?php } ?>
                                 <?php } ?>
@@ -1183,13 +1191,13 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                                 <?php while( $row18b = mysqli_fetch_assoc($result18b)){ ?>
                                 <td>Great Auricular</td>
                                 <?php if($row18b['thickness']==='Thicken'){?>
-                                <td><input type="checkbox" name="Great Auricular" value="Thicken" checked="checked"></td>
-                                <td><input type="checkbox" name="Great Auricular" value="Tender"></td>
+                                <td><input type="checkbox" name="Great_Auricular_Thicken" value="Thicken" checked="checked"></td>
+                                <td><input type="checkbox" name="Great_Auricular_Tender" value="Tender"></td>
                                 <?php }elseif ($row18b['tenderness']==='Tender') {?>
-                                <td><input type="checkbox" name="Great Auricular" value="Thicken" ></td>
-                                <td><input type="checkbox" name="Great Auricular" value="Tender" checked="checked"></td><?php } else{?>
-                                <td><input type="checkbox" name="Great Auricular" value="Thicken" ></td>
-                                <td><input type="checkbox" name="Great Auricular" value="Tender"></td>
+                                <td><input type="checkbox" name="Great_Auricular_Thicken" value="Thicken" ></td>
+                                <td><input type="checkbox" name="Great_Auricular_Thicken" value="Tender" checked="checked"></td><?php } else{?>
+                                <td><input type="checkbox" name="Great_Auricular_Thicken" value="Thicken" ></td>
+                                <td><input type="checkbox" name="Great_Auricular_Thicken" value="Tender"></td>
                             <?php } ?>
                             <?php } ?>
                             </tr>
@@ -1200,14 +1208,14 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                                 <?php while( $row18c = mysqli_fetch_assoc($result18c)){ ?>
                                 <td>Ulnar</td>
                                 <?php if( $row18c['thickness']==='Thicken'){?>
-                                <td><input type="checkbox" name="Ulnar" value="Thicken" checked="checked"></td>
-                                <td><input type="checkbox" name="Ulnar" value="Tender"></td>
+                                <td><input type="checkbox" name="Ulnar_Thicken" value="Thicken" checked="checked"></td>
+                                <td><input type="checkbox" name="Ulnar_Tender" value="Tender"></td>
                                 <?php } elseif ($row18c['tenderness']==='Tender') {?>
-                                <td><input type="checkbox" name="Ulnar" value="Thicken" ></td>
-                                <td><input type="checkbox" name="Ulnar" value="Tender" checked="checked"></td>
+                                <td><input type="checkbox" name="Ulnar_Thicken" value="Thicken" ></td>
+                                <td><input type="checkbox" name="Ulnar_Tender" value="Tender" checked="checked"></td>
                                 <?php } else {?>
-                                <td><input type="checkbox" name="Ulnar" value="Thicken" ></td>
-                                <td><input type="checkbox" name="Ulnar" value="Tender"></td>
+                                <td><input type="checkbox" name="Ulnar_Thicken" value="Thicken" ></td>
+                                <td><input type="checkbox" name="Ulnar_Tender" value="Tender"></td>
 
                                 <?php } ?>
                                 <?php } ?> 
@@ -1219,14 +1227,14 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                                 <?php while( $row18d = mysqli_fetch_assoc($result18d)){ ?>
                                 <td>Medial Cutaneous</td>
                                 <?php if($row18d['thickness']==='Thicken'){?>
-                                <td><input type="checkbox" name="Medial Cutaneous" value="Thicken" checked="checked"></td>
-                                <td><input type="checkbox" name="Medial Cutaneous" value="Tender"></td>
+                                <td><input type="checkbox" name="Medial_Cutaneous_Thicken" value="Thicken" checked="checked"></td>
+                                <td><input type="checkbox" name="Medial_Cutaneous_Tender" value="Tender"></td>
                                  <?php } elseif ($row18d['tenderness']==='Tender') {?>
-                                <td><input type="checkbox" name="Medial Cutaneous" value="Thicken" ></td>
-                                <td><input type="checkbox" name="Medial Cutaneous" value="Tender" checked="checked"></td>
+                                <td><input type="checkbox" name="Medial_Cutaneous_Thicken" value="Thicken" ></td>
+                                <td><input type="checkbox" name="Medial_Cutaneous_Tender" value="Tender" checked="checked"></td>
                                  <?php } else{?>
-                                 <td><input type="checkbox" name="Medial Cutaneous" value="Thicken" ></td>
-                                <td><input type="checkbox" name="Medial Cutaneous" value="Tender" ></td>
+                                 <td><input type="checkbox" name="Medial_Cutaneous_Thicken" value="Thicken" ></td>
+                                <td><input type="checkbox" name="Medial_Cutaneous_Tender" value="Tender" ></td>
 
                                 <?php } ?>
                                 <?php } ?>
@@ -1238,14 +1246,14 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                                 <?php while( $row18e = mysqli_fetch_assoc($result18e)){ ?>
                                 <td>Radial Cutaneous</td>
                                 <?php if($row18e['nerves']==='Radial Cutaneous' and  $row18e['thickness']==='Thicken'){?>
-                                <td><input type="checkbox" name="Radial Cutaneous" value="Thicken" checked="checked"></td>
-                                <td><input type="checkbox" name="Radial Cutaneous" value="Tender"></td>
+                                <td><input type="checkbox" name="Radial_Cutaneous_Thicken" value="Thicken" checked="checked"></td>
+                                <td><input type="checkbox" name="Radial_Cutaneous_Tender" value="Tender"></td>
                                 <?php } elseif ($row18e['nerves']==='Radial Cutaneous' and  $row18e['tenderness']==='Tender') {?>
-                                <td><input type="checkbox" name="Radial Cutaneous" value="Thicken" ></td>
-                                <td><input type="checkbox" name="Radial Cutaneous" value="Tender" checked="checked"></td>
-                                 <?php } elseif($row18e['nerves']==='Radial Cutaneous' and  $row18e['tenderness']==='' and $row18e['thickness']==='') {?>
-                                 <td><input type="checkbox" name="Radial Cutaneous" value="Thicken" ></td>
-                                <td><input type="checkbox" name="Radial Cutaneous" value="Tender" ></td>
+                                <td><input type="checkbox" name="Radial_Cutaneous_Thicken" value="Thicken" ></td>
+                                <td><input type="checkbox" name="Radial_Cutaneous_Tender" value="Tender" checked="checked"></td>
+                                 <?php } else {?>
+                                 <td><input type="checkbox" name="Radial_Cutaneous_Thicken" value="Thicken" ></td>
+                                <td><input type="checkbox" name="Radial_Cutaneous_Tender" value="Tender" ></td>
                                 <?php } ?>
                                 <?php } ?>
                             </tr>
@@ -1256,14 +1264,14 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                                 <?php while( $row18f = mysqli_fetch_assoc($result18f)){ ?>
                                 <td>Lateral Popliteal</td>
                                 <?php if($row18f['thickness']==='Thicken'){?>
-                                <td><input type="checkbox" name="Lateral Popliteal" value="Thicken" checked="checked"></td>
-                                <td><input type="checkbox" name="Lateral Popliteal" value="Tender"></td>
+                                <td><input type="checkbox" name="Lateral_Popliteal_Thicken" value="Thicken" checked="checked"></td>
+                                <td><input type="checkbox" name="Lateral_Popliteal_Tender" value="Tender"></td>
                                 <?php } elseif  ($row18f['tenderness']==='Tender'){?>
-                                <td><input type="checkbox" name="Lateral Popliteal" value="Thicken" ></td>
-                                <td><input type="checkbox" name="Lateral Popliteal" value="Tender" checked="checked"></td>
+                                <td><input type="checkbox" name="Lateral_Popliteal_Thicken" value="Thicken" ></td>
+                                <td><input type="checkbox" name="Lateral_Popliteal_Tender" value="Tender" checked="checked"></td>
                                 <?php } else {?>
-                                <td><input type="checkbox" name="Lateral Popliteal" value="Thicken" ></td>
-                                <td><input type="checkbox" name="Lateral Popliteal" value="Tender" ></td>
+                                <td><input type="checkbox" name="Lateral_Popliteal_Thicken" value="Thicken" ></td>
+                                <td><input type="checkbox" name="Lateral_Popliteal_Tender" value="Tender" ></td>
                                 <?php } ?>
                                 <?php } ?>
                             </tr>
@@ -1274,14 +1282,14 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                                  <?php while( $row18g = mysqli_fetch_assoc($result18g)){ ?>
                                 <td>Sural Nerve</td>
                                 <?php if($row18g['thickness']==='Thicken'){?>
-                                <td><input type="checkbox" name="Sural Nerve" value="Thicken" checked="checked"></td>
-                                <td><input type="checkbox" name="Sural Nerve" value="Tender"></td>
+                                <td><input type="checkbox" name="Sural_Nerve_Thicken" value="Thicken" checked="checked"></td>
+                                <td><input type="checkbox" name="Sural_Nerve_Tender" value="Tender"></td>
                                 <?php } elseif ($row18g['tenderness']==='Tender'){?>
-                                <td><input type="checkbox" name="Sural Nerve" value="Thicken" ></td>
-                                <td><input type="checkbox" name="Sural Nerve" value="Tender" checked="checked"></td>
+                                <td><input type="checkbox" name="Sural_Nerve_Thicken" value="Thicken" ></td>
+                                <td><input type="checkbox" name="Sural_Nerve_Tender" value="Tender" checked="checked"></td>
                                 <?php } else{?>
-                                <td><input type="checkbox" name="Sural Nerve" value="Thicken" ></td>
-                                <td><input type="checkbox" name="Sural Nerve" value="Tender" ></td>
+                                <td><input type="checkbox" name="Sural_Nerve_Thicken" value="Thicken" ></td>
+                                <td><input type="checkbox" name="Sural_Nerve_Tender" value="Tender" ></td>
 
                                 <?php } ?>
                                 <?php } ?>
@@ -1293,14 +1301,14 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                                 <?php while( $row18h = mysqli_fetch_assoc($result18h)){ ?>
                                 <td>Posterior Tibial</td>
                                 <?php if($row18h['thickness']==='Thicken'){?>
-                                <td><input type="checkbox" name="Posterior Tibial" value="Thicken" checked="checked"></td>
-                                <td><input type="checkbox" name="Posterior Tibial" value="Tender"></td>
+                                <td><input type="checkbox" name="Posterior_Tibial_Thicken" value="Thicken" checked="checked"></td>
+                                <td><input type="checkbox" name="Posterior_Tibial_Tender" value="Tender"></td>
                                 <?php } elseif ($row18h['tenderness']==='Tender'){?>
-                                <td><input type="checkbox" name="Posterior Tibial" value="Thicken" ></td>
-                                <td><input type="checkbox" name="Posterior Tibial" value="Tender" checked="checked"></td>
+                                <td><input type="checkbox" name="Posterior_Tibial_Thicken" value="Thicken" ></td>
+                                <td><input type="checkbox" name="Posterior_Tibial_Tender" value="Tender" checked="checked"></td>
                                  <?php } else {?>
-                                  <td><input type="checkbox" name="Posterior Tibial" value="Thicken" ></td>
-                                <td><input type="checkbox" name="Posterior Tibial" value="Tender" ></td>
+                                  <td><input type="checkbox" name="Posterior_Tibial_Thicken" value="Thicken" ></td>
+                                <td><input type="checkbox" name="Posterior_Tibial_Tender" value="Tender" ></td>
                                 <?php } ?>
                                 <?php } ?>
                             </tr>
@@ -1311,14 +1319,14 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                                 <?php while( $row18i = mysqli_fetch_assoc($result18i)){ ?>
                                 <td>Superficial Personal</td>
                                 <?php if($row18i['thickness']==='Thicken'){?>
-                                <td><input type="checkbox" name="Superficial Personal" value="Thicken" checked="checked"></td>
-                                <td><input type="checkbox" name="Superficial Personal" value="Tender"></td>
+                                <td><input type="checkbox" name="Superficial_Personal_Thicken" value="Thicken" checked="checked"></td>
+                                <td><input type="checkbox" name="Superficial_Personal_Tender" value="Tender"></td>
                                 <?php } elseif ( $row18i['tenderness']==='Tender') {?>
-                                <td><input type="checkbox" name="Superficial Personal" value="Thicken" ></td>
-                                <td><input type="checkbox" name="Superficial Personal" value="Tender" checked="checked"></td>
+                                <td><input type="checkbox" name="Superficial_Personal_Thicken" value="Thicken" ></td>
+                                <td><input type="checkbox" name="Superficial_Personal_Tender" value="Tender" checked="checked"></td>
                                 <?php } else {?>
-                                 <td><input type="checkbox" name="Superficial Personal" value="Thicken" ></td>
-                                <td><input type="checkbox" name="Superficial Personal" value="Tender" ></td>
+                                 <td><input type="checkbox" name="Superficial_Personal_Thicken" value="Thicken" ></td>
+                                <td><input type="checkbox" name="Superficial_Personal_Tender" value="Tender" ></td>
                                 <?php } ?>
                                 <?php } ?>
                             </tr>
@@ -1343,9 +1351,7 @@ while ($row1 = mysqli_fetch_assoc($result1)){
                          <div class="form-textarea">
                             <label for="furtherobservations" class="form-label">Further Observations</label>
                             
-                            <textarea name="furtherobservations" id="furtherobservations" placeholder="" rows="2" >
-                                <?php echo $row17d['t_notes']; } ?>
-                            </textarea>
+                            <textarea name="furtherobservations" id="furtherobservations" placeholder="" rows="2" ><?php echo $row17d['t_notes']; } ?></textarea>
                         </div>
                         
                             Upload Images:
@@ -1573,4 +1579,4 @@ $(function(){
 </body>
 
 </html>
-    <?php } ?>
+    <?php } }?>
