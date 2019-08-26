@@ -97,6 +97,14 @@ $Pid = $_GET['pid'];
                 <h3>
                   <span class="patient_name"><?php echo "Patient Id: " . $Pid; ?></span>
                 </h3>                <fieldset>
+
+                      <div class="form-row">
+                          <div class="form-group">
+                              <label for="formDate" class="form-label">Date</label>
+                              <input style="margin-left: 13px;" type="date" name="formDate" id="formDate" value=<?php echo date("Y-m-d"); ?> />
+                          </div>
+                      </div>
+
                       <div class="form-group">
                                 <label  class="form-label">Skin Smears</label>
                                  <table style="padding-left: 34px ;margin-top: 9px;" id="tb6" class="tab orlist">
@@ -137,14 +145,14 @@ $Pid = $_GET['pid'];
                                 
                                     <tbody>
                                         <tr class="tr-header">
-                                            <th>Date</th>
+                                            <!-- <th>Date</th> -->
                                             <th>Clinical Notes</th>
                                             <th>Prescription</th>
                                             <th><a href="javascript:void(0);" style="font-size:18px;" id="addMore2" title="Add More Person"><span class="fa fa-plus"></span></a></th>
                                         <tr>
-                                            <td><input type="date" name="name[]" class="valid"></td>
-                                            <td><textarea name="Prescription[]" class="valid"></textarea></td>
-                                            <td><textarea name="Cnotes[]" class="valid"></textarea></td>
+                                            <!-- <td><input type="date" name="name" class="valid"></td> -->
+                                            <td><textarea name="Prescription" class="valid"></textarea></td>
+                                            <td><textarea name="Cnotes" class="valid"></textarea></td>
                                             <td><a href='javascript:void(0);' style="font-size:18px;" class='remove2' title="Remove"><span class='fa fa-minus'></span></a></td>
                                         </tr>
 

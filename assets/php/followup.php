@@ -7,7 +7,8 @@ include 'variablesFollowup.php';
 // include ('uploadImage.php');
 
 date_default_timezone_set('Asia/Kolkata');
-$date = date('Y-m-d');
+// $date = date('Y-m-d');
+// $dateToday = date('Y-m-d');
 //$date = date('Y-m-d H:i:s');
 
 // function query($query, $message = '') {
@@ -66,6 +67,54 @@ if ( !empty($Pid) ) {
             	query($qry11, 'smear_test row ' . $key);
             }
         }
+
+        foreach ($Drug_used_treatment as $key => $value) {
+            $drug = NULL; $Did = NULL;
+
+            $Drug_used_treatment[$key] = escape(empty($Drug_used_treatment[$key]) ? 'Unknown' : $Drug_used_treatment[$key]);
+            $Drug_dosage_treatment[$key] = escape(empty($Drug_dosage_treatment[$key]) ? 'Unknown' : $Drug_dosage_treatment[$key]);
+            $Start_treatment[$key] = empty($Start_treatment[$key]) ? $date : $Start_treatment[$key];
+            $End_treatment[$key] = empty($End_treatment[$key]) ? $Start_treatment[$key] : $End_treatment[$key];
+
+            $drug = mysqli_query($conn, "SELECT * FROM `drugs` WHERE `dname` = '".$Drug_used_treatment[$key]."'");
+            if(mysqli_num_rows($drug) > 0) {
+                $exist = mysqli_fetch_assoc($drug); 
+                $Did = $exist['did'];
+            }
+            else {
+                $qry7 = "INSERT INTO `drugs` (
+                `dname`
+                )VALUES('".$Drug_used_treatment[$key]."');";
+                query($qry7, 'new drug');
+                $Did = $conn->insert_id;
+                echo "Did is " . $Did . "<br>";
+            }
+
+            $qry8 = "INSERT INTO `drugs_prescribed` (
+            `rid` ,
+            `did` ,
+            `type` ,
+            `start_date` ,
+            `end_date` ,
+            `dosage`
+            ) VALUES ($Rid, $Did, '', '$Start_treatment[$key]', '$End_treatment[$key]', '$Drug_dosage_treatment[$key]');";
+            query($qry8, 'drugs_prescribed');
+        }
+
+        foreach ($appointment_for as $key => $value) {
+
+            if (empty($appointment_for[$key]) || empty($date_for_next_appointment[$key])) {
+                continue;
+            }
+
+            $qry13 = "INSERT INTO `next_appointment`(
+            `fid`, 
+            `appointment_reason`, 
+            `appointment_date`
+            ) VALUES ($Rid, '$appointment_for[$key]', '$date_for_next_appointment[$key]');";
+            query($qry13, 'next_appointment');
+        }
+
     }
     else {
         echo "<br>Record not created<br>";

@@ -2,6 +2,8 @@
 
 // echo "<br>variables page";
 // $ID 	 = empty($_POST['ID']) : ;
+$dateToday = date('Y-m-d');
+$date = empty($_POST['formDate']) ? $dateToday : $_POST['formDate'];
 $Clinic = empty($_POST['Clinic']) ? 'HO' : $_POST['Clinic'];
 $IDclinic = empty($_POST['IDclinic']) ? 0 : $_POST['IDclinic'];	// figure out how to insert this
 $Name = escape(empty($_POST['Name']) ? 'Anonymous' : $_POST['Name']);

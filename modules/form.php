@@ -90,6 +90,13 @@ if(!isset($_SESSION['id'])){
                             <label for="ID" class="form-label">ID</label>
                             <input type="text" name="ID" value="1" style="text-align: center;" placeholder=""  />
                         </div> -->
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="formDate" class="form-label">Date</label>
+                                <input style="margin-left: 13px;" type="date" name="formDate" id="formDate" value=<?php echo date("Y-m-d"); ?> />
+                            </div>
+                        </div>
                         
                         <div class="form-group">
                             <label form="NOML" class="form-label">Clinic Area</label>

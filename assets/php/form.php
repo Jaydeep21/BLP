@@ -1,7 +1,8 @@
 <?php
 
   date_default_timezone_set('Asia/Kolkata');
-  $date = date('Y-m-d');
+  // // $date = date('Y-m-d');
+  // $dateToday = date('Y-m-d');
   // $date = date('Y-m-d H:i:s');
 
   include 'functions.php';
@@ -36,9 +37,8 @@
   if($DOB != '0000-01-01' && $age == 0) {
 
     $bday = new Datetime($DOB);
-    // print_r($bday);
-    $today = new Datetime(date('y.m.d'));
-    $age = date_diff($bday, $today)->y;
+    $dateTime = new Datetime($date);
+    $age = date_diff($bday, $dateTime)->y; //age at time of form filling
 
   }
   // echo '<br>age is ' . $age;
@@ -54,8 +54,9 @@
     `age`,
     `allergy`,
     `clinic`,
-    `referred`
-  ) VALUES ('$Name', '$DOB', '$Sex', $aadhar, '$Occupation', '$ecostat', '$Caste', $age, '$Allergies', '$Clinic', '$Referred')";
+    `referred`,
+    `person_created`
+  ) VALUES ('$Name', '$DOB', '$Sex', $aadhar, '$Occupation', '$ecostat', '$Caste', $age, '$Allergies', '$Clinic', '$Referred', '$date')";
 
   if( query($qry1, 'Person') ) {
 
@@ -411,7 +412,7 @@
             `dosage`
           ) VALUES ($Rid, $Did, '', '$Start_first_treatment[$key]', '$End_first_treatment[$key]', '$Drug_dosage_first_treatment[$key]');";
           query($qry8, 'drugs_prescribed');
-      }  
+      }
 
       // if(!empty($Site)) {
       //   foreach ($Site as $key => $value) {
